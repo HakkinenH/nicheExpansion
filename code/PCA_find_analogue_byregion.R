@@ -13,8 +13,12 @@
 # This takes 1) a species list 2) occurrence data (desaggreagated or not), stored in RawData/GBIF and 3) compiled WorldClim data in a csv file
 # Before we run our expansion analysis we have to make sure we are making fair comparisons between native and naturalised occurrences. 
 # So we check for analogue space, and remove any occurrences that occur in non-analogue climate
-# Output is stored in:
-  
+# Output is stored in: IntermediateOutput/PCA_find_analogue_byregion
+
+# Based on Broenniman et al (2012) PCA method, adapted by Regan Early to measure niche NND and other dynamics
+# Modified by HHakkinen 2017 to process species data. Points are read in, categorised, PCA space is created
+# then save the outputs as raster for later summary, as well graphical output
+
 
 ### ###
 
@@ -251,9 +255,7 @@ niche_cal2<-function(q, native_regions,native,natur,sp_name){
       
       # measures niche overlap along the two first axes of a PCA calibrated on all the pixels of the study areas
       
-      #fit of the analyse using occurences from both ranges	
-      
-      #pca.cal <-dudi.pca(data.env.occ,row.w = row.w.env.PROJT, center = T, scale = T, scannf = F, nf = 2)
+      #fit of the analyse using occurrences from both ranges	
       pca.cal <-dudi.pca(data.env.occ,row.w = row.w.env, center = T, scale = T, scannf = F, nf = 2)
       
       
@@ -420,7 +422,7 @@ yooo<-lapply(sp_list, niche_cal)
 
 
 
-
+#some some checks and binding
 D.df<-yooo[yooo!="not enough known occurrences to calculate niche"]
 D.df
 
@@ -436,8 +438,7 @@ sum(l_check2!=6)
 
 D.df2<-do.call(rbind, D.df)
 
-write.csv(D.df2,"niche_shift_work/analogue_disagg3Var_04032019/summary_loss.csv",row.names=F)
-test<-read.csv("niche_shift_work/analogue_disagg3Var_04032019/summary_loss.csv")
-
+#write a summary of how many points lost
+write.csv(D.df2,"IntermediateOutput/PCA_find_analogue_byregion/plant_specieslist_analoguefiltered.csv",row.names=F)
 
 

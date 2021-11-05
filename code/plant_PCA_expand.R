@@ -1,60 +1,63 @@
 
-#Based on Broenniman et al (2012) PCA method, adapted by Regan to measure niche NND and other dynamics
-#Modified by HHakkinen 2017 to process species data. Points are read in, categorised, PCA space is created
-#then save the outputs as raster for later summary, as well graphical output
+##############################################
+### DETECT SPECIES NICHE EXPANSION ###
+##############################################
 
-#finds center of niche in climate space, measures locations, distance and native/natur regions and creates df output
-#expansion points are compared against the center of the native niche and measured for direction and magnitude
+### META ###
+# HHakkinen
+# Complete Date: 01/07/2021
+# University of Exeter
+# Code repo used to support:
+#   "Plant naturalisations are constrained by temperature but released by precipitation"
+# 
+# This takes 1) a species list 2) occurrence data (desaggreagated AND non-analogous points removed), stored in RawData/GBIF and 3) compiled WorldClim data in a csv file
+# In this script we project species' native and naturalised occurrences in PCA space to estimate their climatic niche.
+# We find areas of niche expansion, and calculate several things about it (what areas, what proportion of niche expansion, what directions are expansion cells in?)
+# We then save the output with as much detail as possible for later analysis
+# Output is stored in: IntermediateOutput/plant_PCA_expand
+
+# Based on Broenniman et al (2012) PCA method, adapted by Regan Early to measure niche NND and other dynamics
+# Modified by HHakkinen 2017 to process species data. Points are read in, categorised, PCA space is created
+# then save the outputs as raster for later summary, as well graphical output
+
+
+### ###
+
 
 rm(list=ls())
 
+#set to location of repository
 setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
-setwd("/Users/henry_hakkinen/Documents/Research/RepoCode/nicheExpansion/")
+
 
 #functions from the original broenniman paper, various versions of input
-#source("niche.overlap.functions.R")
-#source("occ.prep.functions.R")
 source("code/functions/niche_dynamic_functions_Nov11th2016HH.R")
 source("code/functions/PCA_functions.R")
+source("./code/functions/miscFunctions.R")
+
 
 library(dplyr)
-
 library(biomod2)
 library(ade4)
-#library(adehabitat)
 library(raster)
 library(rworldmap)
-
 library(ecospat)
 library(adehabitatHR)
-
 library(circular)
 library(CircMLE)
-#library(SDMTools)
 library(rgeos)
-
-
 library(sp)
-#library(gam)
-#library(MASS)
-#library(mvtnorm)
-#library(gbm)
-#library(dismo)
 
 
-#library(rgdal)
-
-#library(cluster)
-
-#library("easyGgplot2")
-
-##########################################################
-#Functions for data processing
 
 
 
 ###################################
 #load files for processing
+##################################
+#CHECK FILE NAMES AND PATHS ARE CORRECT BEFORE RUNNING! 
+#IF this section loads correctly then rest should run with no problems
+
 
 #load shapefile with zones for range classification
 shape <- shapefile("RawData/BiogeographicZones/biogeographic_zonesV2.shp")
@@ -62,37 +65,12 @@ shape <- shapefile("RawData/BiogeographicZones/biogeographic_zonesV2.shp")
 newmap <- getMap(resolution = "coarse")  # different resolutions available
 #plot(shape,col=as.factor(shape@data$Name),axes=T)
 
-#load world raster as base for data to be overlaid, and for info on grid cell area (km squared)
-world<-raster("RawData/GlobalGrid/Global_10min_grid.grd")
 
-
-#global climate space. This is basically the above .grd file but with region assigned to each cell (in csv form)
-#it takes a while to calculate this everytime, so I just saved it with region assigned (check it matches shape)
 #this is 3 climate variables
-#clim123_ref <- na.exclude(read.csv("bioclim_10min_region.csv"))
-#clim123<-clim123_ref[,-c(6)]
-#colnames(clim123)<-c("x","y","X1","X2","X3")
+clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclim_3Var_10min_region.csv"))
+#this is a 4 variable version that includes precipitation seasonality
+#clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclim_4Var_10min_region.csv"))
 
-#this is 3 climate variables + NPP
-#clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclimNPP_10min_region.csv"))
-
-clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclim_4Var_10min_region.csv"))
-
-
-
-
-#cut out extreme precip values as a test
-#dim(clim123_ref[clim123_ref$bio12>5000,])
-
-#clim123_ref<-clim123_ref[clim123_ref$bio12<3000,]
-#hist(clim123_ref$bio12)
-
-
-
-#precipitation is heavily skewed
-#should I log?
-#potentially http://blogs.ubc.ca/colinmahony/2014/10/17/should-precipitation-variables-be-transformed-prior-to-pca/
-#clim123_ref$bio12<-log10(clim123_ref$bio12+1)
 
 
 #SELECT VARIABLES TO RUN THE ANALYSIS
@@ -100,74 +78,35 @@ clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclim_4Var_10min_region.
 #2 VAR is TMAX AND PRECIP: BIO5 AND BIO12
 #4 VAR is TMAX. TMIN, PRECIP, PRECIP SEASON, BIO5, BIO6, BIO12, BIO15
 
+varlis<-c("bio5", "bio6", "bio12")
 
-varlis<-c("bio5", "bio6", "bio12", "bio15")
 
 #CHOOSE OUTPUT Folder (options are 2Var, 3Var, 4Var)
-folOut<-"4Var"
-
+folOut<-"3Var"
 
 
 
 clim123<-clim123_ref[,c("x","y", varlis)]
-colnames(clim123)<-c("x","y","X1","X2","X3", "X4")
+colnames(clim123)<-c("x","y","X1","X2","X3")
 
 
+#if you want to look at what the PCA space will look like you can load these pre-made versions
 #previously we've saved a copy of the global PCA (slightly circular but there it is)
 #open and extract direction of each component vector
-
-if(folOut=="3Var"){load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecip")}
-if(folOut=="2Var"){load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TmaxPrecip")}
-if(folOut=="4Var"){load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecipPrSeas")}
-
-ecospat.plot.contrib(pca.cal$co,pca.cal$eig)
-arr_tab<-pca.cal$co[, 1:2]/max(abs(pca.cal$co[, 1:2]))
-colnames(arr_tab)<-c("x","y")
-#table with points which give the direction as compared to the origin (0,0)
-#find the angle of direction for each PCA component
-arr_tab$angle<-apply(arr_tab,1,rad.ang.center,x2=c(0,0))
-
-plot(0,0,xlim=c(-1,1),ylim=c(-1,1))
-points(arr_tab$x,arr_tab$y)
-arrows.circular(arr_tab[1:4,3],col="red")
+#if(folOut=="3Var"){load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecip")}
+#if(folOut=="2Var"){load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TmaxPrecip")}
+#if(folOut=="4Var"){load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecipPrSeas")}
 
 
 
-#list of all species for processing. This is the old total list
-#plant_summary<-read.csv("species lists/plant_data_summary0607.csv")
-#remove species we ruled out for whatever reason
-#plant_list<-plant_summary[plant_summary$Verdict == "Yes",]
+
+
+#list of all species for processing. 
 #this is the new summary list for informing analogue climate
-plant_summary<-read.csv("IntermediateOutput/PCA_find_analogue_byRegion/plant_data_analogue05042019.csv",stringsAsFactors = F)
-
-median(plant_summary$kept_native)
-
-#########################
-#load failures if necessary
-########################
-getwd()
-faillist<-list.files(path="IntermediateOutput/failure/",pattern="*.csv")
-failsp<-c()
-
-q<-faillist[7]
-
-for(q in faillist){
-  a<-unlist(strsplit(q, split="-"))
-
-  a_sp<-a[1]
-  reg<-a[2:length(a)]
-  if(length(reg)>1){reg<-paste(reg,collapse = "-")}
-  region<-unlist(strsplit(reg, split=".csv"))[1]
-  failsp<-rbind(failsp, c(a_sp,region))
-}
-
-failsp<-data.frame(failsp)
-colnames(failsp)<-c("species_name", "region")
+plant_summary<-read.csv("IntermediateOutput/PCA_find_analogue_byRegion/plant_specieslist_analoguefiltered.csv",stringsAsFactors = F)
 
 
-##############################
-
-#blank dataframe that will be filled row by row for any species that fail
+#blank dataframe that will be filled row by row for any species that fail. Useful for checking if anything fails
 mergefail.df<-data.frame(sp_name=integer(),native_removed=integer(),naturalised_removed=integer())
 
 
@@ -191,42 +130,30 @@ cor_sel<-"z.uncor"
 thresh_exp_per<-0.1
 perc<-"ninetypercentile"
 
-head(plant_summary)
-
-#plant_summary[which(plant_summary$species_name=="Cerastium fontanum"),]
-#plant_summary<-plant_summary[419:nrow(plant_summary),]
-
-head(plant_summary)
-sp_name<-"Cerastium fontanum"
-region<-"Neotropical"
 
 
 
-#application of the function
-
-yooo<-mapply(niche_cal, plant_summary$species_name,plant_summary$region)
 
 
 
-niche_cal(sp_name, region)
+#################################
+#DEFINE FUNCTIONS TO FIND EXPANSION IN PCA SPACE
+#################################
 
 #the actual function to process the data, it's bad form to have it this way round, but saves on scrolling
 niche_cal<-function(sp_name,region){
 
-
   print(sp_name)
   print(region)
   
-  #species lists/plant_dist_data_0802: these are original raw files but we use the deaggregated points for speed
-  #species lists/plant_dist_data_0802/desaggregated_data/ is the global disaggregated data
-  
+
   #this is out current dataset
   #deaggregaated, and filtered so only analogue native/naturalised occurrence data is included
   #native (all regions) vs naturalised (the region we are currently looking at only)
   file_natur = paste("IntermediateOutput/PCA_find_analogue_byregion/",region,"/",sp_name,region,"_natur.csv",sep="")
   file_native = paste("IntermediateOutput/PCA_find_analogue_byregion/",region,"/",sp_name,region,"_native.csv",sep="")
   
-
+  #read in all files and check formats and names are correct
   native<-read.csv(file_native)
   natur<-read.csv(file_natur)
   if(ncol(native)>2){native<-native[,1:2]}
@@ -238,15 +165,10 @@ niche_cal<-function(sp_name,region){
   colnames(native)<-c("x","y")
   colnames(natur)<-c("x","y")
   
-  
-  #we comment out because we're just pre-desaggregated data
-  #occ.sp_native<-ecospat.occ.desaggregation(df=native,colxy=1:2,min.dist=0.16666,plot=F) 
-  #occ.sp_natur<-ecospat.occ.desaggregation(df=natur,colxy=1:2,min.dist=0.16666,plot=F) 
-  
   occ.sp_native<-native
   occ.sp_natur<-natur
 
-  #global climate is treated as equally available, NPP removed
+  #global climate is treated as equally available, set climate
   clim1<-clim123_ref[,c("x","y", varlis)]
   clim2<-clim123_ref[,c("x","y", varlis)] 
 
@@ -254,14 +176,14 @@ niche_cal<-function(sp_name,region){
   #clim12 is a combination of clim1 (native) and clim2 (naturalised)
   clim12 <- rbind(clim1, clim2)
   
-  #filter out occurences with fewer than 5 occurences, PCA cannot be built on fewer.
+  #filter out species with fewer than 5 occurences, PCA cannot be built on fewer.
   if (nrow(occ.sp_native)<=5 | nrow(occ.sp_natur)<=5){
     print ("not enough known occurrences to calculate niche")
   }
   
   else{
     
-    #extract bioclim variables for species occurences
+    #extract bioclim variables for species occurrences
 
     occ.sp1<-na.exclude(ecospat.sample.envar(dfsp=occ.sp_native,colspxy=1:2,colspkept=NULL,dfvar=clim12,colvarxy=1:2,colvar="all",resolution=0.16666))
     occ.sp2<-na.exclude(ecospat.sample.envar(dfsp=occ.sp_natur,colspxy=1:2,colspkept=NULL,dfvar=clim12,colvarxy=1:2,colvar="all",resolution=0.16666))
@@ -276,11 +198,10 @@ niche_cal<-function(sp_name,region){
     }
     else{
       
-      ############Below is Regan's adapated method.
       
-      #################################################################################################
-      ############################## ANALYSIS - selection of parameters ###############################
-      #################################################################################################
+      ###
+      ### ANALYSIS - selection of parameters 
+      ###
       
       # selection of the type of analysis.
       # If PROJ =F, the models are calibrated on both ranges.
@@ -298,11 +219,10 @@ niche_cal<-function(sp_name,region){
       #resolution of the gridding of the climate space
       R=100
       
-      #################################################################################################
-      ################### row weigthing and grouping factors for ade4 functions  ######################
-      #################################################################################################
       
-      
+      ###
+      ###row weighting and grouping factors for ade4 functions 
+      ###
       
       # if PROJ = F
       row.w.1.occ<-1-(nrow(occ.sp1)/nrow(rbind(occ.sp1,occ.sp2))) # prevalence of occ1
@@ -332,17 +252,12 @@ niche_cal<-function(sp_name,region){
       
       
       
-      #################################################################################################
-      #################################### PCA-ENV ####################################################
-      #################################################################################################
+      ###
+      ### PCA-ENV 
+      ###
       
       # measures niche overlap along the two first axes of a PCA calibrated on all the pixels of the study areas
-      
-      #fit of the analyse using occurences from both ranges	
-      #names(data.env.occ)<-c("Tmax","Tmin","Precip","PrecipSeason")
-      #data.env.occ<-data.env.occ[,c(1,3)]
-      
-      #pca.cal <-dudi.pca(data.env.occ,row.w = row.w.env.PROJT, center = T, scale = T, scannf = F, nf = 2)
+    
       pca.cal <-dudi.pca(data.env.occ,row.w = row.w.env, center = T, scale = T, scannf = F, nf = 2)
 
       
@@ -350,9 +265,15 @@ niche_cal<-function(sp_name,region){
       #save(pca.cal,file="./IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecipPrSeas")
       #plot the loadings if needed
       ecospat.plot.contrib(pca.cal$co,pca.cal$eig)
+      arr_tab<-pca.cal$co[, 1:2]/max(abs(pca.cal$co[, 1:2]))
+      colnames(arr_tab)<-c("x","y")
+      #table with points which give the direction as compared to the origin (0,0)
+      #find the angle of direction for each PCA component
+      arr_tab$angle<-apply(arr_tab,1,rad.ang.center,x2=c(0,0))
       
-
-
+      #plot(0,0,xlim=c(-1,1),ylim=c(-1,1))
+      #points(arr_tab$x,arr_tab$y)
+      #arrows.circular(arr_tab[1:4,3],col="red")
 
       # predict the scores on the axes
       scores.clim12<- pca.cal$li[row.clim12,]
@@ -362,16 +283,11 @@ niche_cal<-function(sp_name,region){
       scores.sp2<- pca.cal$li[row.sp2,]
       
       
-      #grid.clim.NNU is slightly different to the main plotting functions later (ecospat.grid.clim.dyn), but only in the output. Calculatations are the same
+      #grid.clim.NNU is slightly different to the main plotting functions later (ecospat.grid.clim.dyn), but only in the output. Calculations are the same
       #return niche matrices both as a matrix and as a raster:
       z2<- grid.clim.NNU2(scores.clim12, scores.clim2, scores.sp2, R) ## Uses the PCA scores of the entire climate space, native climate space, and species distribution to calculate occurrence density on a grid. The entire climate space is only used to set the boundaries of the grid.
       z1<- grid.clim.NNU2(scores.clim12,scores.clim1,scores.sp1,R)
 
-      
-      # #test of equivalency taken out due to time delay
-      #a<-ecospat.niche.equivalency.test(z1_alt,z2_alt,rep=100)# test of niche equivalency and similarity according to Warren et al. 2008
-      #b<-ecospat.niche.similarity.test(z1,z2,rep=100) ## can take some time
-      #b2<-ecospat.niche.similarity.test(z2,z1,rep=100) ## can take some time
       
       #we want some expansion info
       dyn.100<-dynamic.index(z1,z2,thresh=0) ## dynamics in all analagous climate space
@@ -395,8 +311,6 @@ niche_cal<-function(sp_name,region){
       #select appropriate occurence density layer
       ntv.distn <- z1[cor_sel][[1]]
 
-      
-      #ntv.distn <- z1$z.cor
       
       #remove occurrences that fall under the threshold of occupied climate
       #z.raw is z/Z, so scaled to availability of climate. remove any points from z.uncor that fall under this threshold
@@ -428,7 +342,7 @@ niche_cal<-function(sp_name,region){
       ## Climate in native range
       z1.r<-z1$Z
       
-      ## Overlap between USA and Europe - all climate space
+      ## Overlap between native and naturalised - all climate space
       z1.r100 <- z1.r > 0
       z2.r100 <- z2.r > 0
       overlap100 <- z1.r100 * z2.r100
@@ -437,7 +351,7 @@ niche_cal<-function(sp_name,region){
       #outline of native occupied niche (100% analogue)
       ntv.distn.r.pa100<-ntv.distn.r.pa*overlap100
       
-      #outline of naturalised occuoied niche (100% analogue)
+      #outline of naturalised occupied niche (100% analogue)
       natur.distn.r.pa100<-natur.distn.r.pa*overlap100
       
       #stab, exp and res in analogue space
@@ -447,6 +361,7 @@ niche_cal<-function(sp_name,region){
       
       
       ###we have found all areas of overlapping niche space so now we can start to answer questions
+      
       
       #########################1) do species expand? >0.1 expansion###################
       
@@ -500,11 +415,9 @@ niche_cal<-function(sp_name,region){
       csvfile4 <- paste("IntermediateOutput/plant_PCA_exp/",folOut,"/NaturPCAvalues/",sp_name,region,".csv",sep="")
       write.table(natur_occ, csvfile4, row.names = FALSE, sep = "\t")
       
-      head(natur_occ)
       
       
-      #find all naturalised climate cells that lie in native niche
-      
+      #find all naturalised climate cells that lie in native region and are therefore analogue
       natur_PCA<-raster(paste("IntermediateOutput/findRegionOutline/",folOut,"/",region,"PCA.tif",sep=""))
       
       
@@ -512,7 +425,7 @@ niche_cal<-function(sp_name,region){
       #take naturalised climate and crop by native niche
       natur_poten <-natur_PCA*ntv.distn.r.pa100
 
-
+      
       natur_poten_df<-as.data.frame(coordinates(natur_poten))
       natur_poten_df$layer<-as.data.frame(natur_poten$layer)$layer
       if(nrow(natur_poten_df[which(natur_poten_df$layer==0),])>0){natur_poten_df[which(natur_poten_df$layer==0),]<-NA}
@@ -521,50 +434,11 @@ niche_cal<-function(sp_name,region){
       natur_poten_center<-COGravity(x=natur_poten_df$x, y=natur_poten_df$y, wt=natur_poten_df$layer)[c(1,3)]
       natur_poten_center<-data.frame(x=natur_poten_center[1],y=natur_poten_center[2])
       
-
-      
-
-      # a<-ggplot(native_clim_pca, aes(Axis1, Axis2)) +
-      #   ggtitle("NPP")+
-      #   geom_point(aes(colour = NPP))+
-      #   scale_colour_gradient(low="blue", high="red")
-      # 
-      # b<-ggplot(native_clim_pca, aes(Axis1, Axis2)) +
-      #   ggtitle("Tmin")+
-      #   geom_point(aes(colour = bio6))+
-      #   scale_colour_gradient(low="blue", high="red")
-      # 
-      # c<-ggplot(native_clim_pca, aes(Axis1, Axis2)) +
-      #   ggtitle("TMax")+
-      #   geom_point(aes(colour = bio5))+
-      #   scale_colour_gradient(low="blue", high="red")
-      # 
-      # d<-ggplot(native_clim_pca, aes(Axis1, Axis2)) +
-      #   ggtitle("Precip")+
-      #   geom_point(aes(colour = bio12))+
-      #   scale_colour_gradient(low="blue", high="red")
-      # 
-      # 
-      # png(file="niche_shift_work/Figures/global_pca_diag.png", width=900, height=700)
-      # ggplot2.multiplot(b,c,d, cols=2)
-      # dev.off()
-
-      # png(file="niche_shift_work/Figures/global_pca_arrows.png", width=900, height=700)
-      # par(mfrow=c(2,2))
-      # ecospat.plot.niche(z1,title="PCA-env - native niche",name.axis1="PC1",name.axis2="PC2")
-      # arrows.circular(npp_dir, shrink=3, length=0.1, x0=native_center$x, y0=native_center$y,col="red")
-      # ecospat.plot.niche(z1,title="PCA-env - native niche",name.axis1="PC1",name.axis2="PC2")
-      # arrows.circular(tmin_dir, shrink=3, length=0.1, x0=native_center$x, y0=native_center$y,col="red")
-      # ecospat.plot.niche(z1,title="PCA-env - native niche",name.axis1="PC1",name.axis2="PC2")
-      # arrows.circular(tmax_dir, shrink=3, length=0.1, x0=native_center$x, y0=native_center$y,col="red")
-      # ecospat.plot.niche(z1,title="PCA-env - native niche",name.axis1="PC1",name.axis2="PC2")
-      # arrows.circular(precip_dir, shrink=3, length=0.1, x0=native_center$x, y0=native_center$y,col="red")
-      # dev.off()
-      
-      
+      #now find information, what is it like at the center of the native niche? Get climate variable information
       native_cinfo<-near_point2(native_center,native_clim_pca)
       native_cinfo
       
+      #prep output data
       circ_model<-NA;circ_rstat<-NA;circ_pvalue<-NA
       exp.mean.dir1<-NA;exp.median.dir1<-NA;exp.ten.dir1<-NA;exp.ninety.dir1<-NA;exp.max.dir1<-NA;
       exp.mean.dir2<-NA;exp.median.dir2<-NA;exp.ten.dir2<-NA;exp.ninety.dir2<-NA;exp.max.dir2<-NA;
@@ -573,17 +447,15 @@ niche_cal<-function(sp_name,region){
       
       
       
-
+      #only do the following if there is expansion
       if(nrow(exp_points)>0){
 
-        ##############2) is there strong expansion in one (or two) directions? Or is it in every direction?##############
+        ############## 2) is there strong expansion in one (or two) directions? Or is it in every direction? ##############
         #circ_mle comparing the central point of naturalised density with every gridcell of expansion (can I weight by density of gridcell?)
         #what model describes it best? Null is every direction at once by not very much
         #can we categorise it roughly? 1) no expansion 2) unidirectional expansion 3) bidirectional expansion 4)multidirectional exp
         
-        
 
-        
         #find all expansion cells and their associated density
         exp.distn.r<-exp100*z2$zz
         
@@ -614,8 +486,6 @@ niche_cal<-function(sp_name,region){
         #exp.distn.r<-exp100*z2$natur.distn.r
         
 
-
-        
         exp.distn.r2<-exp.distn.r*1000
         exp.distn.r2<-round(exp.distn.r2)
         exp.distn.r2[exp.distn.r2<1]<-NA
@@ -627,13 +497,9 @@ niche_cal<-function(sp_name,region){
         exp_df$layer<-as.data.frame(exp.distn.r2$layer)$layer
 
 
-        
         exp_df<-exp_df[!is.na(exp_df$layer),]
         
-        
-        
-        
-        
+
         #calculate distance to each expansion cell
         exp_df$exp_dist<-unlist(apply(exp_df[,1:2], 1, euc.dist.center, x2=natur_poten_center))
 
@@ -675,6 +541,7 @@ niche_cal<-function(sp_name,region){
         ntv_plot<-ntv.distn.r
         ntv_plot[ntv_plot==0]<-NA
 
+        #save output for inspection
         plotname=paste('IntermediateOutput/plant_PCA_exp/',folOut,'/bucketDirection/',sp_name,'_',region,'_shift.jpg', sep='')
         png(file=plotname, width=900, height=700)
         
@@ -709,10 +576,9 @@ niche_cal<-function(sp_name,region){
         
         
         
-        
-        head(exp_df)
+
         ####################################
-        #DIRECTION CUT DOWN
+        #DIRECTION CUT DOWN AND SUMMARISE
         ###################################
         
         ###we have dir1 (and maybe dir2) which are directions of expansion
@@ -733,7 +599,8 @@ niche_cal<-function(sp_name,region){
         exp.ninety.dir1<-quantile(exp_df_dir1$exp_dist,0.9)
         exp.max.dir1<-max(exp_df_dir1$exp_dist)
         if(exp.max.dir1==-Inf){
-          
+          #infinite means something has gone wrong (usually becuase we try and divide by 0)
+          #make a note and investigate if needed
           print("oh noooooo")
           resu<-c(sp_name,"dir1",dir1,exp.max.dir1,nrow(exp_df_dir1))
           write.csv(resu,paste("./IntermediateOutput/plant_PCA_exp/",folOut,"/failure/",sp_name,"-",region,".csv",sep=""))
@@ -769,7 +636,8 @@ niche_cal<-function(sp_name,region){
         
         
         
-        
+        #we also want to know how much niche filling and expansion is in each climatic direction
+        #for that we take a slice and take some summary stats
         #find all points that lie in a 90 degree slice around Precip vector (increasing)
         if ("bio12" %in% varlis){
           precip_dir<-arr_tab["bio12","angle"]
@@ -802,30 +670,17 @@ niche_cal<-function(sp_name,region){
           tmax_pro<-sum(tmax_df$layer_orig)/sum(exp_df$layer_orig)
         }
         
-        #find all points that lie in a 90 degree slice around npp vector (deprecated)
-        #npp_dir<-arr_tab["NPP","angle"]
-        #npp_df<-find_slice(exp_df,npp_dir)
-        #what proportion of exp density is in this slice?
-        #npp_pro<-sum(npp_df$layer_orig)/sum(exp_df$layer_orig)
-        
-
-
         
         
         
-        #########################we extract the ordination values and densities to build into our summary table
+        ###we extract the ordination values and densities to build into our summary table
         
         dir1_plot<-as.circular(dir1,type='angles',units='radians',template='none',modulo='asis',zero=0,rotation='counter')
         
         precip_dir_plot<-as.circular(precip_dir,type='angles',units='radians',template='none',modulo='asis',zero=0,rotation='counter')
-        #tmin_dir_plot<-as.circular(tmin_dir,type='angles',units='radians',template='none',modulo='asis',zero=0,rotation='counter')
+        tmin_dir_plot<-as.circular(tmin_dir,type='angles',units='radians',template='none',modulo='asis',zero=0,rotation='counter')
         tmax_dir_plot<-as.circular(tmax_dir,type='angles',units='radians',template='none',modulo='asis',zero=0,rotation='counter')
-        #npp_dir_plot<-as.circular(npp_dir,type='angles',units='radians',template='none',modulo='asis',zero=0,rotation='counter')
-        
-        
-        
 
-        
         
         plotname=paste('IntermediateOutput/plant_PCA_exp/',folOut,'/bucketDirection/',sp_name,'_',region,'_shiftpie.jpg', sep='')
         png(file=plotname, width=900, height=700)
@@ -849,19 +704,19 @@ niche_cal<-function(sp_name,region){
         text(2,2,paste("proportion:", round(precip_pro, digits=2)))
         
         #tmin
-        # plot(ntv.overlap,xlim=c(-4,3),ylim=c(-4,4),main="Tmin")
-        # points(exp_df$x,exp_df$y,col="blue")
-        # 
-        # points(natur_poten_center$x,natur_poten_center$y,col="red")
-        # arrows.circular(dir1_plot, shrink=1, length=0.1, col="blue", x0=natur_poten_center$x, y0=natur_poten_center$y)
-        # 
-        # arrows.circular(tmin_dir_plot, shrink=3, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
-        # arrows.circular(tmin_dir_plot+0.7853982, lty=2, shrink=3, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
-        # arrows.circular(tmin_dir_plot-0.7853982, shrink=3, lty=2, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
-        # 
-        # points(tmin_df$x,tmin_df$y,col="red")
-        # text(2,2,paste("proportion:", round(tmin_pro, digits=2)))
-        # 
+        plot(ntv.overlap,xlim=c(-4,3),ylim=c(-4,4),main="Tmin")
+        points(exp_df$x,exp_df$y,col="blue")
+
+        points(natur_poten_center$x,natur_poten_center$y,col="red")
+        arrows.circular(dir1_plot, shrink=1, length=0.1, col="blue", x0=natur_poten_center$x, y0=natur_poten_center$y)
+
+        arrows.circular(tmin_dir_plot, shrink=3, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
+        arrows.circular(tmin_dir_plot+0.7853982, lty=2, shrink=3, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
+        arrows.circular(tmin_dir_plot-0.7853982, shrink=3, lty=2, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
+
+        points(tmin_df$x,tmin_df$y,col="red")
+        text(2,2,paste("proportion:", round(tmin_pro, digits=2)))
+
         #tmax
         plot(ntv.overlap,xlim=c(-4,3),ylim=c(-4,4),main="Tmax")
         points(exp_df$x,exp_df$y,col="blue")
@@ -876,25 +731,13 @@ niche_cal<-function(sp_name,region){
         points(tmax_df$x,tmax_df$y,col="red")
         text(2,2,paste("proportion:", round(tmax_pro, digits=2)))
         
-        #NPP - removed
-        #plot(ntv.overlap,xlim=c(-4,3),ylim=c(-4,4),main="NPP")
-        #points(exp_df$x,exp_df$y,col="blue")
-        
-        #points(natur_poten_center$x,natur_poten_center$y,col="red")
-        #arrows.circular(dir1_plot, shrink=1, length=0.1, col="blue", x0=natur_poten_center$x, y0=natur_poten_center$y)
-        
-        #arrows.circular(npp_dir_plot, shrink=3, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
-        #arrows.circular(npp_dir_plot+0.7853982, lty=2, shrink=3, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
-        #arrows.circular(npp_dir_plot-0.7853982, shrink=3, lty=2, length=0.1, x0=natur_poten_center$x, y0=natur_poten_center$y)
-        
-        #points(npp_df$x,npp_df$y,col="red")
-        #text(2,2,paste("proportion:", round(npp_pro, digits=2)))
         
         dev.off()
         
 
         exp.distn.r2_save<-exp.distn.r2>0
 
+        #now save the final output
         writeRaster(exp.distn.r, paste("IntermediateOutput/plant_PCA_exp/",folOut,"/shift_PCArasters/",sp_name,'_',region,"_PCAraster.tif",sep=""), options= c("COMPRESSION=LZW","INTERLEAVE=PIXEL"), overwrite=TRUE)
         
         write.csv(exp_df,paste("IntermediateOutput/plant_PCA_exp/",folOut,"/DirData/",sp_name,'_',region,"_dir.csv",sep=""))
@@ -920,7 +763,7 @@ niche_cal<-function(sp_name,region){
       
       dev.off()
       
-      #there are a lot of measurements here but for report here are the major conclusion:
+      #there are a lot of measurements here but for report here are the major conclusions:
       #level of expansion (summed density in expansion space: expansion
       #occupied gridcells with expansion: Occupied_expcells
       #magnitude of niche expansion (average length): exp.dis
@@ -931,11 +774,6 @@ niche_cal<-function(sp_name,region){
       scores.sp2$range<-"natur"
 
 
-
-      #test<-raster(paste("niche_shift_work/shift_PCArasters/",sp_name,"_PCAraster.tif",sep=""))
-
-      
-      
       D.df <- c(sp_name,region,nrow(occ.sp1),nrow(occ.sp2),D_result,dyn.100$dynamic.index.w, nnddyn.100$nnd,
                 native_center,natur_center,natur_poten_center,
                 native_cinfo[c(varlis)],
@@ -985,55 +823,14 @@ niche_cal<-function(sp_name,region){
 }
 
 
-
-yooo
-
-D.df<-yooo[[1]]
-
-for (i in yooo){
-  #print(i[1])
-  if(i[1] != "" & i[1] != "not enough known occurrences to calculate niche"){D.df<-rbind(D.df,i)}
-}
-#Woodwardia radicans
-D.df<-D.df[-c(1),]
-head(D.df)
-
-#D.df4<-do.call(rbind, lapply(seq_along(yooo), function(i){
-#  data.frame(CLUSTER=i, yooo[[i]])
-#}))
-if(sub_ans[[1]][1]!="not"){print("moo")}
-
-sub_ans[[8]][1]
-
-char1<-substr(cor_sel,1,1)
-char2<-substr(cor_sel,3,nchar(cor_sel))
-cor_sel2<-paste0(char1,char2)
-head(cor_sel2)
-test<-as.data.frame(D.df,row.names=F)
+#application of the function
+yooo<-mapply(niche_cal, plant_summary$species_name,plant_summary$region)
 
 
-csvfile4 <- paste("IntermediateOutput/plant_PCA_exp/",folOut,"/",folOut,"0306plant_D_shiftvalues_zuncor_center.txt",sep="")
-write.table(D.df, csvfile4, row.names = FALSE, sep = "\t")
-
-D.df
-
-D.df_convert<-read.table(csvfile4,row.names=NULL)
-head(D.df_convert)
-D.df_convert$species.name<-paste(D.df_convert$row.names,D.df_convert$species.name)
-D.df_convert$row.names<-NULL
-
-write.table(D.df_convert, csvfile4, row.names = F, sep = "\t")
-
-test<-read.table(csvfile4,header=T)
-tail(test)
-
-
-
-csvfile2 <- paste("IntermediateOutput/plant_PCA_exp/",folOut,"/",folOut,"0306plant_D_shiftvalues_zuncor_center.txt",sep="")
-test1<-read.table(csvfile2,header=T)
-
-
-plot(test1$exp_dir1,test$exp_dir2)
+#can run a single species for testing purposes
+#sp_name<-"Cerastium fontanum"
+#region<-"Neotropical"
+#niche_cal(sp_name, region)
 
 
 
