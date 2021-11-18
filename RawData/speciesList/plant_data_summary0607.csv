@@ -1,0 +1,981 @@
+Species_name,Native_points,Naturalised_points,Unclass_points,Offshore_points,rejected_points,accurate_points(native:natur),Unclass_problem?,Data_ready,Verdict,Notes
+Abies concolor,879,304,1,45,0,835:302,no,Yes,Yes,
+Abies fraseri,52,0,1,1,0,50:00:00,no,No,No,
+Abies lasiocarpa,384,30,1,9,0,347:29:00,no,Yes,Yes,
+Abronia fragrans,259,0,1,0,0,253:00:00,no,No,No,
+Abutilon theophrasti,44,1992,19,88,0,35:1921,no,Yes,Yes,Unclass points are scattered
+Acacia albicorticata,41,0,1,0,0,29:00:00,no,No,No,
+Acacia crassicarpa,453,0,1,117,0,377:00:00,no,No,No,
+Acacia dealbata,4515,1339,3,71,0,4042:1314,no,Yes,Yes,
+Acacia erioloba,134,0,1,29,0,128:00:00,no,No,No,
+Acacia mearnsii,3485,264,1,79,0,3219:250,no,Yes,Yes,
+Acacia melanoxylon,8017,596,3,115,0,7529:579,no,Yes,Yes,
+Acanthocereus tetragonus,124,8,1,24,0,117:07:00,no,Yes,Yes,
+Acer ginnala,53,159,9,7,0,47:155,no,Yes,Yes,
+Acer negundo,1918,3990,21,90,7,1856:3968,yes,Yes,Yes,"brazil and armenia sorted, all other points scattered"
+Acer platanoides,33420,4356,14,2047,5,33378:4336,no,Yes,Yes,"Andorra added to native (Euromed), all others scattered"
+Acer pseudoplatanus,17200,39719,9,5451,0,17157:39671,yes,Yes,Yes,Germany and Slovakia are native (http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/4fd5b4a0-288f-4ff5-b4ed-ab32d5271bdb)
+Acer saccharinum,578,386,8,20,0,558:383,no,Yes,Yes,Cannot confirm naturalisation in unclass points
+Acer saccharum,1345,0,11,15,0,1325:00:00,no,No,No,
+Achillea millefolium,84532,319,6,6496,41,84131:303,no,Yes,Yes,"Many unclassified points, but all researched and uncertain"
+Acroptilon repens,70,292,1,9,0,54:241,no,Yes,Yes,
+Adenanthera pavonina,162,120,1,48,0,143:110,no,Yes,Yes,
+Adonis vernalis,1048,1,2,89,0,1026:01:00,no,No,No,
+Aegilops bicornis,67,0,4,1,0,63:00:00,no,No,No,
+Aegilops cylindrica,563,504,21,16,17,478:488,yes,Yes,Yes,"Most are uncertain naturalisations, but SE EU added to native as per Euromed"
+Aegilops tauschii,398,6,2,4,0,314:04:00,no,No,Yes,
+Aegopodium podagraria,53944,7920,2,2529,0,53858:7918,no,Yes,Yes,
+Aeschynomene fluitans,37,0,1,6,0,36:00:00,no,No,No,
+Aeschynomene virginica,12,2,14,0,0,06:02,no,No,No,
+Agalinis auriculata,42,0,1,0,0,42:00:00,no,No,No,
+Agathosma crenulata,23,1,1,3,0,23:01,no,No,No,
+Agave sisalana,2,106,8,33,0,0.15625,no,No,No,
+Agropyron cristatum,479,503,20,12,0,449:481,no,Yes,Yes,
+Agropyron dasyanthum,0,0,1,3,0,00:00,no,No,No,
+Agropyron desertorum,152,3,1,2,0,126:03:00,no,No,No,
+Agrostis capillaris,110018,686,4,8312,0,109829:634,no,Yes,Yes,
+Agrostis exarata,2181,0,2,186,0,2054:00:00,no,No,No,
+Agrostis gigantea,23978,1399,2,2117,9,23917:1275,no,Yes,Yes,
+Agrostis scabra,2327,157,6,76,0,2126:156,no,Yes,Yes,
+Ailanthus altissima,128,4727,10,83,0,126:4640,no,Yes,Yes,"Japan added to naturalised, otherwise points scattered"
+Akebia quinata,287,81,1,12,0,279:76,no,Yes,Yes,
+Albizia julibrissin,342,309,7,20,0,334:294,no,Yes,Yes,
+Albizia lebbeck,280,369,23,79,0,255:332,no,Yes,Yes,"Taiwan and Puerto Rico added to naturalised, http://www.cabi.org/isc/datasheet/4008"
+Alhagi maurorum,172,115,4,1,0,159:98,no,Yes,Yes,
+Alliaria petiolata,38001,825,1,1529,0,37849:800,no,Yes,Yes,
+Allium vineale,23972,335,1,2240,0,23909:329,no,Yes,Yes,
+Alnus glutinosa,94552,123,5,5175,0,94403:118,no,Yes,Yes,
+Aloe arborescens,82,109,16,46,0,78:106,yes,Yes,Yes,Cannot confirm naturalisation in unclass points
+Aloe aristata,23,0,1,1,0,23:00,no,No,No,
+Aloe ciliaris,10,4,11,8,0,10:04,yes,No,No,"Unable to classify uncertain points, not enough data"
+Aloe ferox,37,0,5,2,0,37:00:00,no,No,No,
+Aloe maculata,88,155,3,31,9,87:150,no,Yes,Yes,
+Aloe marlothii,41,0,1,1,0,41:00:00,no,No,No,
+Aloe succotrina,5,0,8,3,0,05:00,yes,No,No,Spain is naturalised http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/61b29e6c-6db3-436f-a015-36b8b7fa1d19
+Aloe wickensii,5,0,8,3,0,05:00,yes,No,No,Cannot confirm naturalisation in unclass points
+Alopecurus geniculatus,76448,489,9,3218,0,76323:388,yes,Yes,Yes,Taiwan and Saudi Arabia are native as per http://www.cabi.org/isc/datasheet/4360
+Alopecurus myosuroides,16016,455,2,297,0,15943:444,no,Yes,Yes,
+Alopecurus pratensis,83274,929,5,2613,0,83029:859,no,Yes,Yes,
+Alternanthera philoxeroides,186,429,2,30,0,171:380,no,Yes,Yes,
+Alyssum alyssoides,4973,2116,1,214,0,4877:2084,no,Yes,Yes,
+Alyssum desertorum,131,251,1,0,0,100:221,no,Yes,Yes,
+Amaranthus albus,1094,3528,23,133,0,1038:3379,yes,Yes,Yes,"Japan naturalised (http://www.hear.org/gcw/species/amaranthus_albus/), Morocco and Algeria are naturalised (http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/25e56f9e-c56c-4e25-95d7-823ded6d3c5c)"
+Amaranthus blitoides,693,2210,5,135,0,652:2132,no,Yes,Yes,
+Ambrosia artemisiifolia,1032,4701,6,245,0,974:4573,no,Yes,Yes,
+Ambrosia trifida,770,445,1,40,0,760:439,no,Yes,Yes,
+Amelanchier alnifolia,1371,148,1,96,0,1278:148,no,Yes,Yes,
+Amorpha fruticosa,1122,489,10,32,0,1093:478,yes,Yes,Yes,Cannot confirm naturalisation in unclass points
+Ampelopsis brevipedunculata,40,533,16,109,0,39:519,no,Yes,Yes,
+Amsinckia menziesii,963,631,6,80,0,899:627,no,Yes,Yes,
+Anagallis arvensis,31152,5118,31,2465,0,30815:4869,no,Yes,No,"Serious range issues, need to look again"
+Anaphalis margaritacea,2336,1596,9,306,0,2212:1457,yes,Yes,No,GBIF issue data removed? Cannot confirm naturalisation in unclass points
+Anthemis arvensis,17039,172,1,503,0,16861:154,no,Yes,Yes,
+Anthemis cotula,5501,1238,1,362,0,5451:1135,no,Yes,Yes,
+Anthoxanthum odoratum,97888,1906,3,8254,0,97532:1837,no,Yes,Yes,
+Anthriscus caucalis,6105,427,6,714,0,6039:398,no,Yes,Yes,
+Anthriscus sylvestris,97947,193,8,6257,0,97784:180,no,Yes,Yes,
+Antigonon leptopus,229,325,38,82,39,213:311,no,Yes,Yes,"Taiwan and Venezuela recategorised from http://www.cabi.org/isc/datasheet/112316, Nicaragua is not known"
+Apium graveolens,3515,49,9,642,39,3428:49:00,no,Yes,Yes,
+Apium repens,706,0,1,15,0,690:00:00,no,No,No,
+Apocynum cannabinum,1991,0,5,29,0,1915:00:00,no,No,No,
+Aquilegia vulgaris,11498,9754,11,1089,0,11387:9739,no,Yes,Yes,
+Aralia chinensis,101,23,1,2,0,97:21:00,no,Yes,Yes,
+Araucaria angustifolia,97,0,11,1,0,92:00:00,yes,No,No,Unable to find naturalised populations
+Araucaria araucana,76,298,13,26,0,69:298,no,Yes,Yes,
+Araucaria heterophylla,0,151,33,38,32,0.101388889,yes,No,No,Not enough native points
+Arbutus canariensis,55,0,1,14,0,55:00:00,no,No,No,
+Arctium minus,37310,1685,16,1857,26,37161:1651,yes,Yes,Yes,France and Portugal added to native (DAISIE)
+Ardisia crenata,692,126,5,41,0,665:122,no,Yes,Yes,
+Ardisia elliptica,35,58,11,38,0,28:57:00,no,Yes,Yes,
+Ardisia squamulosa,34,0,0,8,0,28:00:00,no,No,No,Not enough info on Taiwan points
+Arenaria humifusa,266,1,2,18,0,256:00:00,no,No,No,
+Armeniaca vulgaris,17,12,1,0,0,17:09,no,Yes,Yes,
+Arnica chamissonis,775,41,1,24,0,711:41:00,no,Yes,Yes,
+Arrhenatherum elatius,69061,664,4,5197,0,68723:582,no,Yes,Yes,
+Artemisia absinthium,8305,218,24,1191,31,8249:202,yes,Yes,Yes,"South american points are uncertain, cannot classify"
+Artemisia biennis,0,663,8,50,6,0.436805556,no,No,No,"This is more complex, native and naturalised in N america"
+Artemisia campestris,8923,32,0,1636,0,8819:31:00,no,Yes,Yes,Taiwan is naturalised (coding error)
+Artemisia dracunculus,1335,403,5,52,0,1265:401,no,Yes,Yes,
+Artemisia ludoviciana,2821,8,7,12,21,2699:06:00,no,Yes,Yes,
+Artemisia vulgaris,75708,374,28,5755,373,75554:351,no,Yes,Yes,"Many uncertain points can't be classified, India is native however http://www.flowersofindia.net/catalog/slides/Indian%20Wormwood.html"
+Arundo donax,231,4803,3,317,0,222:4670,no,Yes,Yes,
+Asparagus densiflorus,1,111,23,21,0,0.114583333,yes,No,No,Impossible to tell where cultivated
+Asparagus officinalis,9572,2637,24,1006,0,9540:2571,yes,Yes,Yes,Slovakia is native (http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/ee5fc6f6-06da-4088-aa9d-6d5597240c2b) japan is naturalised http://www.kew.org/science-conservation/plants-fungi/asparagus-officinalis-garden-asparagus
+Asphodelus fistulosus,1872,15000,9,347,0,1808:14931,no,Yes,Yes,
+Aster,0,6050,77,606,8324,4.122222222,yes,No,No,ERROR
+Asystasia gangetica,636,228,7,133,0,574:216,no,Yes,Yes,
+Atriplex micrantha,0,580,2,6,0,0.395138889,no,No,No,
+Atriplex semibaccata,0,4133,2,254,0,2.694444444,no,No,No,
+Aucoumea klaineana,52,0,3,4,0,46:00:00,no,No,No,
+Austrocylindropuntia cylindrica,2,46,4,2,0,02:43,no,No,No,
+Austrocylindropuntia subulata,2,15,7,2,0,02:15,no,No,No,
+Avena barbata,5448,40441,14,1013,0,5163:40295,no,Yes,Yes,
+Avena fatua,11404,5293,17,568,0,11329:5017,yes,Yes,Yes,"Greece added to native (http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/388404f9-974b-4742-a2f1-13f2262b381c), euromed does not agreed with grin?"
+Avena sativa,0,10701,6,473,40,0:10421,no,No,No,
+Azolla caroliniana,223,112,0,11,8,206:100,no,Yes,Yes,
+Azolla filiculoides,181,2622,3,70,0,178:2618,no,Yes,Yes,
+Azolla pinnata,800,29,4,27,0,738:29:00,no,Yes,Yes,
+Babiana angustifolia,23,92,1,8,0,0.972916667,no,Yes,Yes,
+Babiana stricta,21,46,8,10,0,20:38,no,Yes,Yes,
+Babiana tubulosa,15,0,1,5,0,15:00,no,No,No,
+Bacopa egensis,6,3,1,0,0,06:03,no,No,No,
+Baldellia ranunculoides,5118,2,1,392,0,5089:02:00,no,No,No,
+Barbarea vulgaris,24688,15933,1,2558,0,24621:15872,no,Yes,Yes,
+Bauhinia variegata,41,206,11,11,0,37:195,yes,Yes,Yes,"Taiwan is naturalised (coding error), and otherwise complete"
+Begonia cucullata,357,13,27,8,0,324:12:00,yes,Yes,Yes,Unclass points are uncertainly naturalised
+Bentinckia nicobarica,0,4,1,0,0,00:04,no,No,No,
+Berberis thunbergii,203,1996,3,222,0,202:1986,no,Yes,Yes,
+Berberis vulgaris,6820,5560,9,1418,0,6770:5552,yes,Yes,Yes,"Unclass points in China, status uncertain"
+Berteroa incana,379,8633,1,671,0,357:8599,no,Yes,Yes,
+Bertholletia excelsa,158,0,2,4,0,138:00:00,no,No,No,
+Beta macrocarpa,138,47,1,53,0,129:42:00,no,Yes,Yes,
+Betula pendula,93210,65,1,4197,0,93068:65,no,Yes,Yes,
+Bidens pilosa,2017,6714,4,452,0,1879:6538,no,Yes,Yes,
+Bletilla striata,41,3,3,1,0,40:03:00,no,No,No,
+Blyxa aubertii,342,1,4,20,0,313:01:00,no,No,No,
+Boophone disticha,141,0,1,11,0,139:00:00,no,No,No,
+Brasiliopuntia brasiliensis,107,0,3,13,0,106:00:00,no,No,No,
+Brassica nigra,5895,961,9,463,0,5850:914,no,Yes,Yes,
+Brassica rapa,28,10957,5,849,0,23:10748,no,Yes,No,
+Brassica tournefortii,446,7677,6,275,10,412:7551,no,Yes,Yes,
+Briza maxima,4355,5471,15,579,42,4199:5357,yes,Yes,Yes,Germany and Finland are mistakes
+Bromus arvensis,2669,2544,9,147,12,2662:2523,no,Yes,Yes,
+Bromus carinatus,3020,558,2,210,3,2867:556,no,Yes,Yes,
+Bromus catharticus,464,6149,12,324,0,415:5920,no,Yes,Yes,
+Bromus hordeaceus,68474,4969,6,5152,0,68168:4749,yes,Yes,Yes,Japan population is naturalised http://www.cabi.org/isc/datasheet/10026
+Bromus inermis,6152,3646,5,446,0,6006:3613,no,Yes,Yes,
+Bromus interruptus,93,0,1,2,0,93:00:00,no,No,No,
+Bromus japonicus,997,1066,8,40,0,940:1024,no,Yes,Yes,
+Bromus racemosus,6454,302,7,209,0,6393:276,yes,Yes,Yes,Argentina population is casual http://www.floraargentina.edu.ar/detalleespecie.asp?forma=&variedad=&subespecie=&especie=racemosus&espcod=20914&genero=Bromus&autor=6&deDonde=4
+Bromus secalinus,1550,3878,6,233,0,1546:3841,no,Yes,Yes,
+Bromus tectorum,9210,2918,10,515,0,9068:2781,yes,Yes,Yes,Russia population is native https://npgsweb.ars-grin.gov/gringlobal/taxonomydetail.aspx?id=7880
+Broussonetia papyrifera,328,337,8,27,0,319:326,no,Yes,Yes,
+Brugmansia versicolor,32,0,1,0,0,29:00:00,no,No,No,
+Butomus umbellatus,25066,81,8,476,0,25055:77,yes,Yes,Yes,Russia population is native https://npgsweb.ars-grin.gov/gringlobal/taxonomydetail.aspx?id=404280
+Cabomba caroliniana,208,214,1,5,0,189:188,no,Yes,Yes,
+Caesalpinia gilliesii,48,241,2,17,0,44:222,no,Yes,Yes,
+Caldesia parnassifolia,174,0,1,3,0,162:00:00,no,No,No,
+Callitriche cribrosa,0,0,74,838,10859,00:00,yes,No,No,"Possible mistake, distribution uncertain"
+Callitriche stagnalis,16315,888,16,1199,0,16249:797,yes,Yes,Yes,Cannot confirm naturalisation in unclass points
+Callitris oblonga,221,0,1,6,0,185:00:00,no,No,No,
+Calystegia sepium,68653,0,1,3485,0,68444:0,no,No,No,
+Camelina microcarpa,2824,1082,1,184,0,2769:1023,no,Yes,Yes,
+Camellia reticulata,50,0,4,1,0,50:00:00,no,No,No,
+Campanula rapunculoides,6520,6260,20,705,0,6473:6250,yes,Yes,Yes,Points added as per the additional sheet
+Campanula rotundifolia,70737,4,7,7175,0,70408:4,no,No,No,
+Canarium ovatum,4,0,5,2,0,04:00,no,No,No,
+Capparis sandwichiana,11,0,1,7,0,09:00,no,No,No,
+Capsella bursa-pastoris,81035,3976,24,4140,0,80742:3653,yes,Yes,Yes,Andorra is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/47b05d6e-58e2-4c09-a3a5-c5e0e69f1fad
+Cardamine impatiens,6370,98,3,374,0,6272:98,no,Yes,Yes,
+Cardaria draba,817,2612,5,150,0,785:2558,no,Yes,Yes,
+Cardaria pubescens,8,193,1,0,0,0.317361111,no,Yes,Yes,
+Carduus acanthoides,2265,192,4,172,0,2251:187,no,Yes,Yes,
+Carduus crispus,24848,9,1,1077,0,24798:9,no,Yes,Yes,
+Carduus myriacanthus,27,0,1,12,0,26:00:00,no,No,No,
+Carduus nutans,10546,1123,2,496,0,10504:1069,no,Yes,Yes,
+Carduus pycnocephalus,2084,1472,9,227,0,2025:1351,no,Yes,Yes,
+Carduus tenuiflorus,4370,1274,14,633,0,4271:1192,yes,Yes,Yes,Population in Germany uncertain if naturalised
+Carex disticha,35494,14,1,2466,0,35400:12,no,Yes,Yes,
+Carex flacca,41796,102,2,4868,0,41490:96,no,Yes,Yes,
+Carum carvi,18773,576,11,1951,0,18644:569,no,Yes,Yes,
+Casuarina cunninghamiana,2643,133,6,22,3,2465:122,no,Yes,Yes,
+Casuarina equisetifolia,577,328,4,640,0,519:305,no,Yes,Yes,
+Cedrela odorata,958,18,10,29,0,864:15:00,yes,Yes,Yes,Benin population may be cultivated
+Celastrus orbiculatus,427,413,4,73,0,419:406,no,Yes,Yes,
+Cenchrus longispinus,621,312,1,22,0,597:264,no,Yes,Yes,
+Centaurea biebersteinii,5,41,1,0,0,04:40,no,No,Yes,
+Centaurea calcitrapa,2829,2379,4,145,0,2754:2270,no,Yes,Yes,
+Centaurea cyanus,10633,9156,8,589,8,10583:9110,yes,Yes,Yes,Japan is naturalised http://flowers.la.coocan.jp/Asteraceae/Centaurea%20cyanus.htm other populations are mistakes
+Centaurea diffusa,28,373,6,14,0,28:350,no,Yes,Yes,
+Centaurea jacea,48150,142,2,3475,0,47822:136,no,Yes,Yes,
+Centaurea melitensis,2330,4640,5,313,12,2249:4431,no,Yes,Yes,
+Centaurea solstitialis,1030,1923,5,79,23,1008:1824,no,Yes,Yes,
+Cephalanthera longifolia,5827,0,1,309,0,5769:00:00,no,No,No,
+Cephalocereus senilis,19,0,1,0,0,19:00,no,No,No,
+Cerastium arvense,19470,6079,17,1372,0,19275:6070,no,Yes,Yes,
+Cerastium fontanum,91075,712,5,7611,25,90794:694,no,Yes,Yes,Countries categorised in manual doc
+Ceratocephala testiculata,26,59,1,0,0,20:57,no,Yes,Yes,
+Ceratopteris thalictroides,789,0,2,58,0,748:00:00,no,No,No,
+Cereus hexagonus,24,2,6,6,0,22:02,no,No,No,
+Cereus hildmannianus,27,9,4,5,31,27:08:00,no,Yes,Yes,
+Cereus jamacaru,131,3,1,3,0,124:03:00,no,No,No,
+Chamaecyparis lawsoniana,281,1973,10,115,0,270:1965,no,Yes,Yes,
+Chamaesyce glyptosperma,686,0,1,0,0,678:00:00,no,No,No,
+Chasmanthe bicolor,0,8,7,6,0,00:07,no,No,No,
+Chelidonium majus,35158,489,8,1517,0,35084:476,no,Yes,Yes,
+Chenopodium album,63964,3162,15,3177,0,63707:2917,no,Yes,Yes,"Bolivia and Panama are naturalised, moved"
+Chenopodium opulifolium,1252,195,7,62,25,1206:195,no,Yes,Yes,
+Chimaphila umbellata,4050,0,8,576,0,3965:00:00,no,No,No,
+Chondrilla juncea,5303,2020,1,164,0,5175:1903,no,Yes,Yes,
+Chorispora tenella,37,530,2,14,21,27:505,no,Yes,Yes,
+Cichorium intybus,17808,2264,5,827,0,17682:2121,no,Yes,Yes,
+Cinnamomum camphora,298,2595,9,98,0,284:2554,no,Yes,Yes,
+Cirsium arvense,74119,538,2,5661,0,73957:528,no,Yes,Yes,
+Cirsium palustre,91416,75,1,4104,0,91105:73,no,Yes,Yes,
+Cirsium pitcheri,25,0,1,0,0,20:00,no,No,No,
+Cirsium vulgare,65888,10382,1,5240,0,65686:10230,no,Yes,Yes,
+Citharexylum gentryi,10,0,1,0,0,09:00,no,No,No,
+Clematis orientalis,104,23,7,0,0,89:23:00,no,Yes,Yes,
+Clematis terniflora,1614,119,2,203,0,1602:113,no,Yes,Yes,
+Clianthus puniceus,12,0,8,3,0,11:00,no,No,No,
+Coleonema pulchrum,11,10,1,2,0,11:10,no,Yes,Yes,
+Collomia grandiflora,841,346,2,6,0,800:339,no,Yes,Yes,
+Collomia linearis,771,33,4,16,13,739:33:00,no,Yes,Yes,
+Colocasia esculenta,347,236,55,44,0,319:225,yes,Yes,Yes,"South american points had to be moved from native to naturalised, Taiwan and Japan are naturalised (http://www.cabi.org/isc/datasheet/17221)"
+Colubrina asiatica,301,1,3,305,0,263:01:00,no,No,No,
+Commelina diffusa,1278,443,12,141,0,1171:415,no,Yes,Yes,
+Conium maculatum,11811,1661,8,1167,0,11722:1500,no,Yes,Yes,
+Conringia orientalis,560,1513,11,85,158,557:1470,yes,Yes,Yes,Unclassified populations cannot be confirmed naturalised
+Convallaria majalis,46899,0,5,3071,0,46825:0,no,No,No,
+Convolvulus arvensis,48155,2002,2,2685,52,47820:1917,no,Yes,Yes,All unclassified points identified (see extra sheet)
+Conyza canadensis,1776,37967,0,1438,0,1682:37751,no,Yes,Yes,
+Cornus sericea,2601,3576,7,189,13,2451:3568,no,Yes,Yes,
+Coronilla varia,412,148,6,18,0,390:132,no,Yes,Yes,
+Cortaderia selloana,78,2290,5,289,0,72:2262,no,Yes,Yes,
+Coryphantha vivipara,26,0,1,0,0,23:00,no,No,No,
+Cotula coronopifolia,115,2816,1,760,0,114:2636,no,Yes,Yes,
+Crepis capillaris,49102,2487,7,2121,0,48937:2339,no,Yes,Yes,
+Crinum bulbispermum,56,4,3,4,0,56:04:00,no,No,No,
+Crinum moorei,14,11,7,6,0,14:08,no,Yes,Yes,
+Crocosmia masoniorum,4,28,2,7,0,04:28,no,No,No,
+Croton lucidus,0,61,1,10,27,00:58,no,No,No,
+Cryptocoryne beckettii,2,0,1,0,0,02:00,no,No,No,
+Cryptocoryne undulata,0,61,1,3,0,00:58,no,No,No,
+Cryptocoryne wendtii,4,0,1,0,0,04:00,no,No,No,
+Cupaniopsis anacardioides,1803,18,1,454,0,1724:16:00,no,Yes,Yes,
+Cupressus goveniana,156,4,4,53,0,150:04:00,no,No,No,
+Cupressus macrocarpa,140,534,12,244,0,130:527,no,Yes,Yes,
+Cyathea cooperi,723,27,3,31,5,669:23:00,no,Yes,Yes,
+Cycas circinalis,3,5,15,7,2,03:04,no,No,No,
+Cycas revoluta,27,16,31,10,7,26:15:00,yes,Yes,Yes,European points are probably cultivated
+Cyclamen coum,64,56,1,2,0,64:56:00,no,Yes,Yes,
+Cyclamen graecum,72,0,1,6,0,65:00:00,no,No,No,
+Cyclamen hederifolium,490,367,8,19,5,480:367,no,Yes,Yes,
+Cyclamen persicum,1742,1,6,12,0,1681:01:00,no,No,No,
+Cyclamen repandum,93,35,2,14,0,92:35:00,no,Yes,Yes,
+Cylindropuntia imbricata,163,155,1,1,0,163:143,no,Yes,Yes,
+Cylindropuntia kleiniae,10,18,1,0,0,10:15,no,Yes,Yes,
+Cylindropuntia leptocaulis,169,16,1,3,0,168:14:00,no,Yes,Yes,
+Cylindropuntia spinosior,30,21,1,0,0,30:19:00,no,Yes,Yes,
+Cylindropuntia tunicata,21,27,1,0,0,21:26,no,Yes,Yes,
+Cynanchum rossicum,0,45,1,7,0,00:43,no,No,No,
+Cynara cardunculus,572,1487,15,101,0,558:1451,yes,Yes,Yes,"Sweden is not naturalised, can be ignored"
+Cynodon dactylon,8207,15002,46,1137,0,7956:14588,yes,Yes,Yes,"Possible issue, is China native as Francesco said?, Carribean islands are naturalised http://www.cabi.org/isc/datasheet/17463"
+Cynoglossum officinale,9926,698,2,1495,0,9887:681,no,Yes,Yes,
+Cyperus alopecuroides,165,0,2,13,0,159:00:00,no,No,No,
+Cyperus difformis,2804,242,1,109,0,2497:223,no,Yes,Yes,
+Cyperus michelianus,609,1,2,4,0,591:00:00,no,No,No,
+Cyperus prolifer,62,44,1,10,0,57:39:00,no,Yes,Yes,
+Cyperus rotundus,1684,2651,1,349,0,1547:2371,no,Yes,Yes,Timor is not confirmed naturalised
+Cypripedium calceolus,2166,0,1,21,0,2137:00:00,no,No,No,
+Cypripedium reginae,186,0,2,1,0,173:00:00,no,No,No,
+Cytisus scoparius,41667,1762,31,2459,0,41443:1656,yes,Yes,Yes,"Finland, Argentina and Chile added to naturalised http://www.cabi.org/isc/datasheet/17610"
+Dactylis glomerata,67499,6810,5,5017,0,67285:6785,no,Yes,Yes,
+Dactyloctenium radulans,3041,5,6,49,0,2820:05:00,no,Yes,Yes,
+Dactylorhiza maculata,40563,1,2,2722,0,40429:1,no,No,No,
+Dactylorhiza majalis,9742,5,15,641,0,9676:05:00,no,Yes,No,
+Dalbergia latifolia,9,0,6,0,0,08:00,no,No,No,
+Dalbergia sissoo,21,134,7,17,0,0.834027778,no,Yes,Yes,
+Damasonium alisma,692,0,1,12,0,690:00:00,no,No,No,
+Damasonium polyspermum,247,0,3,2,0,243:00:00,no,No,No,
+Datura stramonium,378,10341,5,476,0,351:10136,no,Yes,Yes,"Manually adjusted some America points, US is naturalised (see additional sheet)"
+Datura wrightii,1067,147,7,74,0,1026:126,yes,Yes,Yes,Japan is naturalised http://flowers.la.coocan.jp/Asteraceae/Centaurea%20cyanus.htm other populations are mistakes
+Daucus carota,51446,1796,43,3408,22,51069:1700,yes,Yes,Yes,"Domican republic is naturalised, Afghanistan is native http://www.kew.org/science-conservation/plants-fungi/daucus-carota-wild-carrot"
+Delonix regia,65,331,25,60,0,60:306,yes,Yes,Yes,Benin is naturalised
+Descurainia incana,310,0,1,8,0,278:00:00,no,No,No,
+Descurainia pinnata,2433,9,1,48,0,2311:09:00,no,Yes,Yes,
+Descurainia sophia,7963,1980,1,806,0,7883:1878,no,Yes,Yes,Finland naturalised (see extra sheet)
+Dianthus armeria,7235,847,1,163,0,7198:800,no,Yes,Yes,
+Diervilla sessilifolia,19,2,1,0,0,19:02,no,No,No,
+Dietes bicolor,7,28,14,5,0,07:28,yes,Yes,Yes,Cannot confirm naturalisation in unclass points
+Digitalis grandiflora,1577,67,7,11,0,1567:67,no,Yes,Yes,
+Digitalis lutea,2712,92,11,39,0,2674:91,no,Yes,Yes,
+Digitalis purpurea,30224,1007,11,2004,136,30089:966,no,Yes,Yes,Unclassified populations included in additional sheet (taiwan is naturalised)
+Digitaria sanguinalis,9380,6494,8,330,0,9279:6330,no,Yes,Yes,"Taiwan is noted in record sheet, bug stops it running"
+Dionaea muscipula,31,0,2,3,0,31:00:00,no,No,No,
+Dioscorea bulbifera,1344,82,7,109,0,1282:78,no,Yes,Yes,
+Dioscorea oppositifolia,5,51,2,0,0,05:49,no,Yes,Yes,
+Diplotaxis siifolia,112,0,1,28,0,105:00:00,no,No,No,
+Dipsacus fullonum,21759,626,15,642,0,21654:587,yes,Yes,Yes,Cz is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/fdcdc7bb-936b-427c-9b1e-0297b943d191
+Dipsacus laciniatus,361,73,10,4,0,360:72,no,Yes,Yes,
+Dipsacus sativus,0,244,2,23,0,0.163194444,no,No,No,
+Disocactus flagelliformis,3,0,1,0,0,03:00,no,No,No,
+Dopatrium junceum,70,17,20,4,0,68:15:00,no,Yes,Yes,
+Dracaena draco,95,3,6,24,0,94:02:00,no,No,No,
+Dracaena ombet,23,0,1,0,0,20:00,no,No,No,
+Dracocephalum parviflorum,279,51,1,5,0,261:51:00,no,Yes,Yes,
+Duchesnea indica,509,2001,1,49,0,484:1973,no,Yes,Yes,
+Echinochloa colona,632,4218,1,228,0,565:3830,no,Yes,Yes,
+Echinochloa crus-galli,90,28106,10,653,0,89:27553,no,Yes,Yes,
+Echinopsis oxygona,3,9,1,0,0,03:09,no,No,No,
+Echinopsis pachanoi,26,0,1,0,0,19:00,no,No,No,
+Echinopsis spachiana,0,17,1,3,0,00:16,no,No,No,
+Echium pininana,6,55,3,42,0,06:54,no,Yes,Yes,
+Echium plantagineum,4485,21380,8,324,29,4344:21162,no,Yes,Yes,
+Egeria densa,65,651,5,24,0,62:608,no,Yes,Yes,
+Eichhornia azurea,348,1,1,4,0,313:01:00,no,No,No,
+Eichhornia crassipes,318,1656,3,60,0,282:1529,no,Yes,Yes,
+Elaeagnus angustifolia,134,997,16,59,0,108:959,yes,Yes,Yes,Israel population may be adventitious
+Elaeagnus pungens,165,23,12,8,24,163:21:00,no,Yes,Yes,
+Elaeagnus umbellata,418,400,2,55,6,405:388,no,Yes,Yes,
+Elatine alsinastrum,672,3,10,20,0,668:03:00,no,No,No,
+Ellisia nyctelea,358,0,1,0,0,357:00:00,no,No,No,
+Elodea canadensis,358,0,1,0,0,357:00:00,no,No,No,
+Elsholtzia ciliata,370,123,8,16,0,356:122,no,Yes,Yes,
+Elymus canadensis,1157,51,5,16,0,1123:51:00,no,Yes,Yes,
+Elymus trachycaulus,2628,0,16,80,3,2393:00:00,yes,No,No,Cannot confirm naturalisation in unclass points
+Encyclia rufa,2,0,1,1,0,02:00,no,No,No,
+Epidendrum ibaguense,91,0,7,5,0,81:00:00,no,No,No,
+Epidendrum radicans,371,0,9,2,0,337:00:00,no,No,No,
+Epilobium brachycarpum,1214,260,0,21,7,1137:259,no,Yes,Yes,
+Epilobium ciliatum,3632,37570,10,2325,0,3443:37473,yes,Yes,Yes,Saudi arabia population has unknown status
+Epilobium hirsutum,69971,131,1,2476,0,69754:125,no,Yes,Yes,
+Epilobium parviflorum,41695,39,1,1692,0,41561:38,no,Yes,Yes,
+Epiphyllum hookeri,4,1,1,0,0,03:01,no,No,No,
+Epiphyllum oxypetalum,52,3,3,0,0,49:03:00,no,No,No,
+Epiphyllum phyllanthus,510,83,2,18,0,462:78,no,Yes,Yes,
+Equisetum arvense,95708,65,2,5700,0,95261:63,no,Yes,Yes,
+Eragrostis cilianensis,1600,3865,11,132,0,1543:3537,no,Yes,Yes,
+Eragrostis curvula,957,3472,3,116,0,947:3293,no,Yes,Yes,
+Eragrostis echinochloidea,180,50,1,74,0,180:49:00,no,Yes,Yes,
+Eremopyrum triticeum,20,67,1,2,0,0.753472222,no,Yes,Yes,
+Erigeron speciosus,439,28,2,3,0,405:28:00,no,Yes,Yes,
+Eriophorum gracile,4046,0,14,48,0,4004:00:00,yes,No,No,No naturalised populations
+Erodium cicutarium,35007,5893,1,2685,0,34686:5626,no,Yes,Yes,Israel population is native (see additional sheet)
+Eruca vesicaria,2088,949,5,163,34,1966:911,no,Yes,Yes,
+Eryngium alpinum,119,4,6,2,0,115:04:00,no,No,No,
+Erysimum repandum,345,542,5,16,45,332:521,no,Yes,Yes,
+Escobaria vivipara,246,0,1,0,0,242:00:00,no,No,No,
+Eucalyptus camaldulensis,17100,3292,6,94,0,16494:3256,no,Yes,Yes,
+Eugenia uniflora,479,171,10,61,0,436:154,no,Yes,Yes,"Taiwan is noted in record sheet, bug stops it running"
+Eulophia graminea,31,23,1,6,0,22:23,no,Yes,Yes,
+Euonymus alata,0,34,1,1,0,00:34,no,No,No,
+Euonymus fortunei,295,126,5,38,0,292:125,no,Yes,Yes,
+Euphorbia canariensis,102,0,1,83,0,102:00:00,no,No,No,
+Euphorbia cuneata,75,0,1,0,0,53:00:00,no,No,No,
+Euphorbia cyparissias,13232,2478,20,399,0,13076:2470,no,Yes,Yes,
+Euphorbia dendroides,150,45,1,117,0,139:42:00,no,Yes,Yes,
+Euphorbia esula,105,7296,15,414,5,99:7267,no,Yes,Yes,
+Euphorbia grandidens,28,0,1,4,0,28:00:00,no,No,No,
+Euphorbia ingens,33,0,3,7,0,32:00:00,no,No,No,
+Euphorbia lactea,0,2,6,7,5,00:02,no,No,No,
+Euphorbia ledienii,8,0,1,1,0,08:00,no,No,No,
+Euphorbia leuconeura,7,0,1,0,0,07:00,no,No,No,
+Euphorbia mauritanica,162,0,1,30,0,161:00:00,no,No,No,
+Euphorbia mellifera,32,47,3,28,0,32:47:00,no,Yes,Yes,
+Euphorbia milii,82,82,18,15,0,77:77,yes,Yes,No,"Issues with this species, many inferred points from GCW hard to confirm naturalisation?"
+Euphorbia myrsinites,114,53,13,5,18,100:53:00,no,Yes,Yes,
+Euphorbia neriifolia,5,2,16,2,0,04:02,yes,No,No,Uncertain naturalisation? http://www.tropicos.org/name/12800043?projectid=7
+Euphorbia nubica,12,0,1,0,0,09:00,no,No,No,
+Euphorbia obesa,3,0,1,0,0,03:00,no,No,No,
+Euphorbia radians,92,0,1,0,0,87:00:00,no,No,No,
+Euphorbia tirucalli,124,82,5,20,8,112:75,no,Yes,Yes,
+Euryops multifidus,82,11,1,15,0,81:10:00,no,Yes,Yes,
+Festuca arundinacea,41259,1860,1,3191,0,40995:1781,no,Yes,Yes,
+Festuca filiformis,0,14853,3,805,0,0:14813,no,No,No,
+Festuca ovina,60995,400,8,5968,8,60807:378,no,Yes,Yes,
+Festuca trachyphylla,2231,2703,14,449,10,2221:2690,yes,Yes,Yes,Unclassified points are uncertain
+Fimbristylis aphylla,15,5,2,2,0,15:02,no,No,Yes,
+Flacourtia indica,368,15,19,37,6,335:15:00,no,Yes,Yes,
+Foeniculum vulgare,6723,4781,14,793,49,6541:4697,no,Yes,Yes,
+Fragaria vesca,68702,236,6,5069,10,68383:216,no,Yes,Yes,
+Fragaria virginiana,1956,31,1,90,0,1807:31:00,no,Yes,Yes,
+Frangula alnus,36220,240,1,1769,0,36157:232,no,Yes,Yes,Unclass points are in additional doc
+Fraxinus americana,952,29,13,15,0,935:29:00,no,Yes,Yes,
+Fraxinus pennsylvanica,1011,146,11,13,0,990:143,no,Yes,Yes,
+Freesia caryophyllacea,22,0,1,1,0,22:00,no,No,No,
+Froelichia gracilis,298,20,1,1,0,293:17:00,no,Yes,Yes,
+Gaillardia aristata,543,40,1,11,0,507:40:00,no,Yes,Yes,
+Galanthus alpinus,4,30,1,2,0,03:30,no,No,No,
+Galanthus elwesii,652,7,1,51,0,650:06:00,no,Yes,Yes,
+Galanthus ikariae,10,26,1,4,0,08:26,no,Yes,Yes,
+Galanthus nivalis,4023,6747,24,441,0,4008:6743,yes,Yes,Yes,"Andorra is native, other points unknown http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/a6e6feb4-fc12-409f-863a-2edf8af0f27e"
+Galanthus plicatus,0,89,1,10,0,0.061111111,no,No,No,
+Galanthus reginae-olgae,4,2,1,0,0,04:02,no,No,No,
+Galeopsis tetrahit,65010,264,13,2282,0,64859:248,yes,Yes,Yes,"Slovakia is native, otherwise all categorised"
+Galium aparine,1742,68953,28,4608,0,1711:68800,yes,Yes,No,"Complex range, needs reassessing for native and naturalised"
+Geissorhiza inaequalis,8,0,1,0,0,08:00,no,No,No,
+Geranium maderense,2,9,1,6,0,02:09,no,No,No,
+Geranium molle,44613,1152,10,3097,0,44417:1066,no,Yes,Yes,
+Geranium pusillum,26596,213,3,1536,0,26551:203,no,Yes,Yes,
+Geum macrophyllum,1366,381,1,100,0,1284:381,no,Yes,Yes,
+Geum peckii,9,0,1,1,0,09:00,no,No,No,
+Ginkgo biloba,110,395,27,13,38,108:387,yes,Yes,No,"Widely cultivated, hard to determine if naturalised"
+Gladiolus watsonius,19,9,1,4,0,19:09,no,Yes,Yes,
+Glaucium flavum,1557,88,6,825,0,1538:84,no,Yes,Yes,
+Glechoma hederacea,91953,881,4,2970,0,91825:863,no,Yes,Yes,
+Gleditsia triacanthos,663,625,8,21,0,644:600,yes,Yes,Yes,NZ is naturalised http://www.cabi.org/isc/datasheet/25272
+Glossostigma cleistanthum,50,31,4,1,0,46:31:00,no,Yes,Yes,
+Glyceria maxima,82826,3604,4,955,0,82792:3550,no,Yes,Yes,Finland is naturalised (see extra sheet)
+Glyceria striata,1440,165,2,46,0,1355:162,no,Yes,Yes,
+Glycine max,278,257,30,22,22,262:245,yes,Yes,No,"Many populations had to tell if naturalised, widely cultivated"
+Goodyera repens,16541,61,3,1076,0,16449:59,no,Yes,No,No naturalised populations
+Grevillea robusta,702,183,8,22,0,688:172,no,Yes,Yes,
+Grindelia squarrosa,571,11,3,1,0,541:11:00,no,Yes,Yes,
+Guaiacum officinale,112,0,7,23,0,98:00:00,no,No,No,
+Gymnadenia conopsea,19998,0,1,1344,0,19914:0,no,No,No,
+Gypsophila paniculata,81,298,20,24,16,79:287,yes,Yes,Yes,"Finland, Norway, Taiwan are not established, France is naturalised (http://www.europe-aliens.org/speciesFactsheet.do?speciesId=11308#)"
+Harrisia eriophora,1,0,1,1,0,01:00,no,No,No,
+Harrisia martinii,28,51,1,1,0,22:47,no,Yes,Yes,
+Harrisia pomanensis,69,4,2,0,0,57:04:00,no,No,No,
+Harrisia tortuosa,12,24,1,0,0,12:19,no,Yes,Yes,
+Hebe barkeri,0,3,5,7,0,00:03,no,No,No,
+Hedera helix,57814,1194,13,2152,0,57649:1158,no,Yes,Yes,"Andorra is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/6b666f85-57db-481b-a5db-0f54f96f4574, other points scattered"
+Hedyscepe canterburyana,17,0,1,10,0,15:00,no,No,No,
+Helianthus annuus,2289,5144,12,330,9,2196:5056,no,Yes,No,"Needs adjusting, Europe might be casual only?"
+Helianthus petiolaris,653,83,1,11,0,631:83,no,Yes,No,"Needs adjusting, Europe might be casual only?"
+Helonias bullata,9,0,1,0,0,08:00,no,No,No,
+Hemarthria altissima,256,33,14,19,61,249:25:00,yes,Yes,Yes,South American points all seem to be casual
+Hemerocallis fulva,250,1277,11,83,0,244:1267,yes,Yes,Yes,Australia is unknown status
+Heracleum mantegazzianum,2,13577,9,478,0,2:13552,no,No,No,
+Hesperis matronalis,1383,9587,6,791,0,1348:9538,no,Yes,Yes,
+Hibiscus syriacus,174,188,14,19,0,170:182,no,Yes,Yes,
+Hiptage benghalensis,139,38,1,10,0,133:37:00,no,Yes,Yes,
+Holcus lanatus,92450,2566,6,6331,0,92180:2532,no,Yes,Yes,
+Hordeum jubatum,1617,1676,6,250,0,1475:1655,no,Yes,Yes,Far east Russia is native https://npgsweb.ars-grin.gov/gringlobal/taxonomydetail.aspx?id=19308
+Hordeum marinum,2159,1832,10,375,0,2018:1698,no,Yes,Yes,
+Hordeum murinum,27738,12558,9,1661,0,27387:12269,yes,Yes,Yes,Andorra is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/47369481-4acb-44cf-b6fa-6f96b298f1f7
+Hordeum vulgare,2805,7565,29,252,1480,2337:7152,yes,Yes,No,"Highly cultivated, very hard to tell what is naturalised and what is cultivated"
+Howea belmoreana,155,0,1,100,0,155:00:00,no,No,No,
+Howea forsteriana,146,0,1,193,0,146:00:00,no,No,No,
+Howellia aquatilis,20,0,1,0,0,12:00,no,No,No,
+Hydrilla verticillata,1056,210,1,77,0,901:189,no,Yes,Yes,"Taiwan is native, but not sorted. However some errors, S America is not native, and Korea is. GISIN actually has the native entry for korea so program misinterpreted"
+Hydrocharis morsus-ranae,24787,69,0,432,0,24780:65,no,Yes,Yes,
+Hydrocleys nymphoides,156,34,2,4,0,135:30:00,no,Yes,Yes,
+Hygrophila polysperma,4,25,2,0,0,04:25,no,No,No,
+Hylocereus costaricensis,63,0,1,6,0,55:00:00,no,No,No,
+Hylocereus undatus,72,94,2,27,0,64:88,no,Yes,Yes,
+Hymenachne amplexicaulis,879,443,14,28,41,783:424,yes,Yes,Yes,"China and SE Asia is probably taxonomically incorrect, so these will not be included"
+Hyoscyamus niger,5588,335,4,778,0,5540:329,no,Yes,Yes,
+Hypericum perforatum,61944,3489,1,3749,0,61650:3323,no,Yes,Yes,
+Hypochaeris radicata,70521,15770,4,6132,0,70304:15580,no,Yes,Yes,
+Impatiens capensis,1297,1162,1,59,0,1225:1160,no,Yes,Yes,
+Impatiens glandulifera,0,30140,4,804,0,0:30060,no,No,No,
+Imperata cylindrica,13080,52,1,664,0,12860:50,no,Yes,Yes,
+Indigofera tomentosa,5,0,1,3,0,05:00,no,No,No,
+Ipomoea aquatica,618,79,4,42,0,574:70,no,Yes,Yes,"Madacasgar is native, recategorise and Taiwan is native (see additional sheet)"
+Ipomoea purpurea,578,1009,19,69,0,542:961,no,Yes,Yes,Indonesia and Canada are naturalised populations http://www.cabi.org/isc/datasheet/40052
+Ipomoea sagittata,138,0,1,28,0,126:00:00,no,No,No,
+Ipomoea tricolor,114,0,16,3,0,102:00:00,no,No,No,
+Iris lacustris,12,0,1,0,0,09:00,no,No,No,
+Iris pseudacorus,82431,530,5,3675,0,82265:513,no,Yes,Yes,
+Isatis tinctoria,1437,1070,7,949,0,1402:1045,no,Yes,Yes,"Germany and Finland are naturalised, oddly"
+Ixia campanulata,5,7,1,2,0,05:03,no,No,Yes,
+Jacaranda mimosifolia,138,622,11,19,0,121:612,no,Yes,Yes,
+Jasminum azoricum,0,1,12,5,11,00:01,yes,No,No,Cannot confirm naturalisation in unclass points
+Juglans neotropica,109,0,1,0,0,98:00:00,no,No,No,
+Juglans nigra,547,271,7,4,0,534:268,no,Yes,Yes,
+Juglans regia,217,12257,23,151,129,203:12215,no,Yes,Yes,
+Juncus bufonius,65866,74,2,4338,0,65126:71,no,Yes,Yes,
+Juncus compressus,11312,70,1,1034,0,11260:62,no,Yes,Yes,
+Juncus ensifolius,781,146,1,27,0,722:146,no,Yes,Yes,
+Juncus gerardii,15189,14,1,8275,0,15138:12,no,Yes,Yes,
+Juncus inflexus,31285,27,4,873,0,31040:23,no,Yes,Yes,
+Juncus tenuis,1398,20767,1,596,6,1278:20710,no,Yes,Yes,
+Juniperus bermudiana,0,0,11,3,0,00:00,no,No,No,
+Juniperus virginiana,1196,85,7,32,0,1165:83,no,Yes,Yes,
+Kalanchoe pinnata,21,570,5,85,0,1.148611111,no,Yes,Yes,
+Khaya anthotheca,102,5,3,3,0,91:04:00,no,No,Yes,
+Khaya ivorensis,49,0,1,3,0,44:00:00,no,No,No,
+Khaya senegalensis,256,20,4,8,0,244:20:00,no,Yes,Yes,
+Kochia scoparia,61,638,9,29,0,57:600,yes,Yes,Yes,Naturalised in Netherlands http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/54b165d3-346c-4d25-ae0a-b1b72f5507eb/synonymy?highlite=1f7a4995-0b03-44f4-a825-03cb37b509c7&acceptedFor=1f7a4995-0b03-44f4-a825-03cb37b509c7#1f7a4995-0b03-44f4-a825-03cb37b509c7
+Koeleria macrantha,10730,32,1,1793,0,10604:27,no,Yes,Yes,
+Lachenalia reflexa,5,36,1,1,0,05:32,no,Yes,Yes,
+Lactuca serriola,26396,7965,13,803,34,26048:7796,yes,Yes,Yes,"Japan status is uncertain, but Andorra is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/ff8a4bdd-8972-4344-8add-d4f111e5e11c"
+Laelia rubescens,75,2,1,3,0,72:02:00,no,No,No,
+Lamium amplexicaule,21228,1776,8,974,0,21002:1672,no,Yes,Yes,"Some debate about EU points, used http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/639498f9-3756-42b7-b38e-b4d214747bba"
+Lampranthus amoenus,35,0,2,4,0,35:00:00,no,No,No,
+Lampranthus coccineus,6,6,1,2,0,06:05,no,Yes,Yes,
+Lampranthus glaucus,41,13,1,12,0,41:12:00,no,Yes,Yes,
+Lampranthus immelmaniae,0,4,6,2,0,00:04,yes,No,No,
+Lantana camara,2055,10060,3,761,0,1906:9833,no,Yes,Yes,Mexico is native populations (http://www.cabi.org/isc/datasheet/29771) adjusted
+Latania loddigesii,0,0,4,3,0,00:00,no,No,No,
+Latania lontaroides,12,0,1,8,0,12:00,no,No,No,
+Lathyrus latifolius,4846,4547,26,371,17,4791:4507,yes,Yes,Yes,"Slovenia is native, Netherlands is not an established population http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/d50f9c54-a6e3-45a0-b1fd-421f8dbade98"
+Lathyrus odoratus,4,326,44,39,0,0.383333333,yes,No,No,Native population lacking (no data for italy)
+Lathyrus rotundifolius,81,0,1,0,0,75:00:00,no,No,No,
+Leonurus cardiaca,4896,684,3,325,0,4875:675,no,Yes,Yes,Finland is naturalised (see extra sheet)
+Lepidium densiflorum,1237,2384,4,181,0,1130:2376,no,Yes,Yes,
+Lepidium latifolium,1508,780,6,892,0,1477:722,yes,Yes,Yes,"Possible issues with Pakistan? GISIN lists as naturalised, but other records disagree. Israel and Armenia are native (see extra sheet)"
+Lepidium perfoliatum,37,863,2,41,13,27:817,no,Yes,Yes,
+Lepidium virginicum,2026,3962,6,278,0,1925:3908,no,Yes,Yes,
+Lespedeza cuneata,619,270,1,27,0,604:261,no,Yes,Yes,
+Leucadendron argenteum,20,1,4,3,0,18:01,no,No,No,
+Leucaena leucocephala,596,1267,3,260,0,547:1183,no,Yes,Yes,
+Leucanthemum vulgare,49713,43847,20,4096,0,49330:43702,yes,Yes,Yes,Pakistan is probably cultivated only
+Leymus arenarius,6475,29,3,5560,9,6468:27:00,no,Yes,Yes,
+Ligustrum japonicum,264,88,8,31,0,258:82,no,Yes,Yes,
+Ligustrum lucidum,152,2045,9,38,0,151:1973,no,Yes,Yes,
+Ligustrum ovalifolium,79,3239,6,288,0,78:3233,no,Yes,Yes,
+Ligustrum sinense,339,2966,6,37,0,325:2896,no,Yes,Yes,
+Ligustrum vulgare,31433,255,19,1549,0,31307:246,no,Yes,Yes,
+Lilium occidentale,41,0,1,8,0,31:00:00,no,No,No,
+Limnobium laevigatum,186,16,6,1,0,159:12:00,no,Yes,Yes,
+Limnophila indica,54,0,1,3,0,49:00:00,no,No,No,
+Limnophila sessiliflora,149,5,2,35,0,139:05:00,no,Yes,No,
+Limonium arborescens,11,2,1,6,0,11:01,no,No,No,
+Limonium perezii,3,55,2,26,0,03:50,no,No,No,
+Linaria ricardoi,0,0,0,8,12,00:00,no,No,No,
+Linaria vulgaris,53190,1219,14,4174,0,53164:1137,no,Yes,Yes,
+Linnaea borealis,28391,0,1,1952,0,28243:0,no,No,No,
+Linum perenne,537,119,17,19,8,535:105,yes,Yes,Yes,Central asia populations of unknown status
+Linum usitatissimum,24,5950,35,402,37,4.961805556,yes,Yes,No,"Very uncertain naturalisation, widely cultivated"
+Listera ovata,17792,0,1,1282,0,17705:0,no,No,No,
+Lodoicea maldivica,2,0,1,2,0,02:00,no,No,No,
+Lolium multiflorum,4752,16788,9,800,0,4693:16666,yes,Yes,Yes,Iceland is casual only
+Lolium perenne,79944,4390,5,4113,0,79814:4338,no,Yes,Yes,
+Lonicera involucrata,1218,184,1,263,0,1169:183,no,Yes,Yes,
+Lonicera japonica,448,2748,2,192,0,435:2642,no,Yes,Yes,
+Lonicera maackii,59,233,5,2,0,58:228,no,Yes,Yes,
+Lonicera tatarica,11,1137,9,85,11,1.154166667,no,Yes,Yes,
+Lonicera xylosteum,23368,347,5,1309,0,23272:344,no,Yes,Yes,
+Lotus corniculatus,75649,1129,21,9677,0,75246:1043,yes,Yes,Yes,Afghanistan and Portugal are native http://issg.org/database/species/ecology.asp?si=1034&fr=1&sts=&%20ang=EN&ver=print&prtflag=false . Russia and Lithuania are native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/2d1a3658-f9a2-4f70-b723-c85212d88b18
+Ludwigia grandiflora,148,922,1,32,0,133:918,no,Yes,Yes,
+Ludwigia peploides,2826,452,18,89,31,2611:451,yes,Yes,Yes,Agricultural weed (see additional sheet)
+Ludwigia peruviana,582,141,1,8,0,516:125,no,Yes,Yes,
+Lupinus polyphyllus,481,41021,7,1953,0,450:40990,no,Yes,Yes,
+Luziola peruviana,163,2,1,1,0,146:02:00,no,No,No,
+Luzula luzuloides,4489,1037,8,171,0,4395:1037,yes,Yes,Yes,Saudi arabia population has unknown status
+Lycopus europaeus,77888,72,7,3997,0,77711:69,no,Yes,Yes,
+Lygodium japonicum,556,390,2,66,0,538:369,no,Yes,Yes,
+Lygodium microphyllum,1240,9,6,128,1,1099:09:00,no,Yes,Yes,
+Lysimachia nummularia,39878,3548,10,734,0,39779:3528,yes,Yes,Yes,Japan is uncertain
+Lysimachia vulgaris,81322,73,4,3631,104,81188:66,no,Yes,Yes,
+Lythrum salicaria,77280,1758,8,4624,0,77086:1536,no,Yes,Yes,
+Macaranga grandifolia,1,0,1,1,0,01:00,no,No,No,
+Macfadyena unguis-cati,791,309,2,63,0,692:273,no,Yes,Yes,
+Maclura pomifera,517,127,3,6,0,502:107,no,Yes,Yes,
+Macrozamia communis,1507,0,1,83,0,1445:00:00,no,No,No,
+Macrozamia spiralis,229,0,2,6,0,209:00:00,no,No,No,
+Mahonia repens,135,0,3,0,0,132:00:00,no,No,No,
+Maianthemum stellatum,1587,27,1,105,0,1479:27:00,no,Yes,Yes,
+Malcolmia africana,709,154,21,11,0,637:145,yes,Yes,Yes,
+Malva neglecta,18231,958,17,705,0,18156:862,yes,Yes,Yes,
+Malva parviflora,1743,3749,22,402,29,1647:3586,yes,Yes,Yes,Pakistan population is uncertain
+Mammillaria elongata,26,0,1,0,0,26:00:00,no,No,No,
+Mammillaria prolifera,19,0,1,0,0,19:00,no,No,No,
+Mandragora officinarum,28,0,2,6,0,26:00:00,no,No,No,
+Marrubium vulgare,4260,15189,8,491,0,4137:14947,no,Yes,Yes,
+Marsilea hirsuta,0,1188,3,5,0,0.738888889,no,No,No,
+Marsilea minuta,37,3,3,5,14,34:03:00,no,No,No,
+Marsilea mutica,453,3,1,14,0,378:03:00,no,No,No,
+Marsilea quadrifolia,463,50,8,63,335,460:50:00,no,Yes,Yes,
+Medicago lupulina,56761,2149,12,3407,9,56416:1992,no,Yes,Yes,
+Medicago minima,7252,4131,1,393,0,7017:4018,no,Yes,Yes,
+Medicago polymorpha,7430,6902,5,972,36,7048:6670,no,Yes,Yes,
+Medicago sativa,23106,2446,21,1102,0,22799:2268,no,Yes,Yes,"Ethiopia status is unknown, but all others are in additional sheet"
+Melaleuca quinquenervia,2797,49,3,311,0,2660:40:00,no,Yes,Yes,
+Melia azedarach,1730,1075,26,126,0,1656:1009,yes,Yes,Yes,Status of population in Benin is unknown
+Melilotus alba,1,450,14,20,0,0.340277778,no,No,No,
+Melilotus indicus,1629,3412,25,744,29,1524:3231,yes,Yes,Yes,"Brazil is not native, shifted to naturalised. All unclass points are uncertain status"
+Melilotus officinalis,12318,5589,3,770,10,12191:5486,no,Yes,Yes,
+Melinis minutiflora,118,782,14,44,0,104:738,yes,Yes,Yes,Dominican Republic is naturalised http://www.cabi.org/isc/datasheet/32983
+Mentha aquatica,72341,114,19,3674,0,72219:99,yes,Yes,Yes,Native throughout Europe http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/9cc9854b-1400-4279-b41c-7b6be7bf9aa6
+Mentha arvensis,37977,21,24,1571,152,37706:20,no,Yes,No,"Status seems uncertain, especially in US. Could look it up later?"
+Mentha gracilis,0,753,3,63,10,0.518055556,no,No,No,
+Mentha pulegium,5868,816,4,218,0,5751:733,no,Yes,Yes,
+Mentha spicata,854,11438,20,452,0,812:11178,no,Yes,Yes,
+Merremia tuberosa,143,64,18,22,0,128:60,no,Yes,Yes,
+Mesembryanthemum crystallinum,324,2425,1,744,0,318:2374,no,Yes,Yes,
+Mesembryanthemum nodiflorum,732,952,1,444,0,701:913,no,Yes,Yes,
+Metasequoia glyptostroboides,20,48,46,7,107,20:43,yes,Yes,No,These points are likely to be cultivated only
+Microstegium vimineum,442,266,1,15,0,437:263,no,Yes,Yes,
+Miscanthus sacchariflorus,165,77,1,6,0,150:76,no,Yes,Yes,
+Miscanthus sinensis,644,272,4,59,0,620:259,no,Yes,Yes,
+Monarda didyma,135,45,3,1,0,125:44:00,no,Yes,Yes,
+Moneses uniflora,11115,3,10,605,0,11007:3,no,No,No,No confirmed naturalised points
+Monochoria vaginalis,986,15,2,78,0,932:13:00,no,Yes,Yes,
+Moraea aristata,0,7,1,1,0,00:06,no,No,No,
+Morus alba,76,1953,13,63,0,71:1885,yes,Yes,Yes,Tanzania cannot find info
+Murdannia keisak,604,23,9,67,0,564:23:00,yes,Yes,Yes,Casual in Australia
+Myosotis arvensis,54817,189,1,3461,0,54678:169,no,Yes,Yes,
+Myosotis azorica,0,9,1,0,0,00:09,no,No,No,
+Myosotis scorpioides,75916,377,2,2170,0,75705:342,no,Yes,Yes,
+Myosotis sylvatica,10941,2471,6,536,12,10876:2423,no,Yes,Yes,
+Myosoton aquaticum,16703,79,1,254,0,16633:71,no,Yes,Yes,
+Myriophyllum aquaticum,106,1633,2,98,0,99:1573,no,Yes,Yes,
+Myriophyllum heterophyllum,245,89,2,2,0,231:89,no,Yes,Yes,
+Myriophyllum spicatum,17575,458,1,3977,0,17505:428,no,Yes,Yes,
+Najas flexilis,851,0,1,54,0,821:00:00,no,No,No,
+Najas graminea,531,21,1,66,0,494:18:00,no,Yes,Yes,
+Najas guadalupensis,831,0,16,21,0,765:00:00,yes,No,No,"Naturalised in Japan and ME, but we have no points for that"
+Najas marina,2945,0,1,677,0,2885:00:00,no,No,No,
+Najas minor,700,125,1,8,0,690:125,no,Yes,Yes,
+Narcissus pseudonarcissus,6092,3193,5,446,0,6049:3184,no,Yes,Yes,
+Nasturtium officinale,20473,2734,2,1041,0,20342:2506,no,Yes,Yes,
+Nauclea diderrichii,146,6,12,2,0,132:06:00,yes,Yes,No,Doubtful naturalisation
+Nelumbo nucifera,380,24,8,12,0,318:23:00,no,Yes,Yes,
+Nemesia strumosa,8,42,1,2,0,08:35,no,Yes,Yes,
+Nepeta cataria,1141,2854,15,211,21,1119:2817,no,Yes,Yes,
+Nephrolepis cordifolia,221,1273,22,85,0,199:1211,yes,Yes,No,"Native range very obscure, not included http://keyserver.lucidcentral.org/weeds/data/media/Html/nephrolepis_cordifolia.htm"
+Nerine bowdenii,7,1,7,1,0,07:01,no,No,No,
+Nerium oleander,2623,715,9,165,0,2560:679,no,Yes,Yes,
+Neyraudia reynaudiana,88,4,1,3,0,86:03:00,no,No,No,
+Nicotiana glauca,90,3844,2,311,14,74:3594,no,Yes,Yes,
+Nomaphila stricta,0,0,2,0,0,00:00,no,No,No,
+Nymphaea ampla,285,415,15,43,0,262:356,no,Yes,Yes,
+Nymphaea capensis,4,55,5,6,0,04:47,no,No,No,
+Nymphaea lotus,149,27,5,13,0,133:26:00,no,Yes,Yes,
+Nymphaea mexicana,97,0,2,3,0,79:00:00,no,No,No,
+Nymphaea odorata,709,17,7,16,0,684:12:00,no,Yes,Yes,
+Nymphaea x marliacea,0,25089,156,1236,3897,0:24947,yes,No,No,
+Nymphoides indica,2056,5,1,117,0,1867:05:00,no,Yes,Yes,
+Nymphoides peltata,8080,125,14,103,0,8078:98,yes,Yes,Yes,Lux is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/a245b5d4-8357-4ce3-97b2-2f5478ab77dc
+Oeceoclades maculata,65,466,12,44,11,56:446,yes,Yes,Yes,"Bolivia and Panama are not native added to naturalised, other points are uncertain"
+Oenothera,0,16965,79,1682,17829,0:16918,yes,No,No,
+Oenothera biennis,600,12056,12,634,0,576:12022,yes,Yes,Yes,South africa is naturalised http://redlist.sanbi.org/species.php?species=2199-2
+Oenothera elata,833,0,1,70,0,788:00:00,no,No,No,
+Onopordum acanthium,5896,2865,4,377,0,5840:2794,no,Yes,Yes,
+Ophrys lutea,1968,0,1,82,0,1921:00:00,no,No,No,
+Opuntia aurantiaca,7,901,2,1,0,0.914583333,no,Yes,Yes,
+Opuntia borinquensis,1,0,1,1,0,01:00,no,No,No,
+Opuntia cardiosperma,3,6,1,0,0,03:06,no,No,No,
+Opuntia elata,31,72,3,2,0,24:72,no,Yes,Yes,
+Opuntia elatior,4,39,1,0,0,03:36,no,No,No,
+Opuntia ficus-indica,0,528,1,54,0,0.356944444,no,No,No,
+Opuntia fragilis,170,0,1,7,0,160:00:00,no,No,No,
+Opuntia humifusa,196,176,1,26,0,191:174,no,Yes,Yes,
+Opuntia leucotricha,76,17,2,0,0,73:15:00,no,Yes,Yes,
+Opuntia microdasys,70,29,10,4,0,65:29:00,yes,Yes,Yes,Uncertain naturalisation in Europe
+Opuntia monacantha,18,248,2,23,0,0.917361111,no,Yes,Yes,
+Opuntia phaeacantha,410,17,1,6,0,386:16:00,no,Yes,Yes,
+Opuntia polyacantha,495,15,1,1,0,459:15:00,no,Yes,Yes,
+Opuntia puberula,50,91,1,2,0,49:90,no,Yes,Yes,
+Opuntia robusta,97,859,1,0,0,93:858,no,Yes,Yes,
+Opuntia schickendantzii,0,21,1,0,0,00:21,no,No,No,
+Opuntia schumannii,6,0,1,0,0,06:00,no,No,No,
+Opuntia spinulifera,0,1,1,0,0,00:01,no,No,No,
+Opuntia streptacantha,42,10,1,1,0,38:10:00,no,Yes,Yes,
+Opuntia stricta,85,4195,4,172,0,74:4179,no,Yes,Yes,
+Opuntia sulphurea,13,8,1,0,0,12:08,no,Yes,Yes,
+Opuntia tomentosa,46,246,1,5,0,41:241,no,Yes,Yes,
+Opuntia tuna,0,50,1,24,0,00:50,no,No,No,
+Orchis mascula,17519,0,1,1793,0,17419:0,no,No,No,
+Orchis morio,4426,0,1,189,0,4346:00:00,no,No,No,
+Ornithogalum umbellatum,9811,1026,12,428,0,9763:1017,no,Yes,Yes,
+Orthilia secunda,28578,9,22,1589,25,28356:9,yes,Yes,No,No confirmed naturalised points
+Oryza longistaminata,222,18,11,13,0,191:17:00,no,Yes,No,No confirmed naturalised points
+Oryzopsis hymenoides,1802,0,3,1,0,1721:00:00,no,No,No,
+Otholobium fruticans,25,0,3,8,0,25:00:00,no,No,No,
+Ottelia alismoides,220,12,1,9,0,192:10:00,no,Yes,Yes,
+Oxalis corniculata,913,13217,133,686,1027,862:13020,yes,Yes,No,native range unknown so cannot use
+Oxalis purpurata,0,3,6,1,0,00:02,no,No,No,
+Oxalis stricta,1031,15273,11,329,0,1000:15260,no,Yes,Yes,
+Oxycaryum cubense,0,463,1,12,0,0.289583333,no,No,No,
+Pachysandra terminalis,55,124,1,5,0,53:122,no,Yes,Yes,
+Paederia foetida,913,18,4,64,0,885:16:00,no,Yes,Yes,
+Panax quinquefolius,149,0,1,2,0,130:00:00,no,No,No,
+Panicum antidotale,10,235,2,9,21,0.561111111,no,Yes,Yes,
+Panicum repens,1068,149,1,198,0,1016:128,no,Yes,Yes,African points are all native https://npgsweb.ars-grin.gov/gringlobal/taxonomydetail.aspx?id=26620
+Parkia korom,0,1,1,0,0,00:01,no,No,No,
+Parmentiera cereifera,15,0,4,4,0,13:00,no,No,No,
+Parthenocissus quinquefolia,1141,6227,19,203,0,1109:6216,no,Yes,Yes,
+Paspalum notatum,738,326,5,23,0,669:291,no,Yes,Yes,
+Paspalum urvillei,260,1543,14,100,0,229:1469,yes,Yes,Yes,Puerto rico is naturalised http://www.cabi.org/isc/datasheet/109621
+Passiflora ampullacea,28,0,1,0,0,28:00:00,no,No,No,
+Passiflora foetida,2650,2453,8,601,0,2359:2345,no,Yes,Yes,"China is naturalised, not native, Taiwan is naturalised "
+Pastinaca sativa,23341,3790,7,1153,0,23280:3730,no,Yes,Yes,
+Paulownia kawakamii,57,0,1,1,0,56:00:00,no,No,No,
+Paulownia tomentosa,96,391,3,19,0,94:384,no,Yes,Yes,
+Peganum harmala,956,241,5,15,24,873:230,no,Yes,Yes,
+Peniocereus serpentinus,3,16,1,0,0,03:16,no,No,No,
+Pennisetum ciliare,200,168,1,8,0,181:158,no,Yes,Yes,
+Pennisetum purpureum,152,787,19,56,0,135:722,yes,Yes,Yes,"China is naturalised, not native, as is Taiwan and Japan. Congo is native, see http://www.hear.org/pier/species/pennisetum_purpureum.htm"
+Pennisetum setaceum,41,987,18,103,0,31:930,no,Yes,Yes,
+Phaius tancarvilleae,25,0,2,3,0,24:00:00,no,No,No,
+Phalaris arundinacea,102724,193,5,3995,0,102529:164,no,Yes,Yes,
+Phalaris minor,1110,2064,15,229,0,1021:1942,yes,Yes,Yes,Cannot confirm naturalisation in unclass points
+Phleum pratense,90198,2039,6,3903,0,89808:1933,no,Yes,Yes,
+Phlox paniculata,159,364,9,12,0,153:362,yes,Yes,Yes,Japan not likely to be naturalised
+Phoenix canariensis,260,373,19,94,0,259:365,no,Yes,Yes,
+Phoenix dactylifera,155,657,11,46,0,150:642,no,Yes,Yes,
+Phragmites australis,95789,2,6,8661,0,95476:2,no,No,No,
+Phyllanthus fluitans,31,0,3,0,0,27:00:00,no,No,No,
+Phyllostachys aurea,5,199,1,7,0,0.338888889,no,Yes,No,
+Physalis virginiana,208,26,2,1,0,201:13:00,no,Yes,Yes,
+Phytelephas aequatorialis,36,0,1,0,0,30:00:00,no,No,No,
+Picea abies,63381,8379,11,4156,3014,63310:8327,no,Yes,Yes,
+Picea engelmannii,277,33,1,1,0,254:32:00,no,Yes,Yes,
+Picea omorika,32,100,30,9,133,32:100,yes,Yes,No,"Cultivated only, do not include"
+Picea pungens,117,479,1,37,0,111:473,no,Yes,Yes,
+Pilularia globulifera,0,3829,2,170,0,2.658333333,no,No,No,
+Pinus contorta,1133,2877,2,319,0,1070:2874,no,Yes,Yes,
+Pinus merkusii,29,0,1,1,0,23:00,no,No,No,
+Pinus palustris,82,3,7,0,0,69:03:00,no,No,No,
+Pinus ponderosa,1064,79,1,10,0,1004:77,no,Yes,Yes,
+Pinus sylvestris,89476,23430,3,6201,0,89315:23398,no,Yes,Yes,
+Pinus torreyana,79,0,1,27,0,72:00:00,no,No,No,
+Pistacia vera,27,42,4,3,0,22:36,no,Yes,Yes,
+Pistia stratiotes,1116,93,1,45,0,1028:93,no,Yes,Yes,
+Pisum fulvum,361,0,1,0,0,348:00:00,no,No,No,
+Plantago lanceolata,75271,8128,5,7602,0,75021:8095,no,Yes,Yes,Finland and Germany are native (see additional sheet)
+Plantago major,79710,1891,56,5373,9,79627:1801,yes,Yes,Yes,Vietnam is naturalised (http://www.hear.org/pier/species/plantago_major.htm) and Hungary is native (http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/19a7652f-4a08-4172-938f-8ba552a42ab7)
+Plectranthus unguentarius,0,0,3,3,0,00:00,no,No,No,
+Pleuraphis jamesii,169,0,1,0,0,160:00:00,no,No,No,
+Poa alpina,16315,0,7,1302,0,16066:0,no,No,No,
+Poa annua,65160,27978,22,4744,0,65025:27830,no,Yes,Yes,
+Poa bulbosa,9680,1410,6,408,0,9417:1302,yes,Yes,Yes,Japan is naturalised http://www.hear.org/gcw/species/poa_bulbosa/
+Poa compressa,20562,1303,9,1620,0,20466:1230,yes,Yes,Yes,Andorra is native http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/39dd772e-9d82-45e8-b6e9-38f665147b50
+Poa nemoralis,52568,697,3,3363,0,52293:649,no,Yes,Yes,
+Poa palustris,19127,245,5,1045,0,19017:245,no,Yes,Yes,
+Poa pratensis,101908,568,1,9642,12,101527:523,no,Yes,Yes,
+Poa trivialis,99220,244,1,3912,0,98996:240,no,Yes,Yes,
+Podalyria sericea,20,38,1,11,0,20:35,no,Yes,Yes,
+Podophyllum hexandrum,124,0,4,1,13,115:00:00,no,No,No,
+Podranea ricasoliana,4,110,4,8,13,0.197222222,no,No,No,
+Polygonum arenastrum,256,5555,17,468,11,225:5471,yes,Yes,Yes,Native to India and Pakistan
+Polygonum aviculare,237,83955,21,4879,22,224:83598,yes,Yes,No,"Needs work, Europe range all wrong"
+Polygonum caespitosum,110,27,0,0,0,110:26:00,no,Yes,Yes,Taiwan is native (see extra sheet)
+Polygonum perfoliatum,228,19,1,5,0,225:18:00,no,Yes,Yes,
+Polygonum persicaria,18079,653,5,161,25,17965:594,no,Yes,Yes,Morocco is unknown status
+Polygonum ramosissimum,599,6,1,28,0,577:06:00,no,Yes,Yes,
+Polypodium hesperium,125,0,1,3,0,117:00:00,no,No,No,
+Polypogon monspeliensis,2643,4075,8,671,54,2516:3800,no,Yes,Yes,
+Polypogon viridis,2286,1617,8,272,11,2113:1505,no,Yes,Yes,
+Polystachya concreta,464,0,1,18,0,420:00:00,no,No,No,
+Poncirus trifoliata,50,72,8,1,0,50:67,no,Yes,Yes,
+Pontederia cordata,838,131,12,25,0,781:130,yes,Yes,Yes,South africa is naturalised http://www.invasives.org.za/legislation/item/311-pickerel-weed-pontederia-cordata
+Pontederia rotundifolia,235,0,6,3,0,196:00:00,no,No,No,
+Populus alba,6701,5329,20,606,0,6631:5307,yes,Yes,Yes,Japan status is uncertain
+Populus deltoides,1130,292,10,19,0,1104:285,no,Yes,Yes,
+Populus nigra,10294,2454,16,349,155,10194:2435,no,Yes,Yes,
+Portulaca oleracea,133,13230,136,596,1694,129:13060,yes,Yes,No,native range unknown so cannot use
+Portulacaria afra,41,13,11,7,0,40:12:00,yes,Yes,Yes,US population not naturalised
+Potamogeton acutifolius,1721,0,1,23,0,1717:00:00,no,No,No,
+Potamogeton crispus,15530,465,7,717,43,15339:433,no,Yes,Yes,
+Potamogeton epihydrus,743,0,2,38,0,715:00:00,no,No,No,
+Potentilla argentea,24338,222,4,2832,0,24259:212,no,Yes,Yes,
+Potentilla pensylvanica,400,63,1,34,0,357:62,no,Yes,Yes,
+Potentilla recta,1757,3603,6,177,0,1713:3517,no,Yes,Yes,
+Potentilla rivalis,247,47,1,1,0,229:46:00,no,Yes,Yes,
+Protea subvestita,57,0,1,2,0,57:00:00,no,No,No,
+Prunus lusitanica,368,803,11,49,0,354:787,no,Yes,Yes,
+Prunus serotina,1550,32506,10,306,0,1492:32501,no,Yes,Yes,
+Prunus virginiana,2120,128,1,53,0,2035:128,no,Yes,Yes,
+Pseudotsuga menziesii,1296,7545,4,213,0,1245:7534,no,Yes,Yes,
+Psidium cattleianum,201,126,19,45,0,189:113,yes,Yes,Yes,South africa is naturalised http://www.cabi.org/isc/datasheet/45135
+Psidium guajava,1232,638,4,126,0,1106:602,no,Yes,Yes,Puerto rico is naturalised (see extra sheet)
+Pteris vittata,943,217,4,102,6,853:206,no,Yes,Yes,
+Pterocarpus indicus,110,19,17,26,0,93:18:00,no,Yes,Yes,
+Puccinellia distans,9203,314,10,2777,0,9147:295,no,Yes,Yes,
+Puccinellia nuttalliana,402,0,2,19,0,364:00:00,no,No,No,
+Pyracantha koidzumii,29,52,5,2,0,29:42:00,no,Yes,Yes,
+Pyrostegia venusta,675,25,15,23,12,631:23:00,no,Yes,Yes,
+Pyrus calleryana,122,162,13,3,0,121:155,no,Yes,Yes,
+Quercus dumosa,538,0,1,25,0,518:00:00,no,No,No,
+Quercus engelmannii,494,0,1,3,0,478:00:00,no,No,No,
+Ranunculus cymbalaria,991,49,1,202,0,923:49:00,no,Yes,Yes,
+Ranunculus ficaria,51425,160,1,2608,0,51290:156,no,Yes,Yes,
+Ranunculus repens,94224,387,1,4170,0,93996:378,no,Yes,Yes,
+Ranunculus sceleratus,51308,314,3,2479,0,51206:264,no,Yes,Yes,
+Rapanea melanophloeos,129,0,1,10,0,126:00:00,no,No,No,
+Raphanus sativus,0,2753,16,306,35,1.854166667,no,No,No,
+Rapistrum rugosum,3001,4173,6,258,0,2883:4058,no,Yes,Yes,
+Rhamnus cathartica,16438,548,9,1214,0,16400:539,no,Yes,Yes,Europe points are all native (see extra sheet)
+Rhus coriaria,693,0,1,19,0,667:00:00,no,No,No,
+Rhus glabra,749,31,1,11,0,732:31:00,no,Yes,Yes,
+Ribes aureum,1203,330,4,36,0,1160:329,no,Yes,Yes,
+Ricinus communis,0,3550,1,274,0,2.34375,no,No,No,
+Robinia pseudoacacia,0,24446,1,307,0,0:24297,no,No,Yes,
+Rorippa amphibia,38013,44,3,293,0,37997:40,no,Yes,Yes,
+Rorippa nasturtium-aquaticum,9220,1158,4,733,0,9158:1052,no,Yes,Yes,
+Rorippa palustris,35081,529,2,1327,0,34833:444,no,Yes,Yes,
+Rorippa sylvestris,15981,1518,4,472,0,15932:1478,no,Yes,Yes,
+Rosa acicularis,1048,0,1,11,0,951:00:00,no,No,No,
+Rosa multiflora,445,1447,6,75,0,424:1420,no,Yes,Yes,
+Rosa rugosa,47,13147,9,5889,0,41:13131,no,Yes,Yes,
+Rotala indica,617,17,1,79,0,602:16:00,no,Yes,Yes,
+Rotala rotundifolia,182,18,3,2,0,178:15:00,no,Yes,Yes,
+Rubus allegheniensis,530,235,3,24,0,510:235,no,Yes,Yes,
+Rubus idaeus,84000,30,11,5609,27,83667:21,no,Yes,Yes,
+Rubus occidentalis,388,0,2,2,0,367:00:00,no,No,No,
+Rubus parviflorus,1396,53,2,152,0,1316:53:00,no,Yes,Yes,
+Rubus phoenicolasius,142,300,3,13,0,135:295,no,Yes,Yes,
+Rudbeckia hirta,0,234,1,5,0,0.15625,no,No,No,
+Rudbeckia laciniata,0,234,1,5,0,0.15625,no,No,No,
+Rumex acetosa,94353,20,3,5889,0,94115:18,no,Yes,Yes,
+Rumex acetosella,92293,5438,14,7194,0,92102:5174,no,Yes,Yes,
+Rumex crispus,76829,4673,15,7933,0,76645:4496,yes,Yes,Yes,"Most points are unknown, Andorra is native (http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/b858003b-a297-48b1-ba84-355f57757b23)"
+Rumex frutescens,0,23,4,9,0,00:22,no,No,No,
+Rumex longifolius,13958,8747,7,2327,0,13938:8746,no,Yes,Yes,Finland is naturalised (see extra sheet)
+Rumex obtusifolius,78428,1008,26,2175,10,78292:937,no,Yes,Yes,Categorised as per additional sheet
+Ruschia geminiflora,31,19,6,16,0,31:16:00,yes,Yes,Yes,New zealand population is not naturalised
+Saccharum ravennae,700,61,3,52,0,673:57:00,no,Yes,Yes,
+Sagina procumbens,59198,549,0,5339,0,59103:502,no,Yes,Yes,
+Sagittaria graminea,273,59,1,11,0,267:38:00,no,Yes,Yes,
+Sagittaria montevidensis,133,340,3,9,9,115:278,no,Yes,Yes,
+Sagittaria rigida,105,9,1,7,0,95:09:00,no,Yes,Yes,
+Salix alba,32083,5878,15,813,0,31997:5825,yes,Yes,Yes,Estonia is naturalised http://portal.cybertaxonomy.org/euromed/cdm_dataportal/taxon/77ebd2da-8bfa-49e3-9f49-c482c0d2e6a3
+Salix fragilis,0,17835,5,597,0,0:17694,no,No,No,
+Salix purpurea,11563,654,2,289,0,11460:644,no,Yes,Yes,
+Salsola kali,3803,7656,16,1962,0,3713:7212,yes,Yes,Yes,"EU points are all native, Argentina is naturalised http://www.cabi.org/isc/datasheet/50297"
+Salvia aethiopis,474,82,5,4,0,468:77,no,Yes,Yes,
+Salvia pentstemonoides,5,0,1,0,0,05:00,no,No,No,
+Salvinia minima,262,39,1,11,0,227:37:00,no,Yes,Yes,
+Salvinia molesta,0,393,12,24,0,0.25,no,No,No,
+Sambucus racemosa,11331,12102,8,1124,0,11145:12093,no,Yes,Yes,
+Sanguisorba dodecandra,1,1,0,0,16,01:00,no,No,No,
+Sanguisorba minor,25431,1665,12,889,0,25065:1583,yes,Yes,Yes,Unclass populations are uncertainly naturalised
+Santalum album,114,6,5,53,11,112:05:00,no,Yes,Yes,
+Saponaria officinalis,12551,7256,4,888,0,12480:7186,no,Yes,Yes,
+Sarracenia alata,54,3,1,1,0,51:03:00,no,No,No,
+Sarracenia flava,65,6,4,0,0,58:06:00,no,Yes,Yes,
+Sarracenia leucophylla,27,0,1,1,0,26:00:00,no,No,No,
+Sarracenia purpurea,628,103,3,48,0,598:102,no,Yes,Yes,
+Schefflera actinophylla,570,33,10,115,0,559:32:00,no,Yes,Yes,
+Schinus terebinthifolius,577,420,5,150,0,547:383,no,Yes,Yes,
+Schismus barbatus,1058,4036,2,136,0,1027:3848,no,Yes,Yes,
+Schlumbergera truncata,17,3,3,0,0,16:03,no,No,No,
+Scleria lacustris,8,5,8,1,0,08:05,no,Yes,No,
+Secale cereale,209,2156,1748,92,0,181:2040,yes,Yes,No,"Highly cultivated, very hard to tell what is naturalised and what is cultivated"
+Sedum acre,38880,231,8,7316,0,38782:200,no,Yes,Yes,
+Selenicereus anthonyanus,1,0,4,0,0,01:00,no,No,No,
+Selenicereus coniflorus,16,0,1,0,0,16:00,no,No,No,
+Selenicereus grandiflorus,34,3,6,3,0,31:03:00,no,No,No,
+Selenicereus macdonaldiae,0,0,1,1,0,00:00,no,No,No,
+Selenicereus pteranthus,5,0,2,0,0,05:00,no,No,No,
+Senecio jacobaea,45042,658,1,2791,0,44769:635,no,Yes,Yes,
+Senecio sylvaticus,25899,254,1,2420,0,25831:225,no,Yes,Yes,
+Senecio vulgaris,66282,1779,9,4560,0,66047:1689,yes,Yes,Yes,Cannot confirm naturalisation in Dominican Republic
+Senna pendula,922,1675,1,196,0,826:1652,no,Yes,Yes,
+Sequoia sempervirens,942,317,7,96,6,932:313,no,Yes,Yes,
+Sequoiadendron giganteum,207,635,6,18,0,193:634,no,Yes,Yes,
+Sesbania punicea,82,134,1,16,0,73:123,no,Yes,Yes,
+Sesbania tomentosa,7,0,2,10,0,06:00,no,No,No,
+Setaria faberi,307,638,1,21,0,298:626,no,Yes,Yes,
+Setaria verticillata,0,10214,1,314,4,0:10001,no,No,No,
+Setaria viridis,14772,2421,6,567,0,14690:2327,no,Yes,Yes,
+Sidalcea oregana,928,0,1,5,0,860:00:00,no,No,No,
+Silene antirrhina,963,25,9,34,0,910:20:00,yes,Yes,Yes,Japan is naturalised http://www.hear.org/gcw/species/silene_antirrhina/
+Silene noctiflora,2032,1879,4,249,12,2022:1868,no,Yes,Yes,
+Silene vulgaris,31014,634,1,1925,0,30662:564,no,Yes,Yes,
+Silphium perfoliatum,214,92,1,1,0,206:92,no,Yes,Yes,
+Silybum marianum,4034,3224,10,353,12,3910:3148,no,Yes,Yes,
+Sinapis arvensis,25047,7516,4,1658,0,24890:7383,no,Yes,Yes,Europe points are all naturalised (see extra sheet)
+Sindora supa,3,1,1,0,0,03:01,no,No,No,
+Sisymbrium altissimum,88,6914,10,515,0,66:6792,yes,Yes,Yes,No known population in Iceland
+Sisymbrium irio,2334,3444,14,239,0,2234:3291,yes,Yes,Yes,Netherlands population has no known status
+Sisymbrium loeselii,133,1761,1,110,0,110:1747,no,Yes,Yes,
+Sisymbrium officinale,40424,1811,1,1764,0,40306:1689,no,Yes,Yes,
+Sisyrinchium angustifolium,495,77,9,29,0,467:77,yes,Yes,Yes,Unknown status in Dominican Republic
+Sisyrinchium montanum,470,181,1,77,0,447:170,no,Yes,Yes,
+Solanum carolinense,773,155,1,15,0,755:154,no,Yes,Yes,
+Solanum dulcamara,68696,852,4,3986,10,68562:834,no,Yes,Yes,
+Solanum nigrum,35215,6935,62,2042,0,35068:6671,yes,Yes,Yes,Central african populations probably naturalised but uncertain
+Solanum tampicense,54,0,1,2,0,48:00:00,no,No,No,
+Solanum torvum,1072,993,5,114,0,964:895,no,Yes,Yes,Taiwan is naturalised (see extra sheet)
+Solanum triflorum,371,664,8,53,0,351:602,yes,Yes,Yes,South africa is naturalised http://redlist.sanbi.org/species.php?species=2853-90
+Solanum viarum,234,49,8,2,0,212:45:00,no,Yes,Yes,
+Solidago canadensis,1704,22266,9,1644,0,1557:22223,no,Yes,Yes,
+Solidago gigantea,703,9355,1,220,5,646:9325,no,Yes,Yes,
+Solidago sempervirens,212,15,6,90,0,193:15:00,no,Yes,Yes,
+Solidago shortii,4,0,1,0,0,03:00,no,No,No,
+Sonchus arvensis,44691,468,12,6022,0,44629:445,yes,Yes,Yes,Pakistan is not established
+Sonchus arvensis uliginosus,44681,373,14,6001,91,44619:354,yes,Yes,No,"Subspecies, ignore"
+Sonchus asper,47290,16154,10,3722,0,47185:15988,no,Yes,Yes,
+Sonchus oleraceus,52663,16901,2,3914,0,52339:16576,no,Yes,Yes,
+Sorbus decipiens,0,13,1,0,0,00:13,no,No,No,
+Sorghum bicolor,2740,2264,14,196,207,2437:2049,no,Yes,Yes,Several unknown status areas
+Sorghum halepense,412,4933,2,229,0,371:4705,no,Yes,Yes,
+Sparaxis fragrans,3,0,1,0,0,03:00,no,No,No,
+Sparaxis pillansii,6,19,1,0,0,05:19,no,Yes,Yes,
+Sparaxis tricolor,6,138,3,10,0,0.300694444,no,Yes,Yes,
+Sparganium glomeratum,2402,0,9,101,0,2402:00:00,yes,No,No,No confirmed naturalised points
+Sparganium natans,9292,0,1,802,0,9253:00:00,no,No,No,
+Spartina alterniflora,182,74,1,98,0,167:72,no,Yes,Yes,
+Spartina anglica,602,98,1,357,0,602:94,no,Yes,Yes,
+Spartina densiflora,24,196,1,57,0,1.091666667,no,Yes,Yes,
+Spartina patens,166,6,1,79,0,157:06:00,no,Yes,Yes,
+Spathoglottis plicata,123,25,15,25,0,95:22:00,yes,Yes,Yes,French polynesia is naturalised http://www.hear.org/pier/species/spathoglottis_plicata.htm
+Sphagneticola trilobata,621,327,7,264,0,568:305,no,Yes,Yes,
+Spiraea japonica,430,751,7,52,0,424:740,no,Yes,Yes,
+Spiranthes sinensis,1474,0,1,70,0,1252:00:00,no,No,No,
+Spirodela punctata,545,95,15,30,0,475:86,no,Yes,Yes,
+Sporobolus cryptandrus,1462,8,4,20,0,1406:08:00,no,Yes,Yes,
+Sporobolus vaginiflorus,345,79,2,3,0,334:78,no,Yes,Yes,
+Stahlia monosperma,19,0,1,0,0,18:00,no,No,No,
+Stellaria media,94424,2609,10,4960,0,94288:2556,no,Yes,Yes,
+Stenocereus griseus,12,47,1,0,0,12:44,no,Yes,Yes,
+Sternbergia lutea,320,3,3,16,0,310:03:00,no,No,No,
+Stuckenia vaginata,113,121,1,142,0,112:104,no,Yes,Yes,
+Swietenia macrophylla,205,10,3,7,0,181:09:00,no,Yes,Yes,
+Swietenia mahagoni,27,6,11,14,0,25:05:00,no,Yes,Yes,
+Symphoricarpos albus,1192,17594,4,768,0,1114:17585,no,Yes,Yes,
+Syringa vulgaris,9,9571,11,635,0,7.011111111,no,Yes,Yes,
+Syzygium cumini,51,289,7,37,8,47:266,no,Yes,Yes,
+Syzygium jambos,24,778,39,46,13,24:709,no,Yes,Yes,
+Taeniatherum caput-medusae,1809,317,1,17,0,1698:292,no,Yes,Yes,
+Tamarix gallica,1316,245,17,284,0,1280:237,no,Yes,Yes,
+Tamarix ramosissima,80,1215,12,63,0,68:1137,yes,Yes,No,"Cultivated range hard to define, not including"
+Tanacetum vulgare,52321,768,3,4543,0,52238:710,no,Yes,Yes,
+Taraxacum officinale,4,27363,60,1668,0,4:26954,yes,No,No,"Uncertain native range, hard to include"
+Taxus cuspidata,91,22,13,9,21,83:22:00,yes,Yes,Yes,Species only cultivated in Europe
+Taxus floridana,5,0,1,0,0,03:00,no,No,No,
+Tecoma stans,843,171,26,103,0,787:155,yes,Yes,Yes,Cannot confirm status of Benin population
+Terminalia ivorensis,67,2,4,4,0,60:01:00,no,No,No,
+Tetragonia caesia,0,8,1,2,0,00:08,no,No,No,
+Tetragonia tetragonioides,0,163,20,317,2445,0.109027778,yes,No,No,Needs special attention
+Thlaspi arvense,17968,4801,1,1398,0,17879:4714,no,Yes,Yes,Finland is naturalised (see extra sheet)
+Tilia americana,782,18,10,19,0,758:18:00,yes,Yes,No,Cultivated only
+Torilis japonica,27512,50,1,1461,0,27420:50,no,Yes,Yes,
+Toxicodendron radicans,1488,3,2,34,0,1440:03:00,no,No,No,
+Tradescantia fluminensis,162,2181,1,110,0,146:2145,no,Yes,Yes,
+Tradescantia spathacea,69,44,16,25,0,60:40:00,no,Yes,Yes,
+Tragopogon porrifolius,1720,1473,4,207,0,1670:1383,no,Yes,Yes,
+Tragopogon pratensis,31467,338,8,1584,16,31311:323,no,Yes,Yes,
+Trapa natans,914,59,5,18,0,908:55:00,no,Yes,Yes,
+Triadica sebifera,271,272,4,22,5,263:257,no,Yes,Yes,
+Trianoptiles solitaria,10,12,1,1,0,10:10,no,Yes,Yes,
+Tribulus terrestris,4256,1135,8,307,0,3948:1075,no,Yes,Yes,
+Trifolium arvense,24654,4778,26,3151,0,24447:4596,yes,Yes,Yes,"Several scattered populations, but unknown status"
+Trifolium campestre,30340,4880,4,2462,37,29974:4728,no,Yes,Yes,
+Trifolium dubium,48411,2281,9,2726,0,48183:2153,no,Yes,Yes,
+Trifolium hybridum,4469,26001,81,1374,0,4415:25882,yes,Yes,Yes,"EU points are somewhat in doubt, and Argentina are naturalised (http://www.cabi.org/isc/datasheet/60635)"
+Trifolium pratense,92287,1381,12,6340,0,92054:1324,no,Yes,Yes,
+Trifolium repens,94395,3742,6,7251,0,94234:3689,no,Yes,Yes,
+Tritonia squalida,5,12,1,2,0,05:12,no,Yes,Yes,
+Tussilago farfara,68391,524,4,3982,0,68201:516,no,Yes,Yes,
+Typha angustifolia,18319,0,25,1056,9,18177:0,yes,No,No,No confirmed naturalised points
+Typha domingensis,4351,73,217,237,0,4049:72,yes,Yes,No,No confirmed naturalised points
+Typha latifolia,61240,58,1,2613,0,61030:53,no,Yes,Yes,
+Ulex europaeus,18179,2692,2,1528,0,18138:2620,no,Yes,Yes,
+Ulmus pumila,14,425,18,3,0,0.863888889,no,Yes,Yes,
+Urochloa maxima,4,124,1,11,0,0.201388889,no,No,No,
+Urtica dioica,91640,35,5,5052,0,91510:33,no,Yes,Yes,
+Utricularia gibba,905,465,29,51,0,842:421,yes,Yes,Yes,Cuba is native http://www.iucnredlist.org/details/164362/0
+Valeriana officinalis,43513,144,5,1531,0,43387:141,no,Yes,Yes,
+Vanilla mexicana,23,0,1,0,0,19:00,no,No,No,
+Vanilla planifolia,126,0,25,11,0,118:00:00,no,No,No,
+Vanilla pompona,50,0,1,2,0,42:00:00,no,No,No,
+Verbascum blattaria,2419,978,15,89,39,2391:933,no,Yes,Yes,
+Verbascum litigiosum,25,0,1,25,0,24:00:00,no,No,No,
+Verbascum thapsus,22775,2210,8,1624,0,22685:2113,no,Yes,Yes,
+Verbascum virgatum,1587,1692,5,154,0,1563:1575,no,Yes,Yes,
+Verbena bonariensis,167,4596,9,121,0,156:4469,no,Yes,Yes,
+Verbena bracteata,885,1,5,8,0,864:01:00,no,No,No,
+Veronica anagallis-aquatica,14373,440,2,513,0,14145:411,no,Yes,Yes,
+Veronica arvensis,46784,3564,18,3254,13,46599:3486,no,Yes,Yes,See additional sheets for points
+Veronica beccabunga,34157,126,3,1336,0,33990:78,no,Yes,Yes,
+Veronica peregrina,1623,2483,2,76,0,1548:2417,no,Yes,Yes,
+Veronica serpyllifolia,42000,0,10,2175,0,41750:0,no,No,No,
+Vicia cracca,95978,675,10,9024,0,95673:642,no,Yes,Yes,
+Vicia sativa,48086,4546,12,3074,0,47651:4237,yes,Yes,Yes,
+Vicia villosa,5476,4123,6,436,0,5356:4026,no,Yes,Yes,
+Vinca major,2319,3652,18,456,207,2306:3593,yes,Yes,Yes,Several populations of unknown status
+Vinca minor,11421,5785,6,587,0,11407:5777,no,Yes,Yes,
+Vincetoxicum nigrum,1079,140,4,33,0,1036:138,no,Yes,Yes,
+Viola canadensis,595,0,2,2,0,565:00:00,no,No,No,
+Vitex parviflora,52,3,1,19,0,43:03:00,no,No,No,
+Vitex rotundifolia,268,0,2,223,0,257:00:00,no,No,No,
+Vulpia bromoides,7975,3386,20,940,0,7874:3182,yes,Yes,Yes,"Unknown SE asia status, Japan is naturalised http://www.cabi.org/isc/datasheet/117873"
+Vulpia octoflora,1804,7,13,62,0,1724:07:00,yes,Yes,Yes,Argentina is naturlised http://www.iucnredlist.org/details/44393631/0
+Watsonia aletroides,31,2,1,4,0,31:02:00,no,No,No,
+Watsonia versfeldii,4,17,1,2,0,04:16,no,No,No,
+Wisteria sinensis,27,256,9,7,0,27:252,no,Yes,Yes,
+Woodwardia radicans,402,6,8,41,0,390:05:00,no,Yes,Yes,
+Xanthium strumarium,5191,2266,28,347,45,5024:2130,yes,Yes,Yes,
+Zamia furfuracea,4,1,6,2,0,03:01,no,No,No,
+Zamia loddigesii,16,0,1,0,0,14:00,no,No,No,
+Zeuxine strateumatica,30,22,2,1,0,27:22:00,no,Yes,Yes,
+Zizania aquatica,234,9,1,30,0,227:09:00,no,Yes,Yes,
+Zostera japonica,3,15,1,16,0,02:13,no,No,No,
