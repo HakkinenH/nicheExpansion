@@ -1,0 +1,46 @@
+model
+{
+  # Likelihood
+  for (t in 1:N) {
+    y[t] ~ dbeta(a[t], b[t])
+  
+    y_pred[t] ~ dbeta(a[t], b[t])
+
+    #extract loglikelihood (needed for WAIC)
+    LogLik[t] <- log(dbeta(y[t], a[t], b[t]))
+  
+    a[t] <- mu[t] * phi
+    b[t] <- (1 - mu[t]) * phi
+
+    logit(mu[t]) <- alpha
+                    
+
+    #I think variance varies across height and intro_lag, so allow phi to vary linearly. 
+    #log(phi[t]) <- phi_alpha + phi_beta * x[t] 
+
+    #to calculate Pearson residuals:
+    varY[t] <- mu[t]*(1-mu[t])
+    
+    PRes[t] <- (y[t] - mu[t]) / sqrt(varY[t])
+    PResNew[t] <- (y_pred[t] - mu[t]) / sqrt(varY[t])
+    
+    D[t] <- pow(PRes[t],2)
+    DNew[t] <- pow(PResNew[t],2)
+  }
+  
+
+  # Priors
+  alpha ~ dnorm(-1, 2^-2)
+
+  
+  #with variable variance, phi needs priors
+  phi ~ dunif(0, 10)
+
+  Fit <- sum(D[1:N])
+  FitNew <-sum(DNew[1:N]) 
+
+  pvalue <- mean(FitNew>Fit)
+
+
+
+}

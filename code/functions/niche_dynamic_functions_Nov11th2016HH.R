@@ -1,7 +1,7 @@
-## University of Lausanne. Switzerland. April 2012.
+## Basis of PCA ENV Method from Broenniman et al. April 2012.
 
 ##### Modified by Regan Early 2015
-##### Further Modified by HHäkkinen 2016
+##### Further Modified by Hakkinen 2016
 
 ##
 ## DESCRIPTION
@@ -22,28 +22,11 @@
 ## calculate the overlap metrics D and I (see Warren et al 2008) based on two species occurrence density grids z1 and z2 created by grid.clim
 ## cor=T correct occurrence densities of each species by the prevalence of the environments in their range
 ##
-## niche.equivalency.test(z1,z2,rep)
-## runs niche equivalency test(see Warren et al 2008) based on two species occurrence density grids
-## compares the observed niche overlap between z1 and z2 to overlaps between random niches z1.sim and z2.sim.
-## z1.sim and z2.sim are built from random reallocations of occurences of z1 and z2
-## rep is the number of iterations. This is a one-sided version of the test of Broennimann et al. 2012 (alternative hypothese = greater)
-##
-## niche.similarity.test(z1,z2,rep)
-## runs niche similarity test(see Warren et al 2008) based on two species occurrence density grids
-## compares the observed niche overlap between z1 and z2 to overlaps between z1 and random niches (z2.sim) in available in the range of z2 (z2$Z) 
-## z2.sim have the same patterns as z2 but their center are randomly translatated in the availabe z2$Z space and weighted by z2$Z densities
-## rep is the number of iterations. This is a one-sided version of the test of Broennimann et al. 2012 (alternative hypothese = greater)
-##
 ## plot.niche(z,title,name.axis1,name.axis2)
 ## plot a niche z created by grid.clim. title,name.axis1 and name.axis2 are strings for the legend of the plot
 ##
 ## plot.contrib(contrib,eigen)
 ## plot the contribution of the initial variables to the analysis. Typically the eigen vectors and eigen values in ordinations
-##
-## plot.overlap.test(x,type,title)
-## plot an histogram of observed and randomly simulated overlaps, with p-values of equivalency and similarity tests. 
-## x must be an object created by niche.similarity.test or niche.equivalency.test.
-## type is either "D" or "I". title is the title of the plot
 ##
 ## dynamic.index(z1,z2,intersection=NA)
 ## calculate niche expansion, stability and unfilling
@@ -426,132 +409,6 @@ niche.overlap<-function(z1,z2,cor){
   I <-1-(0.5*(sqrt(sum((sqrt(p1)-sqrt(p2))^2))))	# overlap metric I
   l$D<-D
   l$I<-I
-  return(l)
-}
-
-##################################################################################################
-
-niche.equivalency.test<-function(z1,z2,rep){
-  
-  R<-length(z1$x)
-  l<-list()
-  x11(2,2,pointsize = 12); par(mar=c(0,0,0,0));
-  
-  obs.o<-niche.overlap(z1,z2,cor=T)									#observed niche overlap
-  sim.o<-data.frame(matrix(nrow=rep,ncol=2))							#empty list of random niche overlap
-  names(sim.o)<-c("D","I")
-  for (i in 1:rep){
-    plot.new(); text(0.5,0.5,paste("runs to go:",rep-i+1))
-    
-    if(is.null(z1$y)){ #overlap on one axis
-      
-      occ1.sim<-sample(z1$x,size=nrow(z1$sp),replace=T,prob=z1$z.cor) 		#random sampling of occurrences following the corrected densities distribution
-      occ2.sim<-sample(z2$x,size=nrow(z2$sp),replace=T,prob=z2$z.cor)
-      
-      occ.pool<-c(occ1.sim,occ2.sim)   # pool of random occurrences
-      rand.row<-sample(1:length(occ.pool),length(occ1.sim),replace=T) 		# random reallocation of occurrences to datasets
-      sp1.sim<-occ.pool[rand.row]
-      sp2.sim<-occ.pool[-rand.row]
-      
-      z1.sim<-grid.clim(z1$glob,z1$glob1,data.frame(sp1.sim),R) # gridding
-      z2.sim<-grid.clim(z2$glob,z2$glob1,data.frame(sp2.sim),R)	
-    }
-    
-    if(!is.null(z1$y)){ 										#overlap on two axes
-      coordinates<-which(z1$z.cor>0,arr.ind=T)						# array of cell coordinates ((1,1),(1,2)...)
-      weight<-z1$z.cor[z1$z.cor>0] 								#densities in the same format as cells
-      coordinates.sim1<-coordinates[sample(1:nrow(coordinates),size=nrow(z1$sp),replace=T,prob=weight),] #random sampling of coordinates following z1$z.cor distribution
-      occ1.sim<-cbind(z1$x[coordinates.sim1[,1]],z1$y[coordinates.sim1[,2]]) 	# random occurrences following the corrected densities distribution
-      
-      coordinates<-which(z2$z.cor>0,arr.ind=T)						# array of cell coordinates ((1,1),(1,2)...)
-      weight<-z2$z.cor[z2$z.cor>0] 								#densities in the same format as cells
-      coordinates.sim2<-coordinates[sample(1:nrow(coordinates),size=nrow(z2$sp),replace=T,prob=weight),] #random sampling of coordinates following z1$z.cor distribution
-      occ2.sim<-cbind(z2$x[coordinates.sim2[,1]],z2$y[coordinates.sim2[,2]]) 	# random occurrences following the corrected densities distribution
-      
-      occ.pool<-rbind(occ1.sim,occ2.sim) # pool of random occurrences
-      rand.row<-sample(1:nrow(occ.pool),nrow(occ1.sim),replace=T) 			# random reallocation of occurrences to datasets
-      sp1.sim<-occ.pool[rand.row,]
-      sp2.sim<-occ.pool[-rand.row,]
-      
-      z1.sim<-grid.clim(z1$glob,z1$glob1,data.frame(sp1.sim),R)
-      z2.sim<-grid.clim(z2$glob,z2$glob1,data.frame(sp2.sim),R)	
-    }
-    
-    o.i<-niche.overlap(z1.sim,z2.sim,cor=F)							# overlap between random and observed niches
-    sim.o$D[i]<-o.i$D											# storage of overlaps
-    sim.o$I[i]<-o.i$I
-  }
-  
-  dev.off()
-  l$sim<-sim.o	# storage
-  l$obs<-obs.o	# storage
-  l$p.D<- (sum(sim.o$D >= obs.o$D ) + 1)/(length(sim.o$D) + 1)	# storage of p-values one sided test
-  l$p.I<- (sum(sim.o$I >= obs.o$D ) + 1)/(length(sim.o$I) + 1)	# storage of p-values one sided test
-  return(l)
-}
-
-##################################################################################################
-
-niche.similarity.test<-function(z1,z2,rep){
-  
-  R<-length(z1$x)
-  x11(2,2,pointsize = 12); par(mar=c(0,0,0,0));						# countdown window
-  l<-list()
-  obs.o<-niche.overlap(z1,z2,cor=T) 								#observed niche overlap
-  sim.o<-data.frame(matrix(nrow=rep,ncol=2))						#empty list of random niche overlap
-  names(sim.o)<-c("D","I")
-  
-  for (k in 1:rep){
-    plot.new(); text(0.5,0.5,paste("similarity tests:","\n","runs to go:",rep-k+1))	# countdown
-    
-    if(is.null(z2$y)){
-      center<-which(z2$z.cor==1,arr.ind=T) 					# define the centroid of the observed niche
-      Z<-z2$Z/max(z2$Z)
-      rand.center<-sample(1:R,size=1,replace=F,prob=Z)				# randomly (weighted by environment prevalence) define the new centroid for the niche
-      
-      xshift<-rand.center-center							# shift on x axis
-      z2.sim<-z2
-      z2.sim$z.cor<-rep(0,R)								# set intial densities to 0
-      for(i in 1:R){
-        i.trans<-i+xshift
-        if(i.trans>R|i.trans<0)next()						# densities falling out of the env space are not considered
-        z2.sim$z.cor[i.trans]<-z2$z.cor[i]					# shift of pixels
-      }
-      z2.sim$z.cor<-(z2$Z!=0)*1*z2.sim$z.cor 					# remove densities out of existing environments
-    }
-    
-    if(!is.null(z2$y)){
-      centroid<-which(z2$z.cor==1,arr.ind=T)[1,] 				# define the centroid of the observed niche
-      Z<-z2$Z/max(z2$Z)
-      rand.centroids<-which(Z>0,arr.ind=T)					# all pixels with existing environments in the study area
-      weight<-Z[Z>0]
-      rand.centroid<-rand.centroids[sample(1:nrow(rand.centroids)
-                                           ,size=1,replace=F,prob=weight),]					# randomly (weighted by environment prevalence) define the new centroid for the niche
-      xshift<-rand.centroid[1]-centroid[1]					# shift on x axis
-      yshift<-rand.centroid[2]-centroid[2]					# shift on y axis
-      z2.sim<-z2
-      z2.sim$z.cor<-matrix(rep(0,R*R),ncol=R,nrow=R)				# set intial densities to 0
-      for(i in 1:R){
-        for(j in 1:R){
-          i.trans<-i+xshift
-          j.trans<-j+yshift
-          if(i.trans>R|i.trans<0)next()					# densities falling out of the env space are not considered
-          if(j.trans>R|j.trans<0)next()
-          z2.sim$z.cor[i.trans,j.trans]<-z2$z.cor[i,j]		# shift of pixels
-        }
-      }
-      z2.sim$z.cor<-(z2$Z!=0)*1*z2.sim$z.cor 					# remove densities out of existing environments
-    }
-    o.i<-niche.overlap(z1,z2.sim,cor=T)							# overlap between random and observed niches
-    sim.o$D[k]<-o.i$D										# storage of overlaps
-    sim.o$I[k]<-o.i$I
-  }
-  dev.off()
-  l$sim<-sim.o											# storage
-  l$obs<-obs.o											# storage
-  l$p.D<- (sum(sim.o$D >= obs.o$D ) + 1)/(length(sim.o$D) + 1)	# storage of p-values one sided test
-  l$p.I<- (sum(sim.o$I >= obs.o$D ) + 1)/(length(sim.o$I) + 1)	# storage of p-values one sided test
-  
   return(l)
 }
 

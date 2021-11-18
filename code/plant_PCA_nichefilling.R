@@ -17,7 +17,7 @@
 # but instead of looking for expansion we look for what parts of the native niche the naturalised niche overlaps with
 # we take some summary statistics from this information (e.g. are most naturalised occurrences in the wetter, colder, drier etc. portions of their climate niche)
 
-# Based on Broenniman et al (2012) PCA method, adapted by Regan Early to measure niche NND and other dynamics
+# Based method from Broenniman et al (2012) PCA-ENV, adapted by Regan Early to measure niche NND and other dynamics
 # Modified by HHakkinen 2017 to process species data. Points are read in, categorised, PCA space is created
 # then save the outputs as raster for later summary, as well graphical output
 
@@ -28,10 +28,9 @@
 rm(list=ls())
 
 #set to path of local repo
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
+setwd("DIRECTORY_HERE")
 
-#functions from the original broenniman paper, various versions of input
-
+#functions based on the original broenniman paper, various versions of input
 source("code/functions/niche_dynamic_functions_Nov11th2016HH.R")
 source("code/functions/PCA_functions.R")
 
@@ -62,7 +61,8 @@ shape <- shapefile("RawData/BiogeographicZones/biogeographic_zonesV2.shp")
 newmap <- getMap(resolution = "coarse")  # different resolutions available
 #plot(shape,col=as.factor(shape@data$Name),axes=T)
 
-
+#this is 2 climate variables
+#clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclim_2Var_10min_region.csv"))
 #this is 3 climate variables
 clim123_ref <- na.exclude(read.csv("RawData/WorldClim/bioclim_3Var_10min_region.csv"))
 #and the equivalent 4 variable version

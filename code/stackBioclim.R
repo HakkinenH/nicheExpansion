@@ -21,7 +21,9 @@
 rm(list=ls())
 
 #set directory to current location of repo
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/RawData/WorldClim/bio_10m_bil")
+
+repopath<-"PATH HERE"
+setwd(paste0(repopath,"/RawData/WorldClim/bio_10m_bil"))
 
 library(raster)
 library(rworldmap)

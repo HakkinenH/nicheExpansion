@@ -1,47 +1,109 @@
+##############################################
+### circular_analysis ###
+##############################################
+
+### META ###
+# HHakkinen
+# Complete Date: 01/07/2021
+# University of Exeter
+# Code repo used to support:
+#   "Plant naturalisations are constrained by temperature but released by precipitation"
+# 
+# After running plant_PCA_expand.R and Rstate_compile we should have a compiled dataframe with information on 
+  #1) whether a species expanded (i.e. >0.1 proportion of their naturalised niche is outside of native niche)
+  #2) what direction (if any) their niche expanded
+#These are statistics for individual species and naturalised populations
+#we now want to find trends across ALL populations and species
+#This file takes all available information on niche expansions (or lack thereof) and produces some summary statistics, plots and output
+#specifically it will:
+  #1) run a circular parametric model to find out if  species expand more often in certain directions
+  #2) is direction expansion predicted by a particular climatic direction?
+  #3) get the residuals from the non-parametric model and find the circular R-squared
+#you can optionally use the "PA_test" to account for pseudo-replication in the data (since species are typically repeated)
+
+#The output from this script is used in Table 1, Table 2, Figure 3, Appendix Figure S1.4, Appendix Figure S1.5, Appendix Figure S1.6
+
+### ###
+
 rm(list=ls())
 
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
+
+
+###################################
+#set paths and variables
+##################################
+setwd("DIRECTORY_HERE")
+
+library("ecospat")
+library("NPCirc")
+library("CircMLE")
 
 
 
-#niche expansion direction based on 4 variables (including NPP)
-#csvfile4 <- paste("NPPplant_D_shiftvalues_zuncor_center.txt",sep="")
-
-#niche expansion direction based on 3 variables
-csvfile4 <- paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep="")
-#csvfile4 <- paste("regional/3Var0306plant_D_shiftvalues_zcor_center.txt",sep="")
-
-#csvfile4 <- paste("regionalCUT/3Var0306plant_D_shiftvalues_zuncor_center.txt",sep="")
-
-#direction of unfilling (where species fail to fail their niche)
-#csvfile4 <- paste("unfillingRegional/3Var0304plant_D_shiftvalues_zcor_center.txt",sep="")
-
-#direction of stability (where species fail to fail their niche)
-#csvfile4 <- paste("stabilityRegional/3Var0304plant_D_shiftvalues_zcor_center.txt",sep="")
+source("./code./functions/circ_plot_functions.R")
 
 
-#COMPARE AGAINST THE 2VAR DATASET
-#csvfile4<- paste("./IntermediateOutput/Rstate_compile/2Var_plant_D_shiftvalues_zcor_center.txt",sep="")
+#the following files are included in the repo and can be used as examples or to confirm out published analysis
+#choose one for the main analysis
 
-#COMPARE AGAINST THE 4VAR DATASET
-#csvfile4<- paste("./IntermediateOutput/Rstate_compile/4Var_plant_D_shiftvalues_zcor_center.txt",sep="")
+#POSSIBLE FILE LIST:
+  # niche expansion direction based on 3 variables
+  # 3Var_plant_D_shiftvalues_zcor_center.txt
+
+  # niche expansion direction based on 2 variables (precipitation and maximum temperature)
+  # 2Var_plant_D_shiftvalues_zcor_center.txt
+
+  # niche expansion direction based on 4 variables (precipitation, precipitation seasonality and minimum temperature and maximum temperature)
+  # 4Var_plant_D_shiftvalues_zcor_center.txt
+
+  # direction of unfilling (where species succeed/fail to fail their niche)
+  # 3Var0304plant_D_shiftvalues_zcor_center.txt
 
 
+
+
+#select which output file you would like to analyse (published version is niche expansion direction based on 3 variables)
+csvfile4 <- paste0("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt")
+
+#choose the name of the output file
 output<-"3VarEXP"
+
 PA_test<-"FALSE"
 
 
+#read in the main file with results
 shiftdf<-read.table(csvfile4,header=T,row.names = NULL,sep="\t")
 
+#check it looks right
 head(shiftdf)
 
 
 
+#read in information on the PCA and what the loadings/directions are. Should match the csvfile4 spec above
+#this file is generated in "plant_PCA_expand.R"
+#for 2var
+#load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TmaxPrecip")
+#for 3 var
+load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecip")
+#for 4 var
+#load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecipPrSeas")
 
 
 
+
+
+
+###################################
+#BASIC EXPLORATION AND CHECKS
+##################################
+
+#check the names of the datafile
 names(shiftdf)
+
+
+
 #x11()
+#basic plot to show whether expansion/filling happens most in wettest/highest tmin/highest tmax portion of climate niche
 par(mfrow=c(1,3))
 hist(shiftdf$proportion_precip)
 hist(shiftdf$proportion_tmin)
@@ -49,76 +111,33 @@ hist(shiftdf$proportion_tmax)
 
 
 
-#cut out invalid options
+#cut out invalid options, remove any species with no valid expansion
 shiftdf<-shiftdf[which(shiftdf$max_exp_dist1!=-Inf | is.na(shiftdf$max_exp_dist1)),]
 shiftdf<-shiftdf[which(shiftdf$max_exp_dist2!=-Inf | is.na(shiftdf$max_exp_dist2)),]
 
-#we occasionally get expansion because of the kernal where we don't have observations. We cut these out
+#we occasionally get expansion where we don't have observations because of the way kernel density is calculated. We cut these out
 shiftdf<-shiftdf[!is.na(shiftdf$exp_dir1)|!is.na(shiftdf$exp_dir2),]
 
-
+#how many (valid) species/populations do we have that expand significantly? (i.e. over 10% of their naturalised density lies outside of the native niche?)
 sum(shiftdf$expansion>0.1)
 
+
+#only keep these species/populations, we will now analyse species that expand only
 shiftdf<-shiftdf[shiftdf$expansion>0.1,]
+#split by region
 table(shiftdf$region)
+#split by circular model
 table(shiftdf$circular_model)
 
-rad.ang <- function(x1, x2){
-  dx = x1[1] - x2[1]
-  dy = x1[2] - x2[2] 
-  
-  if(!is.numeric(dx)){dx<-as.numeric(dx)}
-  if(!is.numeric(dy)){dy<-as.numeric(dy)}
-  
-  theta = atan2(dy,dx)
-  
-  if(theta<0){ theta<- theta+ 2*pi }
-  return(theta)
-} 
-
-find_CLIMangle<-function(dir1,dir2,clim){
-  if(dir1>2*pi){dir1<-dir1-2*pi}
-  if(dir1>2*pi){dir1<-dir1-2*pi}
-  
-  if(!is.na(dir2)){
-    if(dir2>2*pi){dir2<-dir2-2*pi}
-    if(dir2>2*pi){dir2<-dir2-2*pi}
-  }
-  
-  diff1<-abs(quar_tab[clim,3]-dir1)
-  diff2<-abs(quar_tab[clim,3]-dir2)
-  
-  
-  diff1_1<-abs(dir1-quar_tab[clim,3])
-  diff2_2<-abs(dir2-quar_tab[clim,3])
-  
-  
-  res_rad<-round(min(c(diff1,diff2,diff1_1,diff2_2),na.rm=T),digits=2)
-  res_deg<-round((res_rad * (180/pi)),digits=2)
-  return(c(res_rad,res_deg))
-  
-} 
-
-
-
-library("ecospat")
-
-source("./code./functions/circ_plot_functions.R")
-
-#for 2var
-#load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TmaxPrecip")
-#for 3 var
-#load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecip")
-#for 4 var
-load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecipPrSeas")
-
-
+#build PCA circle and take information on directions and climate
 ecospat.plot.contrib(pca.cal$co,pca.cal$eig)
 arr_tab<-pca.cal$co[, 1:2]/max(abs(pca.cal$co[, 1:2]))
-
 colnames(arr_tab)<-c("x","y")
+
+
 #table with points which give the direction as compared to the origin (0,0)
 #find the angle of direction for each PCA component
+#variable depending on how many variables are being put in
 if (grepl("2Var", output)){
   arr_tab$angle<-apply(arr_tab,1,rad.ang,x2=c(0,0))
   arr_tab
@@ -132,7 +151,7 @@ if (grepl("2Var", output)){
   rownames(quar_tab)<-c("Warmer","Wetter","Colder","Drier")
   
   
-}else if (grepl("4Var", output)){
+}else if (grepl("3Var", output)){
   
   arr_tab$angle<-apply(arr_tab,1,rad.ang,x2=c(0,0))
   arr_tab
@@ -167,13 +186,13 @@ if (grepl("2Var", output)){
 
 
 
-#####DATA PREP####
-
-library("NPCirc")
-library("CircMLE")
-
+###################################
+#PREPARE CIRCULAR DATA
+##################################
 
 
+
+#subselect relevant columns from data frame
 shiftdf_1<-shiftdf[,c("median_exp_dist1",
                       "exp_dir1",
                       "region",
@@ -190,13 +209,18 @@ shiftdf_2<-shiftdf[,c("median_exp_dist2",
                       "species.name","expansion")]
 
 names(shiftdf_2)<-names(shiftdf_1)
+
+#bind rows together so all information can be compared together
 shiftdf_1<-rbind(shiftdf_1,shiftdf_2)
 
+#make sure all rows have valid data
 shiftdf_1<-shiftdf_1[complete.cases(shiftdf_1),]
+#circular models don't constrain results to 0-2pi, they will include e.g. 5pi. Adjust so everything is on same scale
 shiftdf_1[shiftdf_1[,2]>2*pi,2] <- shiftdf_1[shiftdf_1[,2]>2*pi,2] - 2*pi
 
 
 #if we want to select species at random to account for pseudo-replication
+#randomly takes one record per species name, discards the rest
 if(PA_test){
 
   shiftdf_1R <- shiftdf_1[0,]
@@ -214,22 +238,28 @@ if(PA_test){
   shiftdf_1<-shiftdf_1R
 }
 
+
+#take the direction of expansion column and make it circular format
 dir<-as.circular(shiftdf_1[,2], units="radians",rotation='counter')
 
+#set which column has distance information in it
 dist<-shiftdf_1[,1]
 
 
-#################
+
 
 ###############################################
 ###circular model, do species expand more often in certain directions?
 ################################################
 
 
-plotname=paste("./IntermediateOutput/circular_analysis/",output,"/DirectionRose.pdf",sep="")
+#run a parametric circular model on direction of expansion
+circ_res<-circ_mle(dir)
+
+#make a circular histogram of direction of expansion
+plotname=paste("./FinalOutput/circular_analysis/",output,"/DirectionRose.pdf",sep="")
 pdf(file=plotname, width=5, height=5)
 
-circ_res<-circ_mle(dir)
 plot_circMLE.custom(dir, circ_res,shrink=1.4)
 axis.circular(at=circular(seq(0, 2*pi-pi/2, pi/2)), 
               labels=c("0",expression(pi/2),expression(pi),expression(3*pi/2)))
@@ -239,12 +269,12 @@ dev.off()
 
 
 
-#how far is angle from precipitation angle?
+#how far is mean angles of expansion from main climate directions?
+#if the result is close to 0 this means the average direction of expansion is in that direction
+#if the result is close to 2pi then it is the OPPOSITE direction
 
-circ_res$results$lamda
 
-circ_res
-
+#take mean direction
 dir1<-circ_res$results[1,2]
 dir2<-circ_res$results[1,5]
 
@@ -265,7 +295,8 @@ find_CLIMangle(dir2,NA,"Colder")[1]
 
 
 
-#second model is also viable
+#when you run circ_mle(), several alternative models are compared, if multiple models are viable we can investigate
+#in the example data (3Var_plant_D_shiftvalues_zcor_center.txt), the second model is also viable
 dir1<-circ_res$results[2,2]
 dir2<-circ_res$results[2,5]
 
@@ -286,24 +317,24 @@ find_CLIMangle(dir1,dir2,"Colder")
 
 
 #what is the best model to describe expansion?
-
 circ_model<-circ_res$bestmodel
 circ_rstat<-circ_res$rt[1]
 circ_pvalue<-circ_res$rt[2]
 circ_res
 
+#save some key statistics on the best circular model
+write.csv(circ_res$results,paste0("./FinalOutput/circular_analysis/",output,"/circ_summary.csv"))
 
-write.csv(circ_res$results,paste0("./IntermediateOutput/circular_analysis/",output,"/circ_summary.csv"))
 
-
-#alternative approach with curve fitting
+#OPTIONAL: alternative approach with curve fitting
+#provides a different way to analyse and visualise results
 library(mclust)
 
 mod4 <- densityMclust(shiftdf_1$exp_dir1)
 
 summary(mod4)
 
-plotname=paste0("./IntermediateOutput/circular_analysis/",output,"/CurveFit_Direction.pdf")
+plotname=paste0("./FinalOutput/circular_analysis/",output,"/CurveFit_Direction.pdf")
 pdf(file=plotname, width=9, height=7)
 
 plot(mod4, what = "density", data = shiftdf_1$exp_dir1, breaks = 20,xlab="Direction of niche shift")
@@ -314,18 +345,20 @@ dev.off()
 
 
 ###############################################
-###circular model, is direction expansion predicted by (as above)
+###circular model, is the distance of expansion predicted by direction?
 ################################################
 
-dir<-as.circular(shiftdf_1[,2], units="radians",rotation='counter')
-dist<-shiftdf_1[,1]
 
 
+#run a non-parametric circular regression, with kernel smoothing
+#we use 2 alternative smoothing methods, Nadaraya-Watson and Local-Linear
+#these 2 methods should give similar results
 estNW <- kern.reg.circ.lin(dir, dist, method="NW")
 estLL <- kern.reg.circ.lin(dir, dist, method="LL")
 
 
-plotname=paste("./IntermediateOutput/circular_analysis/",output,"/DirectionMagnitude_reg.pdf",sep="")
+#make a plot of this regression
+plotname=paste("./FinalOutput/circular_analysis/",output,"/DirectionMagnitude_reg.pdf",sep="")
 pdf(file=plotname, width=4, height=4)
 
 
@@ -338,18 +371,25 @@ lines(estLL, plot.type="circle", plot.info=res, line.col=2)
 
 
 dev.off()
+
+#plot differently, can help with visualising
 res<-plot(estNW, plot.type="line", points.plot=TRUE)
+
+
 
 #we want to get some information on which direction has maximum expansion, and what direction that's in
 
-medDist<-summary(dist)["Median"]
+#get data on the output of the regression. x is angle, y is distance
 estNW2<-as.data.frame(estNW[c("x","y")])
+#find where the maximum distance is
 estNWmax<-estNW2[which.max(estNW2$y),]
+#where are the 90th percentile points?
 estNW2<-estNW2[which(estNW2$y>quantile(estNW$y, 0.9)),]
 
-find_CLIMangle(estNWmax$x,NA,"Precip")
-find_CLIMangle(estNWmax$x,NA,"TMin")
-find_CLIMangle(estNWmax$x,NA,"TMax")
+#what direction is this maximum distance of expansion in?
+#find_CLIMangle(estNWmax$x,NA,"Precip")
+#find_CLIMangle(estNWmax$x,NA,"TMin")
+#find_CLIMangle(estNWmax$x,NA,"TMax")
 
 find_CLIMangle(estNWmax$x,NA,"Wetter")
 find_CLIMangle(estNWmax$x,NA,"Drier")
@@ -357,7 +397,9 @@ find_CLIMangle(estNWmax$x,NA,"Warmer")
 find_CLIMangle(estNWmax$x,NA,"Colder")
 
 
-plotname=paste("./IntermediateOutput/circular_analysis/",output,"/DirectionMagnitude_Suppmaxplot.pdf",sep="")
+#plot some additional results based on this maximum distance
+#plot where on the circle the area of maxmimum distance was, and where the angle of precipitation is
+plotname=paste("./FinalOutput/circular_analysis/",output,"/DirectionMagnitude_Suppmaxplot.pdf",sep="")
 pdf(file=plotname, width=4, height=4)
 
 
@@ -370,17 +412,13 @@ lines(estLL, plot.type="circle", plot.info=res, line.col=1)
 arrows.circular(arr_tab["Precip","angle"], length=0.1)
 #s.corcircle(arr_tab[,c(1,2)]*4,grid=F,add=T)
 
-
-
 dev.off()
 
 
-###########
-#####if interested get the residuals from this and find the circular R-squared
-###########
+###########################################
+##### get the residuals from non-parametric regression and find the circular R-squared
+###########################################
 
-
-euc.dist.center <- function(x1, x2) (sum((x1 - x2) ^ 2))
 
 row.names(shiftdf_1)<-1:nrow(shiftdf_1)
 
@@ -430,42 +468,9 @@ resfitted<-euc.dist.center(newdf[,c(1,3)],newdf[,c(4,6)])
 plot(newdf[,1],newdf[,3])
 points(newdf[,4],newdf[,6],col="red")
 
+#get the final pseudo R-squared
 1 - (resfitted/restotal)
 
-#R-Squared 0.3947819
 
-
-
-
-#adhoc
-#yes! Species expand more towards higher precipitation
-
-#compare
-shift3var<-read.table(paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep=""),header=T,row.names = NULL,sep="\t")
-dim(shift3var) #1883 for 3 var
-dim(shiftdf) #1883 for 2 var
-length(unique(shift3var$species.name)) #606 species
-length(unique(shiftdf$species.name)) #606 species
-sum(shift3var$expansion>0.1) #885 events expand
-sum(shiftdf$expansion>0.1) # 703 events expand
-
-shift3var<-shift3var[shift3var$expansion>0.1,]; var3list<-unique(shift3var$species.name)
-shiftdf<-shiftdf[shiftdf$expansion>0.1,]; var2list<-unique(shiftdf$species.name)
-
-sum(var3list %in% var2list) #351 species in 3var are in 2var (out of 404)
-sum(var2list %in% var3list) #351 species in 2var are in 3var (out of 384)
-
-spl<-unique(shift3var$species.name)
-
-spDF<-data.frame(sp_name=spl[1], numNat=sum(shift3var$species.name==spl[1]))
-
-
-for (i in 1:length(spl)){
-  print(spl[i]);print(i)
-  spDF[nrow(spDF)+1,]<-c(spl[i], sum(shift3var$species.name==spl[i]))
-}
-
-spDF$numNat<-as.numeric(spDF$numNat)
-summary(spDF)
 
 

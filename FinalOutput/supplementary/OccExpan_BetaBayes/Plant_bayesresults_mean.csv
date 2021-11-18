@@ -1,0 +1,3 @@
+"parameter","mean_estimate","95%_estimate","5%_estimate","consistent","parameter_name"
+"alpha",-1.36216612697636,-1.29980756142684,-1.42341269811236,"TRUE","intercept"
+"beta1",-0.0996068169820687,-0.0519472594507992,-0.147358198003118,"TRUE","Number of Naturalised Gridcells"

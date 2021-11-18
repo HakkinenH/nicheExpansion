@@ -27,13 +27,13 @@
 rm(list=ls())
 
 #set to location of repository
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
+setwd("DIRECTORY_HERE")
 
 
 #functions from the original broenniman paper, various versions of input
 source("code/functions/niche_dynamic_functions_Nov11th2016HH.R")
 source("code/functions/PCA_functions.R")
-source("./code/functions/miscFunctions.R")
+source("code/functions/miscFunctions.R")
 
 
 library(dplyr)
@@ -82,6 +82,8 @@ varlis<-c("bio5", "bio6", "bio12")
 
 
 #CHOOSE OUTPUT Folder (options are 2Var, 3Var, 4Var)
+#set the name of the variable set. NOTE: this sets folder names and output files for later, so make sure it's memorable!
+#we use this name to keep track of output and results
 folOut<-"3Var"
 
 

@@ -26,7 +26,7 @@
 
 rm(list=ls())
 #set to current repo location
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
+setwd("DIRECTORY_HERE")
 
 #set folder with datapoints to analyse
 library(raster)
@@ -36,7 +36,7 @@ library(stringr)
 library(RColorBrewer)
 library(ecospat)
 
-#functions from the original broenniman paper, various versions of input
+#functions adapted the original Broenniman paper, various versions of input
 source("./code/functions/niche_dynamic_functions_Nov11th2016HH.R")
 source("./code/functions/miscFunctions.R")
 

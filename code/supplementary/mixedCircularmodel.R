@@ -1,52 +1,62 @@
-library(bpnreg)
+##############################################
+### mixedCircularmodel ###
+##############################################
+
+### META ###
+# HHakkinen
+# Complete Date: 01/07/2021
+# University of Exeter
+# Code repo used to support:
+#   "Plant naturalisations are constrained by temperature but released by precipitation"
+# 
+
+# the file circular_analysis.R analyses direction and magnitude trends in expansion across all populations
+# But unfortunately it has pseudo-replication, it has multiple species repeating that colonise new regions 
+#(e.g. A. theophrasti is naturalised in N. America and Europe, these are two rows in the data but are not independent)
+
+#We account for this in circular_analysis.R by randomly drawing single species accounts and running again
+#this isn't ideal either because it cuts down the data
+#ideally we should run a mixed circular model to account for random effects
+#this random effects circular model can't do many of the clever things circular_analysis.R can do BUT it can check how much REs influence our patterns of expansion
+
+#the output of this file are used in the results section of the main paper as a subsidiary analysis
 
 
-bp<-bpnme(Error.rad ~ Maze + Trial.type + (1|Subject), Maps, its = 1000, burn=1)
-
-x11()
-traceplot(bp)
-BFc(bp)
-
-
-library(bpnreg)
-fit.Maps <- bpnme(pred.I = Error.rad ~ Maze + Trial.type + L.c + (1|Subject),
-                  data = Maps,
-                  its = 100, burn = 10, n.lag = 3)
-
-print(fit.Maps)
-
-traceplot(fit.Maps, parameter="beta2")
-BFc(fit.Maps, hypothesis = "Maze1 < Trial.type1")
-coef_lin(fit.Maps)
-coef_circ(fit.Maps)
-
-coef_ran(fit.Maps)
-coef_ran(fit.Maps, type = "circular")
-fit(fit.Maps)
-
-
+### ###
 
 rm(list=ls())
 
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
 
+###################################
+#set paths and variables
+##################################
 
-#niche expansion direction based on 3 variables
+#set to current repo
+setwd("DIRECTORY_HERE")
+
+library(bpnreg)
+
+#niche expansion direction based on 3 variables. load about from Rstate_compile (from plant_PCA_expand)
 csvfile4 <- paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep="")
 
-#COMPARE AGAINST THE 2VAR DATASET
+#load expansion based on 2 variables if you prefer
 #csvfile4<- paste("./IntermediateOutput/Rstate_compile/2Var_plant_D_shiftvalues_zcor_center.txt",sep="")
 
 
-#compare
-shiftdf<-read.table(paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep=""),header=T,row.names = NULL,sep="\t")
+#read in file
+shiftdf<-read.table(csvfile4,header=T,row.names = NULL,sep="\t")
 
 
-#cut out invalid options
+
+###################################
+#BASIC EXPLORATION AND CHECKS
+##################################
+
+#cut out invalid options, remove any species with no valid expansion
 shiftdf<-shiftdf[which(shiftdf$max_exp_dist1!=-Inf | is.na(shiftdf$max_exp_dist1)),]
 shiftdf<-shiftdf[which(shiftdf$max_exp_dist2!=-Inf | is.na(shiftdf$max_exp_dist2)),]
 
-#we occasionally get expansion because of the kernal where we don't have observations. We cut these out
+#we occasionally get expansion because of the kernel where we don't have observations. We cut these out
 shiftdf<-shiftdf[!is.na(shiftdf$exp_dir1)|!is.na(shiftdf$exp_dir2),]
 
 
@@ -80,6 +90,7 @@ length(unique(shiftdf_1$species.name))
 levels(shiftdf_1$region)<-1:length(unique(shiftdf_1$region))
 
 
+#set region to factor and assign level number
 shiftdf_1$region_f<-NA
 
 shiftdf_1$region_f[which(shiftdf_1$region=="Afrotropical")]<-1
@@ -96,6 +107,8 @@ shiftdf_1$region_f[which(shiftdf_1$region=="Saharo-Arabian")]<-11
 shiftdf_1$region_f[which(shiftdf_1$region=="Sino-Japanese")]<-12
 shiftdf_1$region_f<-as.factor(shiftdf_1$region_f)
 
+
+#set species to factor and assign level number
 shiftdf_1$species_f<-NA
 
 sp_list<-unique(shiftdf_1$species.name)
@@ -106,21 +119,33 @@ for(i in 1:length(sp_list)){
 }
 shiftdf_1$species_f<-as.numeric(shiftdf_1$species_f)
 
+
+###############################################
+###Fit a Bayesian circular mixed-effects model
+################################################
+
 fit.Maps <- bpnme(pred.I = exp_dir1  ~ 1 + (1|species_f),
                   data = shiftdf_1,
                   its = 1000, burn = 50, n.lag = 3)
 
-
+#check results
 print(fit.Maps)
 
+#check traceplot, make sure it's a "fuzzy caterpillar"
 traceplot(fit.Maps, parameter="beta1")
-#BFc(fit.Maps, hypothesis = "Maze1 < Trial.type1")
+
+#check linear coefficients
 coef_lin(fit.Maps)
+#check circular coefficients
 coef_circ(fit.Maps)
 
+#check random effects
 coef_ran(fit.Maps)
+#check circular random effects.  posterior summaries of the circular or linear random effect variances, overall influence of random effects
 coef_ran(fit.Maps, type = "circular")
+#check linear random effects
 coef_ran(fit.Maps, type = "linear")
+#check model statistics
 fit(fit.Maps)
 
 

@@ -1,4 +1,40 @@
 
+#various circular calculations used throughout repo
+rad.ang <- function(x1, x2){
+  dx = x1[1] - x2[1]
+  dy = x1[2] - x2[2] 
+  
+  if(!is.numeric(dx)){dx<-as.numeric(dx)}
+  if(!is.numeric(dy)){dy<-as.numeric(dy)}
+  
+  theta = atan2(dy,dx)
+  
+  if(theta<0){ theta<- theta+ 2*pi }
+  return(theta)
+} 
+
+find_CLIMangle<-function(dir1,dir2,clim){
+  if(dir1>2*pi){dir1<-dir1-2*pi}
+  if(dir1>2*pi){dir1<-dir1-2*pi}
+  
+  if(!is.na(dir2)){
+    if(dir2>2*pi){dir2<-dir2-2*pi}
+    if(dir2>2*pi){dir2<-dir2-2*pi}
+  }
+  
+  diff1<-abs(quar_tab[clim,3]-dir1)
+  diff2<-abs(quar_tab[clim,3]-dir2)
+  
+  
+  diff1_1<-abs(dir1-quar_tab[clim,3])
+  diff2_2<-abs(dir2-quar_tab[clim,3])
+  
+  
+  res_rad<-round(min(c(diff1,diff2,diff1_1,diff2_2),na.rm=T),digits=2)
+  res_deg<-round((res_rad * (180/pi)),digits=2)
+  return(c(res_rad,res_deg))
+  
+} 
 
 plot_circMLE.custom<-function (data, table, model, bins, shrink, col, lwd, lty) {
   if (is.null(data) | missing(data)) 
@@ -272,3 +308,7 @@ plot.circustom<-function(x, plot.type=c("circle", "line"), points.plot=FALSE, rp
     }
   }
 }
+
+euc.dist.center <- function(x1, x2) (sum((x1 - x2) ^ 2));
+
+

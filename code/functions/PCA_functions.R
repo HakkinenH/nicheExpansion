@@ -1,3 +1,5 @@
+#miscellaneous functions used throughout repo for PCA purposes
+
 euc.dist.center <- function(x1, x2) sqrt(sum((x1 - x2) ^ 2))
 
 euc.dist.edge <- function(x){

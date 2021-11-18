@@ -26,10 +26,10 @@
 rm(list=ls())
 
 #set to location of the repo
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
+setwd("DIRECTORY_HERE")
 
 
-#functions from the original broenniman paper, various versions of input
+#functions based on the original Broenniman paper, various versions of input
 source("code/functions/niche_dynamic_functions_Nov11th2016HH.R")
 source("code/functions/PCA_functions.R")
 

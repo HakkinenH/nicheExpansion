@@ -1,21 +1,28 @@
 
 
+##############################################
+### EXPANSION MAPS AND SUMMARIES ###
+##############################################
 
-#step one
+### META ###
+# HHakkinen
+# Complete Date: 01/07/2021
+# University of Exeter
+# Code repo used to support:
+#   "Plant naturalisations are constrained by temperature but released by precipitation"
+# 
+# This code produces a variety of different maps to summarise our data
+# 1) It produces a histogram of how many species expand overall and by how much (it's not a map but it's short and goes with the maps in the paper)
+# 2) It prints a map of the biogeographic zones
+# 3) It summarises how many native/naturalised species occur in each region and subregion. (Useful way to visualise data)
+# 4) It summarises how many species are undergoing niche expansion in each region and subregion
 
-#read in occurrence data used in analysis
+# The output from this file is used in Figure 2 and Appendix Figure S1.1
 
-#layer over subregion map
+### ###
 
-#run a count
-
-
-rm(list=ls())
-
-
-#set to path of local repo
+#set to current repo
 setwd("DIRECTORY_HERE")
-
 
 
 library(raster)
@@ -27,14 +34,23 @@ library(wesanderson)
 
 source("./code/functions/miscFunctions.R")
 
+
+###################################
+#load files for processing
+##################################
+
+#load output from plant_pca_expansion and Rstate_compile.R
+#niche expansion direction based on 3 variables
+csvfile4 <- paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep="")
+niche_shift<-read.delim(csvfile4, sep="\t")
+
+
 table_name<-"plant"
 
-####plant paths
-raster_path<-"exp_unfill_rasters000_3clim/"
-range_path<-"U:/Data/species lists/plant_dist_data_0802/estimated_range_rasters/"
-
-#####plant paths
+#load a species list
 plant_summary<-read.csv("IntermediateOutput/PCA_find_analogue_byRegion/plant_specieslist_analoguefiltered.csv",stringsAsFactors = F)
+sp_list<-unique(plant_summary$species_name)
+
 
 #get information on the expansion proportion
 #load output from plant_pca_expansion and Rstate_compile.R
@@ -42,33 +58,51 @@ plant_summary<-read.csv("IntermediateOutput/PCA_find_analogue_byRegion/plant_spe
 csvfile4 <- paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep="")
 niche_shift<-read.delim(csvfile4, sep="\t")
 
-sp_list<-unique(plant_summary$species_name)
 
-
-
-#define where dat is located:
-data_path<-"./RawData/GBIFoccurrence/desaggregated/"
-
-#define output folder for species rasters
-output_path<-"FinalOutput/ExpansionMapsSummaries"
-output_figs<-"FinalOutput/ExpansionMapsSummaries"
-
-
+#get a subregion map based on L4 administrative data
 shape<-shapefile("./RawData/countryData/level4.shp")
-
-newmap<-getMap(resolution="coarse")
-
-
-#load region info
-region_shape <- shapefile("./RawData/BiogeographicZones/biogeographic_zonesV2.shp")
-
-
-#define islands vs nonislands
+#cut some larger landmasses out
 shape<-shape[which(shape$LEVEL_4_NA!="Greenland"&shape$LEVEL_4_NA!="Antarctica"),]
 
 
+#load biogeographic region info
+region_shape <- shapefile("./RawData/BiogeographicZones/biogeographic_zonesV2.shp")
 
 
+
+#################################################
+#1) histogram of expansion
+#################################################
+
+pdf(file="./FinalOutput/ExpansionMapsSummaries/ExpSumm_hist.pdf",width=5,height=5)
+hist(niche_shift$expansion,w=0.1,xlab="Proportion of Niche Expansion",main="")
+abline(v=0.1,col="red",lwd=3)
+dev.off()
+
+
+
+#################################################
+#2) plot a map of biogeographic zones
+#################################################
+
+
+#create a new aesthetic df. Colour by a.diff.sum
+shp_df <- broom::tidy(region_shape, region = "Name")
+table(shp_df$id)
+#as.numeric(shp_df$id)
+
+
+plotname=paste("./FinalOutput/Supplementary/ExpansionMapsSummaries/BiogeoZoneMap.pdf",sep="")
+pdf(file=plotname, width=8, height=4)
+map <- ggplot() + geom_polygon(data = shp_df, aes(x = long, y = lat, group = group, fill = (id)), colour = "black") +
+  theme_void()+labs(fill = "Realm")
+print(map)
+dev.off()
+
+
+#################################################
+#3) 4) compile and plot native/naturalised/expansion maps
+#################################################
 region_shape$native_count<-0
 region_shape$natur_count<-0
 region_shape$exp_count<-0
@@ -86,14 +120,9 @@ shape$natur_subcount<-0
 shape$exp_subcount<-0
 
 
-
-
-
-failure<-c()
 nunavut_list<-c()
 
 
-i<-3
 for (i in 1: length(sp_list)){
 #for (i in 1: 20){
   sp_name<-sp_list[i]
@@ -112,13 +141,7 @@ for (i in 1: length(sp_list)){
   shape$exp_subcount<-0
   
   if(nrow(sp_rows)==0){break()}
-  
-  
 
-
-#for(q in 1:nrow(sp_rows)){
-  
- # region<-sp_rows[q,2]
   
   file_natur=paste(data_path,sp_name,'_naturalised.csv', sep='')
   file_native=paste(data_path,sp_name,'_native.csv', sep='')
@@ -151,37 +174,27 @@ for (i in 1: length(sp_list)){
     subregion_native_shape<-shape[shape$LEVEL_4_NA%in%subregion_native$LEVEL_4_NA,]
     
   }
-    
+  
   if(nrow(natur)>0){
     natur_points<-SpatialPoints(natur[,1:2])
     crs(natur_points)<-crs(region_shape)
-  
+    
     #which continent/region has naturalised species in it
     region_natur<-unique(na.omit(over(natur_points,region_shape)))
     region_shape$natur_subcount[region_shape$Name%in%region_natur$Name]<-region_shape$natur_subcount[region_shape$Name%in%region_natur$Name]+1
     region_natur_shape<-region_shape[region_shape$Name%in%region_natur$Name,]
     
-
+    
     #which subregion has naturalised species in it
     subregion_natur<-unique(na.omit(over(natur_points,shape)))
     shape$natur_subcount[shape$LEVEL_4_NA%in%subregion_natur$LEVEL_4_NA]<-shape$natur_subcount[shape$LEVEL_4_NA%in%subregion_natur$LEVEL_4_NA]+1
     subregion_natur_shape<-shape[shape$LEVEL_4_NA%in%subregion_natur$LEVEL_4_NA,]
     
     if("Nunavut" %in% subregion_natur$LEVEL_4_NA){print("in nunavut!");nunavut_list<-c(nunavut_list,sp_name)}
+    
+    
+  }
   
-    # par(mfrow=c(1,2))
-    # plot(newmap,main=paste(sp_name,": Native"))
-    # plot(region_native_shape,col="green",add=T)
-    # plot(subregion_native_shape,col="red",add=T)
-    # points(native$x,native$y,col="cyan",pch=".",cex=3)
-    # 
-    # plot(newmap,main=paste(sp_name,": Naturalised",region))
-    # plot(region_natur_shape,col="green",add=T)
-    # plot(subregion_natur_shape,col="red",add=T)
-    # points(natur$x,natur$y,col="cyan",pch=".",cex=3)
-
-    }
-
   
   #part 2: now we check whether it expanded or not, and add a count for any occurrences that count as an expansion
   
@@ -246,7 +259,7 @@ shapefile(shape, "./IntermediateOutput/ExpansionMapsSummaries/composite_subregio
 
 
 #can skip it necessary to this point
-shape<-shapefile("./IntermediateOutput/ExpansionMapsSummaries/composite_subregion_map.shp")
+#shape<-shapefile("./IntermediateOutput/ExpansionMapsSummaries/composite_subregion_map.shp")
 
 a<-gTouches(shape,byid=T)
 alist<-apply(a, 1, function(r) any(r %in% TRUE))
@@ -270,34 +283,29 @@ names(shape)[18]<-"natur_count"
 names(shape)[19]<-"exp_count"
 
 
+#####################################
+###NOW START PLOTTING MAPS
+####################################
 
 #set palette
 pal <- (wes_palette("Zissou1", 100, type = "continuous"))
 
 
-#get full range
-#range1<-log10(shape$native_count[shape$native_count>0])
-#range2<-log10(shape$natur_count[shape$natur_count>0])
-#range3<-log10(shape$exp_count[shape$exp_count>0])
-
-
-#rng<- range(c(0,range1,range2,range3))
 rng = range(c(shape$native_count, shape$natur_count,shape$exp_count))
 rng
 
-#################NATIVE
+
+
+###NATIVE
 #plot native species on world map
 shp_df <- broom::tidy(shape, region = "native_count")
 
 shp_df$id[shp_df$id==0]<-NA
-#shp_df$id<-log10(as.numeric(shp_df$id))
-#hist(shp_df$id)
+
 
 
 plotname<-paste("./FinalOutput/ExpansionMapsSummaries/subregion_nativeMap.pdf",sep="")
-
 pdf(file=plotname,width=9,height=4)
-
 
 map <- ggplot() + geom_polygon(data = shp_df, aes(x = long, y = lat, group = group, fill = as.numeric(id)), colour = "black") +
   theme_void()+
@@ -308,7 +316,8 @@ print(map)
 dev.off()
 
 
-###############NATURALISED
+
+###NATURALISED
 #plot naturalised species on world map
 shp_df <- broom::tidy(shape, region = "natur_count")
 
@@ -316,7 +325,6 @@ shp_df$id[shp_df$id==0]<-NA
 #shp_df$id<-log10(as.numeric(shp_df$id))
 
 plotname<-paste("./FinalOutput/ExpansionMapsSummaries/subregion_naturMap.pdf",sep="")
-
 pdf(file=plotname,width=9,height=4)
 
 map <- ggplot() + geom_polygon(data = shp_df, aes(x = long, y = lat, group = group, fill = as.numeric(id)), colour = "black") +
@@ -329,7 +337,8 @@ map
 dev.off()
 
 
-###############EXPANSION
+
+###EXPANSION
 #plot expanding species on world map
 
 shp_df <- broom::tidy(shape, region = "exp_count")
@@ -337,8 +346,8 @@ shp_df <- broom::tidy(shape, region = "exp_count")
 shp_df$id[shp_df$id==0]<-NA
 #shp_df$id<-log10(as.numeric(shp_df$id))
 
-plotname<-paste("./FinalOutput/ExpansionMapsSummaries/subregion_expMap.pdf",sep="")
 
+plotname<-paste("./FinalOutput/ExpansionMapsSummaries/subregion_expMap.pdf",sep="")
 pdf(file=plotname,width=9,height=4)
 
 map <- ggplot() + geom_polygon(data = shp_df, aes(x = long, y = lat, group = group, fill = as.numeric(id)), colour = "black") +
@@ -349,6 +358,9 @@ map <- ggplot() + geom_polygon(data = shp_df, aes(x = long, y = lat, group = gro
 map
 
 dev.off()
+
+
+
 
 
 

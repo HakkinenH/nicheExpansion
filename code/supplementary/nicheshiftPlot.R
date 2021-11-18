@@ -1,43 +1,59 @@
+##############################################
+### nicheshiftPlot.R ###
+##############################################
+
+### META ###
+# HHakkinen
+# Complete Date: 01/07/2021
+# University of Exeter
+# Code repo used to support:
+#   "Plant naturalisations are constrained by temperature but released by precipitation"
+# 
+
+# as a supplementary analysis we want to compare conditions at the centre of the native niche and the proportion and direction of expansion
+
+# in plot 1 we plot what the tmax, tmin and precip at the centre of the native niche is against the proportion of niche expansion
+# do species from warm/cold/dry/wet places expand more?
+
+# plot what the tmax, tmin and precip at the centre of the native niche is against the proportion of niche expansion
+# do species from warm/cold/dry/wet places expand in certain directions?
+
+# output from this is used in Appendix Figure S1.10
+
+### ###
+
+
 rm(list=ls())
+
+
+
+###################################
+#set paths and variables
+##################################
+
+
+#set to current repo
+setwd("DIRECTORY_HERE")
+
+
 library(RColorBrewer)
 library(CircStats)
 library(scales)
+library(ecospat)
 
 
-
-setwd("C:/Users/Henry/Documents/Research/RepoCode/nicheExpansion/")
-
-
-#plant_summary<-read.csv("plant_data_summary.csv")
-#plant_summary_new<-read.csv("species lists/plant_dist_data_0802/plant_data_summary0607.csv")
-
-plant_summary<-read.csv("IntermediateOutput/PCA_find_analogue_byRegion/plant_data_analogue05042019.csv",stringsAsFactors = F)
-
-
+#load output from plant_pca_expansion and Rstate_compile.R
 #niche expansion direction based on 3 variables
 csvfile4 <- paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep="")
 shift_dyn2<-read.delim(csvfile4, sep="\t")
 
 
-rad.ang <- function(x1, x2){
-  dx = x1[1] - x2[1]
-  dy = x1[2] - x2[2] 
-  
-  if(!is.numeric(dx)){dx<-as.numeric(dx)}
-  if(!is.numeric(dy)){dy<-as.numeric(dy)}
-  
-  theta = atan2(dy,dx)
-  
-  if(theta<0){ theta<- theta+ 2*pi }
-  return(theta)
-} 
+#read in information on the PCA and what the loadings/directions are. Should match the csvfile4 spec above
+#this file is generated in "plant_PCA_expand.R"
 load("IntermediateOutput/plant_PCA_exp/PCA_contrib_TminTmaxPrecip")
 ecospat.plot.contrib(pca.cal$co,pca.cal$eig)
 arr_tab<-pca.cal$co[, 1:2]/max(abs(pca.cal$co[, 1:2]))
-
-
 arr_tab$angle<-apply(arr_tab,1,rad.ang,x2=c(0,0))
-
 rownames(arr_tab)<-c("TMax","TMin","Precip")
 
 
@@ -50,10 +66,19 @@ quar_tab[4,]<-c(NA,NA,quar_tab[2,"angle"]+pi)
 rownames(quar_tab)<-c("Warmer","Wetter","Colder","Drier")
 
 
+
+###################################
+#plot niche shift and expansion versus niche info
+##################################
+
+#set label size
 ampF<-2.2
 ampF2<-1.5
 
-plotname=paste("./IntermediateOutput/AdHoc_nicheshiftPlot/NicheVersusExp.png",sep="")
+
+#plot what the tmax, tmin and precip of the native niche is against the proportion of niche expansion
+#do species from warm/cold/dry/wet places expand more?
+plotname=paste("./FinalOutput/supplementary/nicheshiftPlot/NicheVersusExp.png",sep="")
 png(file=plotname, width=1080, height=360)
 
 par(mfrow=c(1,3))
@@ -69,7 +94,10 @@ plot(shift_dyn2$native_center_precip, shift_dyn2$expansion,
 dev.off()
 
 
-plotname=paste("./IntermediateOutput/AdHoc_nicheshiftPlot/NicheVersusDir.png",sep="")
+
+#plot what the tmax, tmin and precip of the native niche is against the proportion of niche expansion
+#do species from warm/cold/dry/wet places expand in certain directions?
+plotname=paste("./FinalOutput/supplementary/nicheshiftPlot/NicheVersusDir.png",sep="")
 png(file=plotname, width=1080, height=360)
 
 par(mfrow=c(1,3))

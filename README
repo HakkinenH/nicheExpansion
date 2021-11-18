@@ -55,33 +55,34 @@ On the way it produces various diagnostics, summary statistics and figures
 
 
 	#BiogeographicZones
-	We used biogeographic realms from Holt et al’s multi-taxonomic consensus map (2013), with an additional distinction between western and eastern Palearctic along the Ural mountains (see Appendix Fig. S1.1 in the Supporting Information). 
+	We used biogeographic realms from Holt et al’s multi-taxonomic consensus map (2013), with an additional distinction between western and eastern Palearctic along the Ural mountains (see Appendix Fig. S1.1 in the Supporting Information). Not provided in the repository.
 	To obtain this data see: Holt, Ben G., et al. "An update of Wallace’s zoogeographic regions of the world." Science 339.6115 (2013): 74-78.
 	Save data in .shp format. By default the code will assume the file is called "biogeographic_zonesV2.shp"
 
+	#countryData
+	This are level 4 administrative boundaries as defined by GADM. Not provided in the repository.
+	This can normally be downloaded from gadm.org, but at the time of writing the website is down
+	An alternative version can be found at FAO. See https://data.apps.fao.org/map/catalog/static/search?format=shapefile
 
 	#GBIFoccurrence
-	This is the GBIF occurrence data (in csv form)
+	This is the GBIF occurrence data (in csv form). Not provided in the repository.
+	
 
 		#raw
 		These are the GBIF occurrence files exactly as downloaded. Expected to be "species name.csv"
 		
 		#rawClean
 		These are the GBIF occurrence files after cleaning. We remove unverified points and errors. The following filters were applied to clean raw GBIF distribution data: each point was a presence, each point had a valid latitude and longitude with a coordinate precision >0.01 and uncertainty <10,000m, the basis of record was a living specimen, the year of occurrence was after 1970, the coordinates were not 0,0 nor at the exact centre of countries or capital cities, the coordinates were not in registered herbaria or museum locations, and that the occurrence was on land. This procedure was carried out using the “CoordinateCleaner” package in R (Zizka et al., 2019).
-		Note out cleaning code is not included in the repo
+		We also categorise occurrences as "native", "naturalised" or "unclassified" using a variety of sources. See supplementary for a list of sources and the speciesList folder for a more detailed data file
+		Not that cleaning code is not included in the repo
 		
 		#desaggregated
-		Desaggregating data is a long process so we seperated this out into its own step. This is occurrence data desaggregated to the resolution of interest (in our case 10 arc-minutes). This is the data that is used for PCA scripts etc.s
+		Desaggregating data is a long process so we seperated this out into its own step. This is occurrence data desaggregated to the resolution of interest (in our case 10 arc-minutes). This is the data that is used for PCA scripts etc.
 
-
-	#GlobalGrid
-	This is WorldClim data that has been tidied into a single grid format, convenient quick loading and aligning. This is not included in the repo as the data does not belong to the authors, but we leave the code file to compile raw WorldClim files into the grid format.
 
 
 	#RegionPCA
 	Part of our process checks for analogue climate between regions, as such we need to create a whole region PCA. This is stored here, subfolders are named after the variable set (3Var = 3 variable PCA)
-
-	#RegionPCACUT
 
 
 	#speciesList
@@ -103,42 +104,240 @@ On the way it produces various diagnostics, summary statistics and figures
 The code is described in the order it will normally be run, not alphabetically
 
 	#prepCode/stackBioclim.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
 	Takes raw worldClim bioclim data (in .bil format) and stacks them into a single, stanardised CSV. Also adds labels on what region each point is in
 	
 	#PCA_find_analogue_byregion.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
 	This takes 1) a species list 2) occurrence data (desaggreagated or not), stored in RawData/GBIF and 3) compiled WorldClim data in a csv file
 	Before we run our expansion analysis we have to make sure we are making fair comparisons between native and naturalised occurrences. So we check for analogue space, and remove any occurrences that occur in non-analogue climate
-	Output is stored in:
+	Output is stored in: 'IntermediateOutput/PCA_find_analogue_byregion/'
 	
 	#findRegionOutline.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
 	As part of the next step (plant_PCA_expand.R) we need to estimate where the center of the naturalised niche is, and how "available" climate is in the naturalised realm
 	To do this we need to create a PCA space of ALL climate that is available in the naturalised realm
 	Therefore, this code builds the niche of each region on a global scale (so it can be fairly compared in the to the naturalised niche in plant_PCA_expand.R)
 	It then saves this information for later in the form of a raster, this is the "outline" of each region's niche
 	It needs:
-	1) a species list in csv format, in PCA_find_analogue_byregion.R we generated a new one that tells us what species have enough data
-	2) native occurrence data in csv format that has been filtered, so all data in non-analogue climate has been removed
-	3) WorldClim data in csv format. By default the code assumes 3 variables, but it can be adjusted.
+		1) a species list in csv format, in PCA_find_analogue_byregion.R we generated a new one that tells us what species have enough data and generally meet requirements
+		2) native/naturalised occurrence data in csv format that has been filtered, so all data in non-analogue climate has been removed
+		3) WorldClim data in csv format. By default the code assumes 3 variables, but it can be adjusted.
 	
 	
 	#plant_PCA_expand.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
 	This is the first main code chunk. It takes:
-	1) a species list in csv format, in PCA_find_analogue_byregion.R we generated a new one that tells us what species have enough data
+	1) a species list in csv format, in PCA_find_analogue_byregion.R we generated a new one that tells us what species have enough data and generally meet requirements
 	2) native and naturalised occurrence data in csv format that has been filtered, so all data in non-analogue climate has been removed
 	3) WorldClim data in csv format. By default the code assumes 3 variables, but it can be adjusted.
-	It then constructs a native and naturalised niche in PCA space and compare the two. Any naturalised niche that falls outside of the native is "expansion"
+	It then constructs a native and naturalised niche in PCA space and compares the two. Any naturalised niche that falls outside of the native is "expansion"
 	Expansion cells are analysed and we summarise how many there are, what direction they are (compared to the native niche center and naturalised niche center) and how far they are from the native and naturalised niche centers.
 	It saves a lot of different outputs in IntermediateOutput/plant_PCA_expand, but doesn't produce a final summary table
-	This is because it's complex and is often run in chunks. Instead we save each species result as a rstate file and compile them later
+	This is because the code is long, complex and is often run in chunks. Instead we save each species result as a rstate file and compile them later
 	
 	
+	#plant_PCA_nichefilling.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
+	This is a secondary analysis, but we want to know if naturalised species colonise more easily in some parts of their niche than others
+	e.g. do naturalised commonly colonise the wetter parts of their niche?
+	To test this, we build a native and naturalised niche in PCA space (similar to plant_PCA_expand)
+	but instead of looking for expansion we look for what parts of the native niche the naturalised niche overlaps with
+	we take some summary statistics from this information (e.g. are most naturalised occurrences in the wetter, colder, drier etc. portions of their climate niche)
+	To run this you need:
+		1) a species list in csv format, in PCA_find_analogue_byregion.R we generated a new one that tells us what species have enough data
+		2) native and naturalised occurrence data in csv format that has been filtered, so all data in non-analogue climate has been removed
+		3) WorldClim data in csv format. By default the code assumes 3 variables, but it can be adjusted.
+	
+
+	#Rstate_compile.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
+	This compiles a summary of results from "plant_PCA_expand.R"
+	When processing many species, we may want to run code in blocks or examine subsections of results
+	In these cases "plant_PCA_expand.R" will save R states, one per species, which can be compiled later by this script
+	This script loads R states generated by "plant_PCA_expand.R",  calculates and compiles results and saves output as both a .txt and a .tif
+	NOTE: this script can be adjusted to compile states from plant_PCA_nichefilling.R if needed, just adjust the directories and input/output parameters
+	To run this you need:
+		1) To have run plant_PCA_expand.R successfully (or plant_PCA_nichefilling.R)
 
 
+	#circular_analysis.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	plant_PCA_expand.R looks for patterns in expansion in single species and populations
+	we now want to find trends across ALL populations and species
+	This file takes all available information on niche expansions (or lack thereof) and produces summary statistics, plots and output
+	specifically this script will:
+		1) run a circular parametric model to find out if species expand more often in certain directions
+			and also ask if these directions are close to particular climatic directions
+		2) run a non-parametric regression to find out if distance of expansion is associated with some directions?
+		3) get the residuals from the non-parametric model and calculate the circular R-squared of the model
+	you can optionally use the "PA_test" variable to account for pseudo-replication in the data (since species are typically repeated)
+	This file generates most of the results and figures presented in the main published article
+	To run this you need:
+		1) To have run plant_PCA_expand.R successfully
+	The output from this script is used in Table 1, Table 2, Figure 3, Figure 4, Appendix Figure S1.4, Appendix Figure S1.5, Appendix Figure S1.6
+	
+	
+	#circular_analysis_Regional.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	This is a modified version of "circular_analysis" which separates information by region, instead of running it all together
+	After running plant_PCA_expand.R and Rstate_compile we should have a compiled dataframe with information on 
+		1) whether a species expanded (i.e. >0.1 proportion of their naturalised niche is outside of native niche)
+		2) what direction (if any) their niche expanded
+	These are statistics for individual species and naturalised populations
+	we now want to find trends across ALL populations and species
+	This file takes all available information on niche expansions (or lack thereof) and produces some summary statistics, plots and output
+	specifically it will:
+		1) run a circular parametric model to find out if  species expand more often in certain directions
+		2) is direction expansion predicted by a particular climatic direction?
+		3) get the residuals from the non-parametric model and find the circular R-squared
+	To run this you need:
+		1) To have run plant_PCA_expand.R successfully
+	The output from this script is used in Table 1, Table 2, Appendix Figure S1.7, Appendix Figure S1.8
+	
+	
+	#ExpansionMapsSummaries.R
+	YOU WILL NEED TO DOWNLOAD ADDITIONAL DATA NOT IN THE REPOSITORY TO RUN THIS FILE
+	This code produces a variety of different maps to summarise our data
+		1) It produces a histogram of how many species expand overall and by how much (it's not a map but it's short and goes with the maps in the paper)
+		2) It prints a map of the biogeographic zones
+		3) It summarises how many native/naturalised species occur in each region and subregion. (Useful way to visualise data)
+		4) It summarises how many species are undergoing niche expansion in each region and subregion
+	To run it you will need:
+		-To have succesfully run plant_PCA_expand and Rstate_compile
+		-To have a list of species to process (in rawdata/specieslists)
+		-To have a map of biogeographic zones (not included in repo but can be downloaded from Holt et al)
+		-To have a map of subregions (in our case L4 administrative units from GADM). Included in RawData/countryData
+	The output from this file is used in Figure 2 and Appendix Figure S1.1
+	
+	
+	#PlotNichefillingHists.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	In "plant_PCA_nichefilling.R" we calculated how much of their potential niche each species/population has colonised in their naturalised range
+	E.g. we work out how much climate is available in the "wettest" quarter of climate, and how many cells are occupied in that quarter
+	we can then work out what proportion of all occurrences are in the "wettest quarter" and also how much of the available "wet" climate is occupied
+	We plot this in several ways, firstly we make some plots of where in their niche species have naturalised
+	This output is used for Figure 4 in the manuscript
+
+	we then do some subsidiary plots for the supplementary material:
+	We remove any species/population that showed niche expansion, just to show it's not being driven by expanding species. This is used in Appendix Figure S1.3 
+	Then we split niche filling  by region. This is used in Appendix Figure S1.9
+
+
+
+In addition there are several files in the "supplementary" folder that are used to produce analysis and output for the SUPPLEMENTARY section of the paper.
+These are stand-alone and should be run AFTER all files described above
+In no particular order:
+
+
+	#correlateFillingAvail.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	In our circular analysis, we find differences in expansion proportion and niche filling across the 4 quarters of climate (dry, cold, hot, wet)
+	but are these due to differences in availability. Because there is MORE wet climate available (for example)?
+	To investigate we made a supplementary analysis. This file runs two models
+		1) ANOVA/kruskal-wallis: is there more available climate in one quarter? Is the proportion of niche filling higher in any given quarter?
+		2) mixed linear regression: Is the relationship between climate availability and niche filling DIFFERENT across different quarters of climate
+		ie. correlate how much available climate there is in the naturalised niche, how much is occupied
+	To run this script you need to have run: plant_PCA_nichefilling.R
+	The output from this script is used in Appendix Figure S1.11
+
+
+	#mixedCircularmodel.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	the file circular_analysis.R analyses direction and magnitude trends in expansion across all populations
+	But unfortunately it has pseudo-replication, it has multiple species repeating that colonise new regions 
+	(e.g. A. theophrasti is naturalised in N. America and Europe, these are two rows in the data but are not independent)
+
+	We account for this in circular_analysis.R by randomly drawing single species accounts and running again
+	this isn't ideal either because it cuts down the data
+	ideally we should run a mixed circular model to account for random effects
+	This script does that, and is an extra check that our pseudo-replication does not have a large influence on our results
+	i.e. how much variation in expansion direction is duye to species identity, rather than other factors
+	this random effects circular model can't do many of the clever things circular_analysis.R can do BUT it can check how much REs influence our patterns of expansion
+	In order to run this file you need to have run:
+		1) plant_PCA_nichefilling.R
+	the output of this file are used in the results section of the main paper as a subsidiary analysis
+	
+	
+	#nicheshiftPlot.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	As a supplementary analysis we want to compare conditions at the centre of the native niche and the proportion and direction of expansion
+	Plot 1: we plot the tmax, tmin and precip at the centre of the native niche is against the proportion of niche expansion
+	Do species from warm/cold/dry/wet places expand more?
+	Plot2: plot the tmax, tmin and precip at the centre of the native niche is against the proportion of niche expansion
+	do species from warm/cold/dry/wet places expand in certain directions?
+	To run this file you will need: 1) To have run plant_PCA_expand.R and Rstate_compile.R successfully
+	Output from this is used in Appendix Figure S1.10
+	
+	
+	#CompileSuppTables.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo, EXCEPT for plotting the map of biogeographic regions, which needs to be downloaded seperately
+	There are a number of tables and maps to compile for the supplementary material
+	Each is quite minor, so I compiled them into a single file
+	This file can be run at any time without running anything else,however you need (in rawdata):
+		1) a species list
+		2) a list of sources for native/naturalised (provided is our list)
+	In this file it will 
+		1) make a neater species list table for the supplementary material
+		2) make a list of citations of all sources used to categorise data as native/naturalised from SQL table
+		NOTE THAT THIS IS NOT THAT HELPFUL BY ITSELF. The citations are incomplete. To see the full citations see "supp_citations_Dict.xlsx" in rawdata/speciesLists
+	Output from this code is used in Appendix Table S1.1; Appendix Table S1.2;
+	
+	
+	#OccExpan_BetaBayes.R
+	Example output is provided from our analyses so this file can be run after downloading from the repo
+	This is a simpler, generic version of several bayesian scripts I made for another PhD chapter.
+	it runs a hierarchical bayesian model using a beta distribution to explain the proportion of species range filling/expansion
+	This script has been modified specifically to examine "Number of naturalised grid cells" versus "Proportion of niche expansion"
+	We want to make sure expansion isn't strongly driven by number of naturalised occurrences, and that other factors are at play
+	This model is 1 continuous predictor, and 1 beta-distribution proportional response
+	It saves various diagnostic plots in IntermediateOutput and summaries of the main output in FinalOutput
+	Output is used in Appendix Figure S1.2. The underlying model spec can be found in Appendix Table 1.3 and in code/supplementary/JAGSBetaModels
 
 ### ###
 
 
 ### OUTPUT ###
+
+The final output used in the paper. In alphabetical order the folders are:
+
+	#circular_analysis
+	Each subfolder describes which set of variables were used to identify niche expansion and then subsequently used as the main dataset for circular analysis
+	Folders marked "PA" are restricted datasets used to account for pseudoreplication
+	See circular_analysis in the code sectionfor more detail. 
+	
+	#circular_analysis_Regional
+	This is seperated by the set of variables used to identify niche expansion and then subsequently used as the main dataset for circular analysis
+	Each circular analysis is seperated by region
+	Currently we only consider "3VarEXP" for this file
+	
+	#ExpansionMapsSummaries
+	A series of summary maps describing the regions, subregions and where native/naturalised/niche expanding species occur
+	
+	#PlotNichefillingHists
+	The main histogram decribing how much of the hottest, wettest, driest and coldest portions of the naturalised niche have been colonised
+
+
+In addition there are outputs produced specifically for the supplementary material
+#supplementary
+
+	#CompileSuppTables
+	Neatened versions of species lists and sources for native/naturalised classification
+	
+	#correlateFillingAvail
+	Results of comparing niche filling in different quarters of climate space (ANOVA)
+	Results of mixed model comparing how number of naturalised gridcells and niche filling correlate across different quarters of climate space
+	
+	#nicheshiftPlot
+	Descriptive scatter plots comparing conditions at the centre of the native niche with the proportion of expansion and direction of expansion
+	Do species that come from particularly cold/dry/wet/hot places expand more frequently? Is it in a particular direction?
+	
+	#OccExpan_BetaBayes
+	Results and plots of Bayesian beta regression, checking if the number of naturalised gridcells predicts the proportion of expansion
+	
+	#PlotNichefillingHists
+	Breakdown of niche fillling split by region, and also with all species that expand their niche removed from consideration
+	
 
 
 ### ### 
