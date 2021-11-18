@@ -1,0 +1,9 @@
+# ignore everything except .gitignore
+*
+!.gitignore
+
+!bucketDirection
+!circleBreakdown
+!findFilling
+!rstate_center3var
+!shift_PCArasters

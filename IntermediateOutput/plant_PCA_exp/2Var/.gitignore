@@ -1,0 +1,11 @@
+# ignore everything except .gitignore
+*
+!.gitignore
+
+!bucketDirection
+!circleBreakdown
+!DirData
+!failure
+!NaturPCAvalues
+!rstate_center
+!shift_PCArasters

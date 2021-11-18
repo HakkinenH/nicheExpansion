@@ -1,0 +1,6 @@
+# ignore everything except .gitignore
+*
+!.gitignore
+!2Var
+!3Var
+!4Var
