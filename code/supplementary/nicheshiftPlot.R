@@ -41,6 +41,8 @@ library(CircStats)
 library(scales)
 library(ecospat)
 
+source("./code./functions/circ_plot_functions.R")
+
 
 #load output from plant_pca_expansion and Rstate_compile.R
 #niche expansion direction based on 3 variables

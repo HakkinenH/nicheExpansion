@@ -46,6 +46,7 @@ rm(list=ls())
 #set to current repo
 setwd("DIRECTORY_HERE")
 
+
 library("raster")
 library("ggplot2")
 
@@ -61,9 +62,6 @@ native_sql<-read.csv("./RawData/speciesList/Plant_nativesources_SQLtable.csv",st
 #read in the naturalised table info
 natur_sql<-read.csv("./RawData/speciesList/Plant_natursources_SQLtable.csv",stringsAsFactors = F,sep=";")
 
-
-#needed for part 3: map of biogeographic realms
-shape <- shapefile("./RawData/BiogeographicZones/biogeographic_zonesV2.shp")
 
 
 ###################################
