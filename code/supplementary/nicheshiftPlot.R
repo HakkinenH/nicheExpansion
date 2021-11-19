@@ -83,15 +83,19 @@ ampF2<-1.5
 plotname=paste("./FinalOutput/supplementary/nicheshiftPlot/NicheVersusExp.png",sep="")
 png(file=plotname, width=1080, height=360)
 
-par(mfrow=c(1,3))
-plot(shift_dyn2$native_center_tmax, shift_dyn2$expansion, 
-     xlab="Central TMax of native niche", ylab="Proportion of expansion",
+#adjust margin
+#par(mar = c(bottom, left, top, right)
+
+par(mfrow=c(1,3),
+    mar = c(5.1, 4.4, 4.1, 2.1))
+plot(shift_dyn2$native_center_tmax/10, shift_dyn2$expansion, 
+     xlab="Central TMax of native niche (°C)", ylab="Proportion of expansion",
      col=alpha("black", 0.3), pch=16, cex.axis=ampF2, cex.lab=ampF)
-plot(shift_dyn2$native_center_tmin, shift_dyn2$expansion, 
-     xlab="Central TMin of native niche", ylab="",
+plot(shift_dyn2$native_center_tmin/10, shift_dyn2$expansion, 
+     xlab="Central TMin of native niche (°C)", ylab="",
      col=alpha("black", 0.3), pch=16, cex.axis=ampF2, cex.lab=ampF)
 plot(shift_dyn2$native_center_precip, shift_dyn2$expansion, 
-     xlab="Central Precip of native niche", ylab="",
+     xlab="Central Precip of native niche (mm)", ylab="",
      col=alpha("black", 0.3), pch=16, cex.axis=ampF2, cex.lab=ampF)
 dev.off()
 
@@ -102,21 +106,23 @@ dev.off()
 plotname=paste("./FinalOutput/supplementary/nicheshiftPlot/NicheVersusDir.png",sep="")
 png(file=plotname, width=1080, height=360)
 
-par(mfrow=c(1,3))
-plot(shift_dyn2$native_center_tmax, shift_dyn2$exp_dir1, 
+
+par(mfrow=c(1,3),
+    mar = c(5.1, 4.4, 4.1, 2.1))
+plot(shift_dyn2$native_center_tmax/10, shift_dyn2$exp_dir1, 
      col=alpha("black", 0.3), pch=16, cex.axis=ampF2, cex.lab=ampF,
-     xlab="Central TMax of native niche", ylab="Direction of expansion")
-points(shift_dyn2$native_center_tmax, shift_dyn2$exp_dir2,     
+     xlab="Central TMax of native niche (°C)", ylab="Direction of expansion")
+points(shift_dyn2$native_center_tmax/10, shift_dyn2$exp_dir2,     
        col=alpha("black", 0.3), pch=16)
 
-plot(shift_dyn2$native_center_tmin, shift_dyn2$exp_dir1, 
-     xlab="Central TMin of native niche", ylab="",
+plot(shift_dyn2$native_center_tmin/10, shift_dyn2$exp_dir1, 
+     xlab="Central TMin of native niche (°C)", ylab="",
      col=alpha("black", 0.3), pch=16, cex.axis=ampF2, cex.lab=ampF)
-points(shift_dyn2$native_center_tmin, shift_dyn2$exp_dir2,
+points(shift_dyn2$native_center_tmin/10, shift_dyn2$exp_dir2,
        col=alpha("black", 0.3), pch=16)
 
 plot(shift_dyn2$native_center_precip, shift_dyn2$exp_dir1, 
-     xlab="Central Precip of native niche", ylab="",
+     xlab="Central Precip of native niche (mm)", ylab="",
      col=alpha("black", 0.3), pch=16, cex.axis=ampF2, cex.lab=ampF)
 points(shift_dyn2$native_center_precip, shift_dyn2$exp_dir2,
        col=alpha("black", 0.3), pch=16)
