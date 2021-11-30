@@ -21,6 +21,8 @@
 
 ### ###
 
+rm(list=ls())
+
 #set to current repo
 setwd("DIRECTORY_HERE")
 
@@ -33,7 +35,6 @@ library(ggplot2)
 library(wesanderson)
 
 source("./code/functions/miscFunctions.R")
-
 
 ###################################
 #load files for processing
@@ -52,12 +53,6 @@ plant_summary<-read.csv("IntermediateOutput/PCA_find_analogue_byRegion/plant_spe
 sp_list<-unique(plant_summary$species_name)
 
 
-#get information on the expansion proportion
-#load output from plant_pca_expansion and Rstate_compile.R
-#niche expansion direction based on 3 variables
-csvfile4 <- paste("./IntermediateOutput/Rstate_compile/3Var_plant_D_shiftvalues_zcor_center.txt",sep="")
-niche_shift<-read.delim(csvfile4, sep="\t")
-
 
 #get a subregion map based on L4 administrative data
 shape<-shapefile("./RawData/countryData/level4.shp")
@@ -75,7 +70,7 @@ region_shape <- shapefile("./RawData/BiogeographicZones/biogeographic_zonesV2.sh
 #################################################
 
 pdf(file="./FinalOutput/ExpansionMapsSummaries/ExpSumm_hist.pdf",width=5,height=5)
-hist(niche_shift$expansion,w=0.1,xlab="Proportion of Niche Expansion",main="")
+hist(niche_shift$expansion,w=0.1,xlab="Proportion of Niche Expansion",main="",col="white")
 abline(v=0.1,col="red",lwd=3)
 dev.off()
 

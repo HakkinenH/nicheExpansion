@@ -376,6 +376,31 @@ dev.off()
 res<-plot(estNW, plot.type="line", points.plot=TRUE)
 
 
+####plot both the histogram and the regression results in one plot
+
+#make a circular histogram of direction of expansion
+plotname=paste("./FinalOutput/circular_analysis/",output,"/CombinedPlot.pdf",sep="")
+pdf(file=plotname, width=12, height=5)
+
+par(mfrow=c(1,2))
+
+plot_circMLE.custom(dir, circ_res,shrink=1.4)
+axis.circular(at=circular(seq(0, 2*pi-pi/2, pi/2)), 
+              labels=c("0",expression(pi/2),expression(pi),expression(3*pi/2)))
+s.corcircle(arr_tab[,c(1,2)],grid=F,add=T)
+
+
+res<-plot(estLL, plot.type="circle", points.plot=TRUE, show.radial.grid=F, grid.col="black",
+          labels=c("0",expression(pi/2),expression(pi),expression(3*pi/2)),
+          label.pos=seq(0,7*pi/2,by=pi/2), zero=0, clockwise=FALSE,cex=0.6)
+lines(estLL, plot.type="circle", plot.info=res, line.col=2)
+
+
+dev.off()
+
+
+
+
 
 #we want to get some information on which direction has maximum expansion, and what direction that's in
 
